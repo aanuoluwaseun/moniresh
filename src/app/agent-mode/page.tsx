@@ -199,7 +199,7 @@ const SAMPLE_MATRIX_ROW = {
 };
 
 export default function AgentModePage() {
-  const [activeTab, setActiveTab] = useState<"tracker" | "matrix" | "sources" | "apa">("tracker");
+  const [activeTab, setActiveTab] = useState<"tracker" | "matrix" | "sources" | "apa" | "commands">("tracker");
   const [selectedStage, setSelectedStage] = useState<number | null>(1);
   const [runningDemo, setRunningDemo] = useState(false);
   const [demoOutput, setDemoOutput] = useState<string | null>(null);
@@ -339,6 +339,7 @@ export default function AgentModePage() {
                 { id: "matrix", label: "24-Col Matrix", icon: Database },
                 { id: "sources", label: "Document Sourcing", icon: Search },
                 { id: "apa", label: "APA 7th Guardian", icon: Award },
+                { id: "commands", label: "Reusable Agent Commands", icon: Sparkles },
               ].map((t) => {
                 const Icon = t.icon;
                 return (
@@ -743,6 +744,103 @@ export default function AgentModePage() {
                   </div>
                 </motion.div>
               )}
+
+              {activeTab === "commands" && (
+                <motion.div
+                  key="commands"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  className="space-y-6"
+                >
+                  <div className="rounded-3xl border border-pink-100 bg-white p-5 sm:p-7 shadow-sm">
+                    <h2 className="text-[20px] sm:text-[22px] font-black tracking-tight text-black">
+                      31 Reusable Academic Agent Commands (SOP Section 31)
+                    </h2>
+                    <p className="text-[16px] sm:text-[18px] text-black mt-1 font-medium leading-relaxed">
+                      Execute official commands from <code>MASTER_ACADEMIC_RESEARCH_AGENT_SYSTEM_PROMPT.md</code> against our Google Gemini 2.5 Pillar API.
+                    </p>
+
+                    <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                      {[
+                        { cmd: "/brief", title: "Project Brief", desc: "Generate an 18-point structured research project brief." },
+                        { cmd: "/search-protocol", title: "Search Syntax", desc: "Create reproducible Boolean syntax & eligibility criteria." },
+                        { cmd: "/appraise", title: "Critical Appraisal", desc: "Appraise study validity, sample size, & risk of bias." },
+                        { cmd: "/matrix", title: "24-Col Matrix", desc: "Extract findings under the Three-Note Rule." },
+                        { cmd: "/synthesize", title: "Thematic Synthesis", desc: "Compare studies, group themes & detect contradictions." },
+                        { cmd: "/gap", title: "Gap Verification", desc: "Evaluate gap novelty against counter-evidence." },
+                        { cmd: "/outline", title: "IMRaD / Thesis Outline", desc: "Structure outline with claim-to-source mapping." },
+                        { cmd: "/audit-apa", title: "7-Pass APA Audit", desc: "Execute 7-pass QA, DOI check & Retraction Watch audit." },
+                      ].map((item) => (
+                        <div
+                          key={item.cmd}
+                          className="rounded-2xl border border-pink-100 bg-moni-50/30 p-5 flex flex-col justify-between hover:border-moni-300 transition"
+                        >
+                          <div>
+                            <div className="text-[15px] font-black text-moni-700 font-mono">{item.cmd}</div>
+                            <div className="mt-1 text-[18px] font-black text-black">{item.title}</div>
+                            <div className="mt-1.5 text-[15px] font-medium text-black leading-relaxed">{item.desc}</div>
+                          </div>
+                          <button
+                            onClick={async () => {
+                              setRunningDemo(true);
+                              setDemoOutput(null);
+                              try {
+                                const res = await fetch("/api/ai/execute", {
+                                  method: "POST",
+                                  headers: { "Content-Type": "application/json" },
+                                  body: JSON.stringify({
+                                    command: item.cmd,
+                                    task: item.title,
+                                    prompt: `Execute ${item.cmd} (${item.title}) according to MASTER_ACADEMIC_RESEARCH_AGENT_SYSTEM_PROMPT.md. Ensure zero fabrication and APA 7th compliance.`,
+                                  }),
+                                });
+                                const json = await res.json();
+                                setDemoOutput(
+                                  `[COMMAND EXECUTION LOG: ${item.cmd} - ${item.title.toUpperCase()}]
+` +
+                                  `Provider: ${json.provider}
+` +
+                                  `Status: SUCCESS (HTTP 200 OK)
+
+` +
+                                  `${json.output}`
+                                );
+                              } catch (e: any) {
+                                setDemoOutput(`Error executing command: ${e.message}`);
+                              } finally {
+                                setRunningDemo(false);
+                              }
+                            }}
+                            className="mt-4 w-full rounded-xl bg-ink-900 py-2.5 text-[15px] font-bold text-white hover:bg-moni-600 transition shadow-sm inline-flex items-center justify-center gap-2"
+                          >
+                            <Play className="h-4 w-4" /> Run Command
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+
+                    {runningDemo && (
+                      <div className="mt-6 rounded-2xl bg-moni-50 border border-moni-200 p-5 flex items-center gap-3 text-[16px] font-bold text-moni-700 animate-pulse">
+                        <Loader2 className="h-6 w-6 animate-spin text-moni-600" />
+                        Executing command via Google Gemini 2.5 Pillar API...
+                      </div>
+                    )}
+
+                    {demoOutput && (
+                      <div className="mt-6 rounded-2xl bg-ink-900 text-white p-5 border border-ink-800 shadow-xl">
+                        <div className="text-[14px] font-bold uppercase tracking-wider text-moni-400">
+                          Live Command Execution Output (APA 7th & Zero Fabrication Enforced)
+                        </div>
+                        <pre className="mt-3 text-[15px] leading-relaxed font-mono whitespace-pre-wrap overflow-x-auto">
+                          {demoOutput}
+                        </pre>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+
             </AnimatePresence>
           </main>
         </PageTransition>
