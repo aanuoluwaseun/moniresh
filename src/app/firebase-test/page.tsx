@@ -32,7 +32,7 @@ export default function FirebaseTest() {
   return (
     <div className="min-h-screen bg-[#FFF8FB] p-8">
       <div className="max-w-2xl mx-auto bg-white border border-pink-100 rounded-2xl p-6 shadow-card">
-        <h1 className="text-[24px] font-black">MONIRESH → Firebase</h1>
+        <h1 className="text-[24px] font-black"><img src="/moniresh-logo.png" alt="MONIRESH Logo" className="h-7 w-7 rounded-lg object-cover shadow-sm border border-pink-100 inline-block mr-2.5 -mt-1" /> MONIRESH → Firebase</h1>
         <p className="text-[18px] text-black mt-1">projectId: <b>moniresh</b> • storage: moniresh.firebasestorage.app</p>
         <div className="mt-4 rounded-xl bg-moni-50 border border-moni-100 p-4 font-mono text-[18px]">{status}</div>
         {details && <pre className="mt-3 bg-ink-900 text-white p-4 rounded-xl text-[16px] overflow-auto">{JSON.stringify(details, null, 2)}</pre>}

@@ -16,7 +16,7 @@ export default function LiteraturePage() {
         <MobileTopbar />
         <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-xl border-b border-pink-50">
           <div className="px-6 lg:px-8 py-5">
-            <h1 className="text-[22px] font-black tracking-tight">Literature</h1>
+            <h1 className="text-[22px] font-black tracking-tight"><img src="/moniresh-logo.png" alt="MONIRESH Logo" className="h-7 w-7 rounded-lg object-cover shadow-sm border border-pink-100 inline-block mr-2.5 -mt-1" /> Literature</h1>
             <p className="text-[18px] text-black font-medium">Find papers properly - and keep the receipt for your appendix.</p>
           </div>
         </header>

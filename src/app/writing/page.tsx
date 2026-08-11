@@ -13,7 +13,7 @@ export default function WritingPage(){
         <header className="sticky top-0 z-20 bg-white border-b border-pink-50">
           <div className="px-6 lg:px-8 py-3 flex items-center gap-3">
             <PenLine className="h-4 w-4 text-moni-500" />
-            <h1 className="text-[17px] font-black">Manuscript</h1>
+            <h1 className="text-[17px] font-black"><img src="/moniresh-logo.png" alt="MONIRESH Logo" className="h-7 w-7 rounded-lg object-cover shadow-sm border border-pink-100 inline-block mr-2.5 -mt-1" /> Manuscript</h1>
             <span className="ml-2 hidden sm:inline text-[16px] text-black">Write with sources at your side.</span>
             <div className="ml-auto flex gap-2">
               <Link href="/dashboard" className="rounded-full border border-pink-100 bg-white px-4 py-1.5 text-[16px] font-bold">Back to dashboard</Link>

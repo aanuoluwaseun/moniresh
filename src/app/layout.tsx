@@ -16,7 +16,15 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "MONIRESH - AI Research Intelligence & Research Operations Platform",
   description: "From Research Idea to Publication-Ready Evidence. The AI Research Operating System.",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" },
+      { url: "/icon.png", sizes: "192x192", type: "image/png" },
+      { url: "/moniresh-logo.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/moniresh-logo.png",
+  },
 };
 
 export default function RootLayout({
