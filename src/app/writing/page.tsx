@@ -1,149 +1,65 @@
 "use client";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { MobileTopbar } from "@/components/layout/MobileTopbar";
-import { useState } from "react";
-import { PenLine, ShieldCheck, BookMarked, AlertTriangle, CheckCircle2, Sparkles, FileCheck2 } from "lucide-react";
+import Link from "next/link";
+import { PenLine, ShieldCheck, BookMarked, ArrowRight } from "lucide-react";
 
 export default function WritingPage(){
-  const [selectedSentence, setSelectedSentence] = useState(1);
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex">
+    <div className="min-h-screen bg-[#FFFEFE] flex">
       <Sidebar/>
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 min-w-0 flex flex-col">
         <MobileTopbar/>
-        <header className="sticky top-0 z-20 bg-white border-b border-pink-100">
+        <header className="sticky top-0 z-20 bg-white border-b border-pink-50">
           <div className="px-6 lg:px-8 py-3 flex items-center gap-3">
-            <PenLine className="h-4 w-4 text-ink-900" />
-            <h1 className="text-[16px] font-black">Manuscript Workspace</h1>
-            <span className="rounded-full bg-slate-100 border border-pink-100 px-2.5 py-1 text-[11px] font-bold">7,420 words</span>
-            <span className="rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-1 text-[11px] font-bold text-emerald-700">Readiness 84%</span>
+            <PenLine className="h-4 w-4 text-moni-500" />
+            <h1 className="text-[15px] font-black">Manuscript</h1>
+            <span className="ml-2 hidden sm:inline text-xs text-ink-500">Write with sources at your side.</span>
             <div className="ml-auto flex gap-2">
-              <button className="rounded-full border border-pink-100 bg-white px-4 py-1.5 text-xs font-bold">Export DOCX</button>
-              <button className="rounded-full bg-ink-900 px-4 py-1.5 text-xs font-bold text-white">Check Manuscript</button>
+              <Link href="/dashboard" className="rounded-full border border-pink-100 bg-white px-4 py-1.5 text-xs font-bold">Back to dashboard</Link>
             </div>
           </div>
         </header>
-        <div className="flex-1 flex min-h-0">
-          {/* Outline left */}
-          <div className="hidden lg:block w-[240px] border-r border-pink-100 bg-white p-4 overflow-auto">
+        <div className="flex-1 flex min-h-0 flex-col lg:flex-row">
+          <div className="hidden lg:block w-[220px] border-r border-pink-50 bg-white p-4">
             <div className="text-[11px] font-bold tracking-widest uppercase text-ink-500">Outline</div>
-            <div className="mt-3 space-y-1 text-xs">
-              {[
-                "Title",
-                "Abstract — 94% cited",
-                "Introduction — 88% coverage",
-                "Literature Review — 96%",
-                "Theoretical Framework",
-                "Conceptual Framework",
-                "Methodology",
-                "Results",
-                "Discussion — 91%",
-                "Conclusion",
-                "References — 63 refs",
-                "Appendices",
-              ].map((s,i)=>(
-                <div key={s} className={`rounded-lg px-3 py-2 font-medium ${i===2 ? 'bg-ink-900 text-white' : 'hover:bg-moni-50 text-slate-700'}`}>{s}</div>
+            <div className="mt-3 space-y-1 text-xs font-medium text-ink-700">
+              {["Title","Abstract","Introduction","Literature Review","Framework","Method","Results","Discussion","Conclusion","References"].map(s=>(
+                <div key={s} className="rounded-lg px-3 py-2 hover:bg-moni-50">{s}</div>
               ))}
             </div>
-            <div className="mt-6 rounded-xl bg-moni-50 border border-moni-200 p-3">
-              <div className="text-xs font-bold text-amber-900">Citation Coverage</div>
-              <div className="mt-1 space-y-1 text-xs">
-                <div className="flex justify-between"><span>Introduction</span><span className="font-bold">88%</span></div>
-                <div className="flex justify-between"><span>Lit Review</span><span className="font-bold">96%</span></div>
-                <div className="flex justify-between"><span>Discussion</span><span className="font-bold">91%</span></div>
-              </div>
+            <div className="mt-6 rounded-xl bg-moni-50 border border-moni-100 p-3 text-xs">
+              <div className="font-bold">No fake citations</div>
+              <div className="text-ink-600 mt-1 leading-relaxed">References are pulled via DOI (Crossref). If we can’t find it, we tell you — we don’t invent it.</div>
             </div>
           </div>
 
-          {/* Center editor */}
-          <div className="flex-1 bg-[#FCFCF9] overflow-auto">
-            <div className="max-w-[720px] mx-auto bg-white my-6 border border-pink-100 rounded-xl shadow-card p-8 lg:p-10">
-              <div className="text-center border-b border-slate-100 pb-6">
-                <h1 className="text-[22px] font-extrabold leading-tight">AI Literacy, Institutional Trust, and Adoption Intention among University Lecturers in Sub-Saharan Africa: An Integrated UTAUT–TTF Perspective</h1>
-                <div className="mt-2 text-xs text-ink-500">Aanuoluwa et al. • MONIRESH Draft • Target: Computers & Education</div>
+          <div className="flex-1 bg-[#FFFEFE] flex items-center justify-center p-6 lg:p-10">
+            <div className="w-full max-w-[680px] bg-white border border-pink-100 rounded-[20px] p-8 lg:p-9 text-center">
+              <div className="mx-auto h-12 w-12 rounded-2xl bg-moni-50 border border-moni-100 flex items-center justify-center"><PenLine className="h-5 w-5 text-moni-500" /></div>
+              <h2 className="mt-4 text-[18px] font-black">Your manuscript starts here</h2>
+              <p className="text-sm text-ink-500 mt-1.5 font-medium leading-relaxed">Open a project and this becomes a calm editor — with your sources on the right. Every sentence can be opened to the papers behind it.</p>
+
+              <div className="mt-6 text-left rounded-2xl border border-pink-50 bg-[#FFFEFE] p-4">
+                <div className="text-xs font-bold">What you’ll get when you start</div>
+                <ul className="mt-2 space-y-1.5 text-sm font-medium text-ink-700">
+                  <li className="flex gap-2"><ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" /> Citation Guardian checks claim → source</li>
+                  <li className="flex gap-2"><BookMarked className="h-4 w-4 text-moni-500 shrink-0" /> References via DOI, formatted correctly</li>
+                  <li className="flex gap-2"><ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" /> Warnings if text and table disagree</li>
+                </ul>
               </div>
-              <div className="prose-rigora mt-6">
-                <h2>1. Introduction</h2>
-                <p>
-                  <span onClick={()=>setSelectedSentence(1)} className={`cursor-pointer rounded px-1 ${selectedSentence===1 ? 'bg-moni-100 border border-moni-200' : 'claim-highlight'}`}>
-                    Artificial intelligence adoption is increasing in higher education, yet empirical evidence remains concentrated in developed economies
-                  </span>{' '}
-                  <span className="citation">[Zhang et al. 2024; Chen & Williams 2023]</span>. While 312 studies examine AI adoption through TAM/UTAUT lenses, only 12 focus on Sub-Saharan Africa, and just 3 examine lecturers as the primary population<span className="citation">[Adeyemi et al. 2024]</span>.
-                </p>
-                <p className={selectedSentence===2 ? 'bg-moni-100 border border-moni-200 rounded px-1' : ''} onClick={()=>setSelectedSentence(2)}>
-                  This imbalance creates a critical gap: institutional pressures and AI literacy have been theorized as decisive factors <span className="citation">[Santos & Lim 2024]</span>, but they have rarely been tested together in a single model. Consequently, the mediating role of trust between literacy and adoption remains under-explored, particularly in resource-constrained settings.
-                </p>
-                <h3>Research Gap & Contribution</h3>
-                <p>
-                  Our Evidence Matrix of 163 included studies shows that most quantitative work is cross-sectional surveys of students in Asia and North America. Lecturer-focused, longitudinal, and mixed-method designs constitute less than 8% of the corpus. By integrating UTAUT, TTF, and institutional theory, this study addresses both a population gap and a theoretical gap.
-                </p>
-                <div className="rounded-xl border-2 border-amber-300 bg-moni-50 p-4 my-4">
-                  <div className="text-xs font-bold flex items-center gap-1"><AlertTriangle className="h-3.5 w-3.5 text-amber-600" /> Potential inconsistency flagged</div>
-                  <div className="text-xs mt-1">Manuscript says H1 supported, but table shows p=.183 (Table 3). RIGORA suggests: revise text or re-run analysis. <span className="font-bold">Text → Table → Output must align.</span></div>
-                </div>
-                <h2>2. Literature Review</h2>
-                <p>
-                  UTAUT remains dominant (184 papers) yet often without contextual extension. TTF (76 papers) adds fit, but institutional theory (23 papers) is seldom integrated. This study proposes: <em>AI literacy → Trust → Adoption intention</em>, moderated by institutional support.
-                </p>
-                <p className="text-xs text-ink-500 border-l-2 border-pink-100 pl-3">Every claim has evidence. Click a sentence to see its sources on the right →</p>
+
+              <div className="mt-6 flex justify-center gap-2">
+                <Link href="/literature" className="rounded-full bg-ink-900 px-6 py-3 text-white text-sm font-bold">Create a project</Link>
+                <Link href="/dashboard" className="rounded-full border border-pink-100 bg-white px-6 py-3 text-sm font-bold">Go to dashboard</Link>
               </div>
-              <div className="mt-8 flex gap-2 border-t border-slate-100 pt-4">
-                <button className="rounded-full bg-ink-900 px-4 py-2 text-xs font-bold text-white">Generate next section</button>
-                <button className="rounded-full border border-pink-100 px-4 py-2 text-xs font-bold">Improve academic voice</button>
-              </div>
+              <p className="text-xs text-ink-500 mt-4">This preview is empty until you write. No demo manuscript with fake results.</p>
             </div>
           </div>
 
-          {/* Right AI panel */}
-          <div className="hidden xl:block w-[360px] border-l border-pink-100 bg-white overflow-auto">
-            <div className="p-4 border-b border-slate-100">
-              <h3 className="text-xs font-black flex items-center gap-2"><Sparkles className="h-4 w-4 text-amber-600" /> AI Research Panel</h3>
-            </div>
-            <div className="p-4 space-y-4">
-              <div className="rounded-xl border border-pink-100 bg-moni-50 p-3">
-                <div className="text-xs font-bold">Evidence for selected sentence</div>
-                <div className="mt-2 text-xs leading-relaxed">
-                  <div className="font-bold">{selectedSentence===1 ? 'Claim: Adoption increasing but concentrated' : 'Claim: Literacy + trust gap'}</div>
-                  <div className="mt-1 flex flex-wrap gap-1">
-                    <span className="rounded-full bg-blue-100 border border-blue-200 px-2 py-1 text-[11px] font-bold">12 sources</span>
-                    <span className="rounded-full bg-emerald-50 border border-emerald-200 px-2 py-1 text-[11px] font-bold text-emerald-700">Confidence: Moderate</span>
-                    <span className="rounded-full bg-moni-50 border border-moni-200 px-2 py-1 text-[11px] font-bold text-moni-600">3 contradict</span>
-                  </div>
-                  <div className="mt-2 space-y-1">
-                    <div className="rounded-lg bg-white border p-2"><div className="font-bold">Study A — Zhang 2024</div><div className="text-slate-600">Supports increase, n=842, China</div></div>
-                    <div className="rounded-lg bg-white border p-2"><div className="font-bold">Study B — Adeyemi 2024</div><div className="text-slate-600">Barriers in Africa, n=210, SA</div></div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="rounded-xl border border-blue-200 bg-blue-50 p-3">
-                <div className="text-xs font-bold text-blue-900">Gap</div>
-                <div className="text-xs mt-1 text-slate-700">This paragraph has not yet established the research gap clearly. <button className="font-bold text-blue-700 underline">Connect contradiction between Studies A & B.</button></div>
-              </div>
-
-              <div className="rounded-xl border border-pink-100 bg-white p-3">
-                <div className="text-xs font-bold flex items-center gap-1"><BookMarked className="h-3.5 w-3.5" /> Citation Guardian</div>
-                <div className="mt-2 space-y-1.5 text-xs">
-                  <div className="flex items-center justify-between rounded-lg bg-emerald-50 border border-emerald-100 px-3 py-2"><span>Claim → Source alignment</span><CheckCircle2 className="h-4 w-4 text-emerald-600" /></div>
-                  <div className="flex items-center justify-between rounded-lg bg-emerald-50 border border-emerald-100 px-3 py-2"><span>Refs from Crossref (DOI)</span><CheckCircle2 className="h-4 w-4 text-emerald-600" /></div>
-                  <div className="flex items-center justify-between rounded-lg bg-moni-50 border border-moni-100 px-3 py-2"><span>3 refs older than 5 years — justified (foundational)</span><AlertTriangle className="h-4 w-4 text-amber-600" /></div>
-                </div>
-                <div className="mt-2 text-[11px] text-ink-500">No fake citations. Every reference pulled via DOI metadata, not LLM invented.</div>
-              </div>
-
-              <div className="rounded-xl bg-ink-900 text-white p-4">
-                <div className="text-xs font-bold">Academic Voice Editor</div>
-                <div className="text-xs opacity-70 mt-1">Improve clarity, vary sentences, match your voice — not "bypass detector."</div>
-                <button className="mt-2 w-full rounded-full bg-white py-2 text-xs font-bold text-ink-900">Refine paragraph</button>
-              </div>
-
-              <div className="rounded-xl border border-pink-100 p-3">
-                <div className="text-xs font-bold flex items-center gap-1"><FileCheck2 className="h-3.5 w-3.5" /> Reference Freshness</div>
-                <div className="mt-2 h-2 rounded-full bg-slate-100 overflow-hidden"><div className="h-full bg-ink-900" style={{width: "42%"}} /></div>
-                <div className="mt-1 text-xs flex justify-between"><span>Last 5 years: 42% (26/63)</span><span className="font-bold">58% older</span></div>
-                <div className="text-[11px] text-ink-500 mt-1">Older refs flagged where not foundational theory.</div>
-              </div>
-            </div>
+          <div className="hidden xl:block w-[320px] border-l border-pink-50 bg-white p-4">
+            <div className="text-xs font-black">Sources</div>
+            <div className="mt-3 rounded-xl bg-moni-50 border border-moni-100 p-4 text-sm text-ink-600">Add papers and your citations will appear here — linked to the exact sentence they support.</div>
           </div>
         </div>
       </div>

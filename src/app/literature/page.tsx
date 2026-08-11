@@ -2,125 +2,100 @@
 import { Sidebar } from "@/components/layout/Sidebar";
 import { MobileTopbar } from "@/components/layout/MobileTopbar";
 import { useState } from "react";
-import { Search, Copy, Database, Check, Sparkles, FileUp, Filter } from "lucide-react";
+import Link from "next/link";
+import { Search, Library, Upload, ArrowRight, Check, Info } from "lucide-react";
 
 export default function LiteraturePage() {
-  const [idea, setIdea] = useState("AI adoption in higher education");
-  const [built, setBuilt] = useState(false);
+  const [query, setQuery] = useState("");
+  const [showExample, setShowExample] = useState(false);
+
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex">
+    <div className="min-h-screen bg-[#FFFEFE] flex">
       <Sidebar />
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 min-w-0 flex flex-col">
         <MobileTopbar />
-        <header className="sticky top-0 z-20 bg-white/80 backdrop-blur border-b border-pink-100">
-          <div className="px-6 lg:px-8 py-4">
-            <h1 className="text-[20px] font-extrabold tracking-tight">Literature Search</h1>
-            <p className="text-xs text-ink-500">Source connector layer • Authorized APIs • Reproducible search strings</p>
+        <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-xl border-b border-pink-50">
+          <div className="px-6 lg:px-8 py-5">
+            <h1 className="text-[20px] font-black tracking-tight">Literature</h1>
+            <p className="text-sm text-ink-500 font-medium">Find papers properly — and keep the receipt for your appendix.</p>
           </div>
         </header>
-        <main className="px-6 lg:px-8 py-6 max-w-[1400px] w-full mx-auto space-y-6">
-          {/* Search Builder */}
-          <div className="rounded-2xl border border-pink-100 bg-white p-6 shadow-card">
-            <div className="flex items-center gap-2 mb-3">
-              <Sparkles className="h-4 w-4 text-amber-600" />
-              <h2 className="text-sm font-black">Literature Search Builder</h2>
-              <span className="ml-auto text-[11px] font-bold px-2 py-1 rounded-full bg-ink-900 text-white">RAG-aware</span>
-            </div>
-            <label className="text-xs font-bold text-slate-700">Research idea</label>
-            <div className="mt-1 flex gap-2">
-              <input value={idea} onChange={e=>setIdea(e.target.value)} className="flex-1 rounded-xl border border-pink-100 bg-moni-50 px-4 py-3 text-sm font-medium outline-none focus:bg-white focus:border-slate-900" />
-              <button onClick={()=>setBuilt(true)} className="rounded-xl bg-ink-900 px-6 py-3 text-sm font-bold text-white">Build Queries</button>
+
+        <main className="px-6 lg:px-8 py-8 max-w-[1080px] w-full mx-auto space-y-6">
+          {/* Search — honest, no fake counts */}
+          <div className="rounded-[24px] border border-pink-100 bg-white p-6 lg:p-7">
+            <h2 className="font-black tracking-tight">Build a search you can defend</h2>
+            <p className="text-sm text-ink-500 mt-1.5 leading-relaxed font-medium max-w-[640px]">Write your idea in plain language. We’ll help turn it into keywords and a Boolean string you can paste into OpenAlex, Semantic Scholar, Crossref — no hidden scraping where it isn’t allowed.</p>
+
+            <div className="mt-6">
+              <label className="text-xs font-bold tracking-widest uppercase text-ink-500">Your topic, in your words</label>
+              <div className="mt-2 flex gap-2">
+                <input value={query} onChange={e=>setQuery(e.target.value)} placeholder="e.g., AI adoption among university lecturers in Africa" className="flex-1 rounded-xl border border-pink-100 bg-[#FFFEFE] px-4 py-3 text-sm outline-none focus:border-moni-300 focus:ring-4 focus:ring-moni-50" />
+                <button onClick={()=>setShowExample(v=>!v)} className="rounded-full bg-ink-900 px-6 py-3 text-sm font-bold text-white hover:bg-moni-600 transition hidden sm:inline-flex items-center gap-2">
+                  <Search className="h-4 w-4" /> {showExample ? "Hide example" : "Show example"}
+                </button>
+              </div>
+              <button onClick={()=>setShowExample(v=>!v)} className="sm:hidden mt-2 w-full rounded-full bg-ink-900 px-6 py-3 text-sm font-bold text-white">Show example</button>
             </div>
 
-            {built && (
-              <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="space-y-3">
-                  <h3 className="text-xs font-bold tracking-widest uppercase text-ink-500">Generated</h3>
-                  <div className="rounded-xl border border-pink-100 bg-moni-50 p-4">
-                    <div className="text-xs font-bold">Keywords</div>
-                    <div className="mt-1 flex flex-wrap gap-1.5">
-                      {["artificial intelligence","AI","generative AI","AI adoption","AI acceptance"].map(k=>(
-                        <span key={k} className="rounded-full bg-white border border-pink-100 px-3 py-1 text-xs font-medium">{k}</span>
-                      ))}
+            {showExample && (
+              <div className="mt-6 rounded-2xl border border-moni-100 bg-moni-50/50 p-5">
+                <div className="inline-flex items-center gap-2 rounded-full bg-white border border-moni-100 px-2.5 py-1 text-[11px] font-bold text-moni-600"><Info className="h-3 w-3" /> Example — not your results</div>
+                <p className="text-sm font-bold mt-3">For “AI adoption in higher education” we might suggest:</p>
+                <div className="mt-3 grid md:grid-cols-2 gap-4 text-sm">
+                  <div className="rounded-xl bg-white border border-pink-100 p-4">
+                    <div className="text-xs font-bold tracking-widest uppercase text-ink-500">Keywords</div>
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      {["artificial intelligence","AI adoption","generative AI"].map(k=> <span key={k} className="rounded-full bg-moni-50 border border-moni-100 px-3 py-1 text-xs font-bold">{k}</span>)}
                     </div>
-                    <div className="text-xs font-bold mt-3">Synonyms</div>
-                    <div className="mt-1 flex flex-wrap gap-1.5">
-                      {["higher education","universities","tertiary education","academic institutions"].map(k=>(
-                        <span key={k} className="rounded-full bg-moni-50 border border-moni-200 px-3 py-1 text-xs font-medium text-moni-700">{k}</span>
-                      ))}
-                    </div>
-                    <div className="text-xs font-bold mt-3">Boolean</div>
-                    <pre className="mt-1 rounded-lg bg-ink-900 text-white p-3 text-xs leading-relaxed overflow-auto">
-{`("artificial intelligence" OR "AI" OR "generative AI")
-AND ("adoption" OR "acceptance" OR "intention to use")
-AND ("higher education" OR universit*)`}
-                    </pre>
+                  </div>
+                  <div className="rounded-xl bg-white border border-pink-100 p-4">
+                    <div className="text-xs font-bold tracking-widest uppercase text-ink-500">Boolean (paste-ready)</div>
+                    <code className="mt-2 block text-xs bg-ink-900 text-white rounded-lg p-3 leading-relaxed">("artificial intelligence" OR "generative AI") AND ("adoption" OR "intention to use") AND ("higher education" OR universit*)</code>
                   </div>
                 </div>
-                <div className="space-y-3">
-                  <h3 className="text-xs font-bold tracking-widest uppercase text-ink-500">Database-specific queries</h3>
-                  {[
-                    { db: "OpenAlex (open)", q: "filter: title.search:AI adoption, institution.country:all", ok: true },
-                    { db: "Semantic Scholar (public)", q: "query: AI adoption higher education + TLDR", ok: true },
-                    { db: "Crossref (open)", q: "query.container-title:Computers & Education", ok: true },
-                    { db: "Scopus (API key required)", q: "TITLE-ABS-KEY(AI AND adoption AND higher education)", ok: false },
-                    { db: "Web of Science (subscription)", q: "TS=(AI adoption) AND TS=(higher education)", ok: false },
-                    { db: "PubMed", q: "(AI) AND (education) NOT needed for this topic", ok: true },
-                  ].map(i=>(
-                    <div key={i.db} className={`rounded-xl border p-3 flex gap-3 ${i.ok ? 'bg-white border-pink-100' : 'bg-moni-50 border-moni-200'}`}>
-                      <Database className={`h-4 w-4 mt-0.5 ${i.ok ? 'text-slate-400' : 'text-amber-600'}`} />
-                      <div className="flex-1 min-w-0">
-                        <div className="text-xs font-bold">{i.db}</div>
-                        <div className="text-xs font-mono text-slate-600 truncate">{i.q}</div>
-                      </div>
-                      <button className="h-7 rounded-full border bg-white px-3 text-xs font-bold flex items-center gap-1"><Copy className="h-3 w-3" /> Copy</button>
-                    </div>
-                  ))}
-                  <div className="rounded-xl bg-ink-900 text-white p-4">
-                    <div className="text-xs font-bold">Reproducibility</div>
-                    <div className="text-xs opacity-70 mt-1">Search string, database, date 2026-08-11, filters, result count 2,847 preserved for PRISMA. Export → RIS/BibTeX.</div>
-                  </div>
-                </div>
+                <p className="text-xs text-ink-500 mt-3 font-medium">We generate DB-specific variants for you and save the exact string, date, and filters — so your PRISMA is reproducible.</p>
               </div>
             )}
+
+            <div className="mt-6 flex flex-wrap gap-2 text-xs">
+              {["OpenAlex — open","Semantic Scholar — open","Crossref — open","Scopus — needs your API key","Web of Science — needs subscription"].map(s=>(
+                <span key={s} className="rounded-full border border-pink-100 bg-white px-3 py-1.5 font-bold text-ink-700">{s}</span>
+              ))}
+            </div>
           </div>
 
-          {/* Collector */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2 rounded-2xl border border-pink-100 bg-white p-6 shadow-card">
-              <h3 className="text-sm font-bold">Literature Collector — 2,847 → 2,284 after dedup</h3>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {["Scopus","Web of Science","PubMed","Semantic Scholar","OpenAlex","Crossref","Europe PMC","arXiv","DOAJ","CORE","Upload"].map(s=>(
-                  <span key={s} className="rounded-full border border-pink-100 bg-moni-50 px-3 py-1 text-xs font-semibold">{s}</span>
-                ))}
+          {/* Collection — empty state */}
+          <div className="grid lg:grid-cols-[1.4fr_0.8fr] gap-6">
+            <div className="rounded-[20px] border border-pink-100 bg-white p-6">
+              <h3 className="font-black">Your collection</h3>
+              <p className="text-sm text-ink-500 font-medium mt-1">No papers added yet. Search above or upload what you already have.</p>
+              <div className="mt-5 rounded-2xl border border-dashed border-pink-200 bg-[#FFFEFE] p-6 text-center">
+                <Library className="h-6 w-6 mx-auto text-moni-400" />
+                <div className="text-sm font-bold mt-2">Start with what you have</div>
+                <div className="text-sm text-ink-500 font-medium">We’ll de-duplicate and keep every record’s source, so you can trust the count later — when it’s real.</div>
+                <div className="mt-4 flex justify-center gap-2">
+                  <span className="rounded-full bg-white border border-pink-100 px-3 py-1 text-xs font-bold">RIS</span>
+                  <span className="rounded-full bg-white border border-pink-100 px-3 py-1 text-xs font-bold">BibTeX</span>
+                  <span className="rounded-full bg-white border border-pink-100 px-3 py-1 text-xs font-bold">CSV</span>
+                  <span className="rounded-full bg-white border border-pink-100 px-3 py-1 text-xs font-bold">PDFs</span>
+                </div>
               </div>
-              <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-                {[
-                  "Retrieve metadata + DOI + authors + journal + year + citations",
-                  "Retrieve abstracts where permitted (OpenAlex/Crossref)",
-                  "Detect duplicates: DOI → title → near-title → preprint vs journal",
-                  "Download permitted PDFs, flag retracted, detect corrections",
-                ].map(t=>(
-                  <div key={t} className="flex gap-2 rounded-xl border border-slate-100 bg-moni-50 p-3"><Check className="h-4 w-4 text-emerald-600 shrink-0" /> <span className="font-medium leading-tight">{t}</span></div>
-                ))}
-              </div>
-              <div className="mt-4 rounded-xl border border-pink-100 p-4">
-                <div className="text-xs font-bold">Deduplication result</div>
-                <div className="text-sm mt-1"><span className="font-black">17 records → 8 unique publications</span> (example). Near-identical titles flagged with confidence.</div>
+              <div className="mt-4 flex gap-2 text-xs font-bold">
+                <span className="inline-flex items-center gap-1.5"><Check className="h-4 w-4 text-emerald-600" /> DOI + title de-duplication</span>
+                <span className="inline-flex items-center gap-1.5"><Check className="h-4 w-4 text-emerald-600" /> Keeps retractions flagged</span>
               </div>
             </div>
-            <div className="rounded-2xl border border-pink-100 bg-white p-6 shadow-card">
-              <h3 className="text-sm font-bold flex items-center gap-2"><FileUp className="h-4 w-4" /> Upload Library</h3>
-              <div className="mt-3 rounded-xl border-2 border-dashed border-pink-100 bg-moni-50 p-6 text-center">
-                <div className="text-xs font-bold">Drag RIS, BibTeX, CSV, or PDFs</div>
-                <div className="text-xs text-ink-500 mt-1">Or connect Zotero library (OAuth). Max 500 MB.</div>
-                <button className="mt-3 rounded-full bg-ink-900 px-4 py-2 text-xs font-bold text-white">Browse files</button>
+
+            <div className="rounded-[20px] border border-pink-100 bg-white p-6">
+              <h3 className="font-black flex items-center gap-2"><Upload className="h-4 w-4 text-moni-500" /> Upload</h3>
+              <div className="mt-3 rounded-2xl border border-dashed border-pink-200 bg-[#FFFEFE] p-6 text-center">
+                <div className="text-sm font-bold">Drop files here</div>
+                <div className="text-xs text-ink-500 mt-1 font-medium">RIS, BibTeX, CSV or a zip of PDFs. Or connect Zotero when ready.</div>
+                <button className="mt-4 rounded-full bg-ink-900 px-5 py-2.5 text-white text-sm font-bold hover:bg-moni-600">Browse files</button>
               </div>
-              <div className="mt-4 space-y-2 text-xs">
-                <div className="flex justify-between border-b border-slate-100 py-2"><span>zotero_export.ris</span><span className="font-bold">412 records</span></div>
-                <div className="flex justify-between border-b border-slate-100 py-2"><span>manual_pdfs.zip</span><span className="font-bold">89 PDFs</span></div>
-              </div>
-              <button className="mt-3 w-full rounded-xl border border-pink-100 bg-white py-2 text-xs font-bold">Import & Deduplicate</button>
+              <p className="text-xs text-ink-500 mt-3 font-medium">Files stay in your Firebase Storage project. We never count what we haven’t seen.</p>
+              <Link href="/dashboard" className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-moni-600 hover:text-moni-700">Go to dashboard <ArrowRight className="h-3.5 w-3.5" /></Link>
             </div>
           </div>
         </main>

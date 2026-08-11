@@ -1,131 +1,73 @@
 "use client";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { MobileTopbar } from "@/components/layout/MobileTopbar";
-import { mockPapers, prismaData } from "@/lib/mockData";
-import { useState } from "react";
-import { FileScan, Check, X, HelpCircle, Download, Filter } from "lucide-react";
+import { FileScan, Check, X, HelpCircle, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function SystematicPage(){
-  const [filter, setFilter] = useState<'All'|'Include'|'Exclude'|'Maybe'>('All');
-  const shown = mockPapers.filter(p=> filter==='All' ? true : p.decision===filter);
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex">
+    <div className="min-h-screen bg-[#FFFEFE] flex">
       <Sidebar/>
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 min-w-0 flex flex-col">
         <MobileTopbar/>
-        <header className="sticky top-0 z-20 bg-white/80 backdrop-blur border-b border-pink-100">
-          <div className="px-6 lg:px-8 py-4 flex items-center justify-between">
-            <div>
-              <h1 className="text-[20px] font-extrabold tracking-tight flex items-center gap-2"><FileScan className="h-5 w-5" /> Screening & PRISMA</h1>
-              <p className="text-xs text-ink-500">Study Screening Agent • Audit trail • Human approves uncertain</p>
-            </div>
-            <button className="hidden md:inline-flex items-center gap-2 rounded-full bg-ink-900 px-4 py-2 text-xs font-bold text-white"><Download className="h-3.5 w-3.5" /> Export PRISMA</button>
+        <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-xl border-b border-pink-50">
+          <div className="px-6 lg:px-8 py-5">
+            <h1 className="text-[20px] font-black tracking-tight flex items-center gap-2"><FileScan className="h-5 w-5 text-moni-500" /> Screening & PRISMA</h1>
+            <p className="text-sm text-ink-500 font-medium">Decide include / exclude / maybe — with a trail you can show your supervisor.</p>
           </div>
         </header>
-        <main className="px-6 lg:px-8 py-6 max-w-[1400px] w-full mx-auto space-y-6">
-          {/* PRISMA */}
-          <div className="rounded-2xl border border-pink-100 bg-white p-6 shadow-card">
-            <h3 className="text-sm font-black">PRISMA Flow Diagram (auto)</h3>
-            <div className="mt-4 grid grid-cols-1 md:grid-cols-7 gap-2 items-center text-center">
+        <main className="px-6 lg:px-8 py-8 max-w-[1080px] w-full mx-auto space-y-6">
+          {/* No fake PRISMA numbers — show how it will look when real */}
+          <div className="rounded-[24px] border border-pink-100 bg-white p-6 lg:p-7">
+            <h2 className="font-black">PRISMA — built from your real collection</h2>
+            <p className="text-sm text-ink-500 mt-1.5 leading-relaxed font-medium max-w-[680px]">When you add papers, we generate the flow automatically from your actual searches — database, date, exact query, filters. Nothing invented.</p>
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-4 gap-3">
               {[
-                ["Identification", prismaData.identified.toString(), "Records from databases"],
-                ["Dedup", `-${prismaData.duplicates}`, "Removed"],
-                ["Screening", prismaData.screened.toString(), "Titles/abstracts"],
-                ["Excluded", prismaData.excludedScreening.toString(), "Wrong population etc"],
-                ["Full-text", prismaData.fullTextAssessed.toString(), "Assessed"],
-                ["Excluded FT", prismaData.excludedFullText.toString(), "Reasons"],
-                ["Included", prismaData.included.toString(), "Studies in review"],
-              ].map(([k,v,sub],i)=>(
-                <div key={k} className="relative">
-                  <div className={`rounded-2xl border p-4 ${k==="Included" ? "bg-ink-900 text-white border-slate-900" : "bg-white border-pink-100"}`}>
-                    <div className="text-xs font-bold tracking-widest uppercase opacity-60">{k}</div>
-                    <div className="text-xl font-black mt-1">{v}</div>
-                    <div className="text-[11px] opacity-70">{sub}</div>
-                  </div>
-                  {i<6 && <div className="hidden md:block absolute top-1/2 -right-3 h-0.5 w-6 bg-slate-200" />}
+                ["Your searches", "—", "Where you searched, when"],
+                ["After de-duplication", "—", "We remove exact & near-duplicates"],
+                ["Screened", "—", "Title & abstract decisions"],
+                ["Included", "—", "Your final set"], 
+              ].map(([k,v,sub])=>(
+                <div key={k} className="rounded-2xl border border-pink-50 bg-[#FFFEFE] p-4 text-center">
+                  <div className="text-xs font-bold tracking-widest uppercase text-ink-500">{k}</div>
+                  <div className="text-2xl font-black mt-1 text-ink-900">{v}</div>
+                  <div className="text-xs text-ink-500 font-medium">{sub}</div>
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Criteria */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
-              <div className="text-xs font-black text-emerald-800">Inclusion Criteria</div>
-              <ul className="mt-2 text-xs space-y-1 list-disc pl-4">
-                <li>Population: university lecturers</li>
-                <li>Intervention: AI adoption / acceptance</li>
-                <li>Design: empirical, peer-reviewed</li>
-                <li>Lang: English, 2020-2026</li>
-              </ul>
-            </div>
-            <div className="rounded-2xl border border-red-200 bg-red-50 p-4">
-              <div className="text-xs font-black text-red-800">Exclusion Criteria</div>
-              <ul className="mt-2 text-xs space-y-1 list-disc pl-4">
-                <li>Population: only students</li>
-                <li>Grey literature / non peer-reviewed</li>
-                <li>Duplicate/preprint without new data</li>
-              </ul>
-            </div>
-            <div className="rounded-2xl border border-pink-100 bg-white p-4">
-              <div className="text-xs font-bold">Screening Agent</div>
-              <div className="text-xs text-slate-600 mt-1">Not silently deciding. Produces decision + confidence + reason + audit trail.</div>
-              <div className="mt-2 flex gap-2 text-xs">
-                <span className="rounded-full bg-emerald-50 border border-emerald-200 px-2 py-1 font-bold">Include 96%</span>
-                <span className="rounded-full bg-red-50 border border-red-200 px-2 py-1 font-bold">Exclude 94%</span>
-                <span className="rounded-full bg-moni-50 border border-moni-200 px-2 py-1 font-bold">Maybe 61% → human</span>
-              </div>
+            <div className="mt-4 rounded-xl bg-moni-50 border border-moni-100 p-4 text-sm">
+              <span className="font-bold">Empty for now.</span> <span className="text-ink-600">Add papers in Literature — your numbers will appear here, honestly.</span>
             </div>
           </div>
 
-          {/* Table */}
-          <div className="rounded-2xl border border-pink-100 bg-white shadow-card overflow-hidden">
-            <div className="flex items-center justify-between p-4 border-b border-slate-100">
-              <div className="flex items-center gap-2">
-                <Filter className="h-4 w-4 text-ink-500" />
-                <div className="flex gap-1">
-                  {(["All","Include","Exclude","Maybe"] as const).map(f=>(
-                    <button key={f} onClick={()=>setFilter(f)} className={`rounded-full px-3 py-1 text-xs font-bold border ${filter===f ? 'bg-ink-900 text-white border-slate-900' : 'bg-white border-pink-100'}`}>{f}</button>
-                  ))}
+          <div className="grid lg:grid-cols-[1fr_320px] gap-6">
+            <div className="rounded-[20px] border border-pink-100 bg-white p-6">
+              <h3 className="font-black">How screening works</h3>
+              <div className="mt-4 space-y-3 text-sm">
+                <div className="flex gap-3 rounded-xl border border-pink-50 bg-[#FFFEFE] p-4">
+                  <span className="h-7 w-7 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center shrink-0"><Check className="h-4 w-4 text-emerald-600" /></span>
+                  <div><div className="font-bold">Include</div><div className="text-ink-500 leading-relaxed">Meets your population, intervention, design — and you can see why.</div></div>
+                </div>
+                <div className="flex gap-3 rounded-xl border border-pink-50 bg-[#FFFEFE] p-4">
+                  <span className="h-7 w-7 rounded-full bg-red-50 border border-red-100 flex items-center justify-center shrink-0"><X className="h-4 w-4 text-red-600" /></span>
+                  <div><div className="font-bold">Exclude</div><div className="text-ink-500 leading-relaxed">Wrong population, not peer-reviewed, duplicate. Reason saved.</div></div>
+                </div>
+                <div className="flex gap-3 rounded-xl border border-moni-100 bg-moni-50 p-4">
+                  <span className="h-7 w-7 rounded-full bg-white border border-moni-100 flex items-center justify-center shrink-0"><HelpCircle className="h-4 w-4 text-moni-600" /></span>
+                  <div><div className="font-bold">Maybe — human decides</div><div className="text-ink-600 leading-relaxed">We never auto-exclude when unsure. You approve the maybes.</div></div>
                 </div>
               </div>
-              <div className="text-xs text-ink-500">{shown.length} papers</div>
             </div>
-            <div className="overflow-auto">
-              <table className="w-full text-xs">
-                <thead className="bg-moni-50 text-left">
-                  <tr className="border-b border-pink-100">
-                    <th className="px-4 py-3 font-bold">Paper</th>
-                    <th className="px-4 py-3 font-bold">Decision</th>
-                    <th className="px-4 py-3 font-bold">Confidence</th>
-                    <th className="px-4 py-3 font-bold">Reason</th>
-                    <th className="px-4 py-3 font-bold">Approve</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {shown.map(p=>(
-                    <tr key={p.id} className="border-b border-slate-100 hover:bg-moni-50">
-                      <td className="px-4 py-3 max-w-[420px]">
-                        <div className="font-bold leading-tight line-clamp-2">{p.title}</div>
-                        <div className="text-ink-500">{p.authors} • {p.journal} • {p.year} • {p.citations} cites • {p.theory}</div>
-                      </td>
-                      <td className="px-4 py-3">
-                        <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold border ${p.decision==='Include' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : p.decision==='Exclude' ? 'bg-red-50 text-red-700 border-red-200' : 'bg-moni-50 text-moni-600 border-moni-200'}`}>
-                          {p.decision==='Include' ? <Check className="h-3 w-3" /> : p.decision==='Exclude' ? <X className="h-3 w-3" /> : <HelpCircle className="h-3 w-3" />} {p.decision}
-                        </span>
-                      </td>
-                      <td className="px-4 py-3 font-mono font-bold">{p.confidence}%</td>
-                      <td className="px-4 py-3 text-slate-600 max-w-[260px]">{p.decision==='Include' ? 'Meets population and intervention criteria' : p.decision==='Exclude' ? 'Wrong population' : 'Abstract insufficient'}</td>
-                      <td className="px-4 py-3">
-                        <div className="flex gap-1">
-                          <button className="rounded-full bg-ink-900 px-3 py-1 text-xs font-bold text-white">Approve</button>
-                          <button className="rounded-full border border-pink-100 px-3 py-1 text-xs font-bold">Override</button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+
+            <div className="rounded-[20px] border border-pink-100 bg-white p-6">
+              <h3 className="font-black">Next steps</h3>
+              <ol className="mt-3 space-y-2 text-sm font-medium list-decimal list-inside text-ink-700">
+                <li>Add papers in Literature</li>
+                <li>Define your inclusion / exclusion</li>
+                <li>Screen — export PRISMA when ready</li>
+              </ol>
+              <Link href="/literature" className="mt-5 inline-flex items-center gap-2 rounded-full bg-ink-900 px-5 py-2.5 text-white text-sm font-bold hover:bg-moni-600">Go to Literature <ArrowRight className="h-4 w-4" /></Link>
+              <p className="text-xs text-ink-500 mt-3">No demo rows. Your table will appear when your papers do.</p>
             </div>
           </div>
         </main>
