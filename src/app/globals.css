@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #F8FAFC;
+  --foreground: #0F172A;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E1 transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Tiptap / Editor */
+.ProseMirror {
+  outline: none;
+}
+.prose-rigora h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.015em;
+}
+.prose-rigora h3 {
+  font-size: 1.05rem;
+  font-weight: 650;
+  color: #1E293B;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.prose-rigora p {
+  line-height: 1.75;
+  color: #334155;
+  margin-bottom: 1rem;
+}
+.prose-rigora .citation {
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  color: #1D4ED8;
+  padding: 0 6px;
+  border-radius: 4px;
+  font-size: 0.78em;
+  font-weight: 600;
+  cursor: pointer;
+}
+.prose-rigora .claim-highlight {
+  background: linear-gradient(to bottom, transparent 60%, #FEF3C7 60%);
+  padding: 0 2px;
+  border-radius: 2px;
+}
