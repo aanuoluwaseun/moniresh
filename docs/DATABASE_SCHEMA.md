@@ -1,4 +1,4 @@
-# MONIRESH — DATA ARCHITECTURE
+# MONIRESH - DATA ARCHITECTURE
 > Phase 10 | Supabase Postgres
 
 ```sql
@@ -140,7 +140,7 @@ create policy "owner CRUD" on projects for all using (auth.uid() = owner_id);
 -- similar policies for papers where project.owner_id = auth.uid() via join
 ```
 
-Relationships: Project 1—N Papers 1—1 Extraction, Project 1—N Gaps, Project 1—1 Manuscript.
+Relationships: Project 1-N Papers 1-1 Extraction, Project 1-N Gaps, Project 1-1 Manuscript.
 
 Indexes: GIN full-text on papers, IVFFlat on embeddings.
 

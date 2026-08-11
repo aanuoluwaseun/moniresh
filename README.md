@@ -1,9 +1,9 @@
-# MONIRESH — AI Research Intelligence & Research Operations Platform
+# MONIRESH - AI Research Intelligence & Research Operations Platform
 
 > **From Research Idea to Publication-Ready Evidence.**  
-> The Research Operating System — not a chatbot wrapper.
+> The Research Operating System - not a chatbot wrapper.
 
-**Product identity:** MONIRESH (architecture conceptualized as RIGORA) — multi-agent Research OS covering: idea → literature discovery → screening → extraction → synthesis → gap discovery → RQ → framework → methodology → data analysis → manuscript → references → journal → submission → QC.
+**Product identity:** MONIRESH (architecture conceptualized as MONIRESH - ) - multi-agent Research OS covering: idea → literature discovery → screening → extraction → synthesis → gap discovery → RQ → framework → methodology → data analysis → manuscript → references → journal → submission → QC.
 
 **User can enter at any point:** no topic, has topic, has papers, has gap, has dataset, has manuscript.
 
@@ -34,7 +34,7 @@ INFRASTRUCTURE (Vercel, Redis, Sentry)
 ## Tech Stack
 - **Frontend:** Next.js 14 + TypeScript + Tailwind + Tiptap
 - **Backend:** Next.js API routes + Python stats service
-- **DB:** Supabase Postgres + Auth + Storage + pgvector (chosen over Firebase — relational + RLS)
+- **DB:** Supabase Postgres + Auth + Storage + pgvector (chosen over Firebase - relational + RLS)
 - **AI:** LangGraph + n8n + OpenAI/Claude/Gemini router
 - **Infra:** Vercel
 
@@ -56,7 +56,7 @@ npm run dev
 > Every claim → Source → Evidence → Confidence.  
 > Never invent citations, stats, data, or ethics approval. If data doesn't exist: "I cannot produce results until dataset is supplied." (Integrity Agent)
 
-## MVP (V1) — Literature → Gap → Manuscript
+## MVP (V1) - Literature → Gap → Manuscript
 Upload/search → analysis → matrix → compare → gap discovery+verification → RQ → synthesis → Intro/Lit review with Evidence Canvas → Citation Guardian → Reference checking → Quality score
 
 V2: Systematic Review + PRISMA + bibliometrics  
@@ -64,4 +64,4 @@ V3: Data Analysis (Python/R/SPSS)
 V4: Journal Intelligence + Submission
 
 ---
-Built for Africa/Lagos — Team MONIRESH
+Built for Africa/Lagos - Team MONIRESH

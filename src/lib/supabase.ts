@@ -6,7 +6,7 @@ export const supabaseBrowser = () => {
   const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   if (!url || !anon) {
     // During build or without env, return a stub that warns
-    console.warn("Supabase env not configured — using local mock mode");
+    console.warn("Supabase env not configured - using local mock mode");
     return null as unknown as ReturnType<typeof createClient>;
   }
   return createClient(url, anon);

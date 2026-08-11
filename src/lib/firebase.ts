@@ -1,4 +1,4 @@
-// MONIRESH — Firebase (User chose Firebase over Supabase)
+// MONIRESH - Firebase (User chose Firebase over Supabase)
 // Config provided by user: moniresh project
 // We read from NEXT_PUBLIC_ env first, fallback to hardcoded for demo (apiKey is public per Firebase)
 import { initializeApp, getApps, getApp } from "firebase/app";
@@ -18,7 +18,7 @@ const firebaseConfig = {
 };
 
 // ⬇️ FIX: your snippet had "[moniresh.firebaseapp.com](http://moniresh.firebaseapp.com)" markdown brackets
-// We stripped to "moniresh.firebaseapp.com" — correct per Firebase console.
+// We stripped to "moniresh.firebaseapp.com" - correct per Firebase console.
 
 const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 

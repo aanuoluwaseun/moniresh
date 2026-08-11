@@ -1,5 +1,5 @@
 /**
- * MONIRESH — AI Gateway
+ * MONIRESH - AI Gateway
  * Routes every research task to the best model via OpenRouter + Hugging Face + NVIDIA
  * Architecture:  Model Router → Guardrails → Cost Tracking → Memory
  * 
@@ -31,7 +31,7 @@ export const MODEL_ROUTING: Record<AITask, { provider: AIProvider; model: string
 
 export async function callAI(task: AITask, prompt: string, opts?: { temperature?: number; maxTokens?: number }) {
   const route = MODEL_ROUTING[task];
-  // This is the gateway entry — in production it hits the actual provider with key
+  // This is the gateway entry - in production it hits the actual provider with key
   // Env keys expected: OPENROUTER_API_KEY, HUGGINGFACE_API_KEY, NVIDIA_API_KEY
   // All calls go through guardrails + cost tracking + audit log
   // For now we return the routing decision for visibility (mock until keys set)
@@ -48,14 +48,14 @@ export async function callAI(task: AITask, prompt: string, opts?: { temperature?
 }
 
 export const OPENROUTER_MODELS = [
-  "anthropic/claude-3.5-sonnet — synthesis, writing (best reasoning)",
-  "openai/gpt-4o — gap finding, brainstorming",
-  "google/gemini-2.0-flash — 1M context, full PDF extraction",
-  "meta-llama/llama-3.1-405b — NVIDIA-backed, fast batch",
+  "anthropic/claude-3.5-sonnet - synthesis, writing (best reasoning)",
+  "openai/gpt-4o - gap finding, brainstorming",
+  "google/gemini-2.0-flash - 1M context, full PDF extraction",
+  "meta-llama/llama-3.1-405b - NVIDIA-backed, fast batch",
 ];
 
 export const COST_ESTIMATE = {
-  screening_1000: "$0.40 via HF/NVIDIA batch vs $6 via GPT-4o — 15× cheaper",
+  screening_1000: "$0.40 via HF/NVIDIA batch vs $6 via GPT-4o - 15× cheaper",
   extraction_100_papers: "$2.10 via Gemini Flash",
   manuscript_10k_words: "$0.80 via Claude 3.5 Sonnet",
 };

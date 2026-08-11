@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "RIGORA — AI Research Intelligence & Research Operations Platform",
+  title: "MONIRESH - AI Research Intelligence & Research Operations Platform",
   description: "From Research Idea to Publication-Ready Evidence. The AI Research Operating System.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };

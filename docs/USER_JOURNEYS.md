@@ -1,4 +1,4 @@
-# MONIRESH — USER JOURNEYS
+# MONIRESH - USER JOURNEYS
 > Phase 2 | Product-to-Production Protocol
 
 ## Primary Actors
@@ -33,8 +33,8 @@ Edge: duplicate preprint vs journal, withdrawn article flag.
 ```
 Manuscript Workspace (Google Docs + Overleaf + Notion)
 Left: Outline (Title/Abstract/Intro/Lit Review/Framework/Method/Results/Discussion)
-Center: Editor (Tiptap) — every claim has citation pill [Zhang et al. 2024]
-Right: AI Research Panel — Evidence (3 sources), Gap (missing link), Suggestion (connect contradiction)
+Center: Editor (Tiptap) - every claim has citation pill [Zhang et al. 2024]
+Right: AI Research Panel - Evidence (3 sources), Gap (missing link), Suggestion (connect contradiction)
 Bottom: Sources / Comments / Audit Trail
 Human writes → Citation Guardian checks claim→source alignment → Coverage score 91%
 ```

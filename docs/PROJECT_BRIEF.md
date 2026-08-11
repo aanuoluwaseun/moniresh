@@ -1,16 +1,16 @@
-# MONIRESH — PROJECT BRIEF
+# MONIRESH - PROJECT BRIEF
 > Phase 0: Project Intake | Product-to-Production Protocol
 
-**Product:** MONIRESH (conceptualized as RIGORA)
+**Product:** MONIRESH (conceptualized as MONIRESH - )
 **Category:** AI Research Intelligence & Research Operations Platform (SaaS)
 **Tagline:** From Research Idea to Publication-Ready Evidence.
-**Type:** Web App (SaaS) — Desktop-first Research OS, responsive tablet/mobile
+**Type:** Web App (SaaS) - Desktop-first Research OS, responsive tablet/mobile
 
 ### Core Problem
 Researchers go through 11+ disconnected tools (Google Scholar + Zotero + Excel + SPSS + Word + citation managers + journal finders) with no evidence trail, no gap verification, no audit, and hallucinations. ChatGPT + wrappers generate text but not structured research.
 
 ### Proposed Solution
-MONIRESH is a **Research Operating System** — not a chatbot. Multi-agent orchestrator that takes user from idea → literature discovery → screening → extraction → synthesis → gap discovery → question → framework → methodology → data analysis → manuscript → references → journal selection → submission readiness → quality control. User can enter at any point.
+MONIRESH is a **Research Operating System** - not a chatbot. Multi-agent orchestrator that takes user from idea → literature discovery → screening → extraction → synthesis → gap discovery → question → framework → methodology → data analysis → manuscript → references → journal selection → submission readiness → quality control. User can enter at any point.
 
 ### Primary Value
 Evidence at every step. Every claim linked to sources, every gap verified, every statistic checked (text ↔ table ↔ output), every citation audited against Crossref/retraction DB.
@@ -29,7 +29,7 @@ Web app Next.js on Vercel + backend workers. Mobile web responsive. No native ap
 ### Expected Scale (V1)
 1k-10k users, ~50k papers indexed, ~10k analysis jobs/month. Supabase Postgres + storage.
 
-### MVP Scope (V1) — as per your direction
+### MVP Scope (V1) - as per your direction
 Literature → Analysis → Gap → Question → Manuscript
 1. Upload/search papers (manual + OpenAlex/Semantic Scholar + Crossref + user upload)
 2. Paper analysis & decomposition (metadata, method, variables, findings, limitations)

@@ -1,4 +1,4 @@
-# MONIRESH — API CONTRACT
+# MONIRESH - API CONTRACT
 > Phase 11 | REST (Next.js Route Handlers) + Python stats service
 
 All routes under `/api/v1`, JSON, Zod validation, RLS via Supabase auth.

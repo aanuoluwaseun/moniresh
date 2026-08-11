@@ -1,4 +1,4 @@
-# MONIRESH — MVP SCOPE
+# MONIRESH - MVP SCOPE
 > Phase 5 | Must / Should / Could / Won't
 
 ## Must Have (V1 ship)
