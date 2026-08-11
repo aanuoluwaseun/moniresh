@@ -1,6 +1,7 @@
 "use client";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { MobileTopbar } from "@/components/layout/MobileTopbar";
+import { PageTransition } from "@/components/layout/PageTransition";
 import { BarChart3, Upload, ShieldCheck, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
@@ -16,7 +17,7 @@ export default function DataPage(){
             <p className="text-[18px] text-black font-medium">Upload your file - we check, analyze, and show the code. No invented numbers.</p>
           </div>
         </header>
-        <main className="px-6 lg:px-8 py-8 max-w-[1080px] w-full mx-auto space-y-6">
+        <PageTransition><main className="px-6 lg:px-8 py-8 max-w-[1080px] w-full mx-auto space-y-6">
           <div className="rounded-[24px] border-2 border-dashed border-pink-200 bg-white p-8 lg:p-10 text-center">
             <Upload className="h-7 w-7 mx-auto text-moni-400" />
             <h2 className="text-[18px] font-black mt-3">Drop your dataset here</h2>
@@ -37,7 +38,7 @@ export default function DataPage(){
             </div>
             <Link href="/dashboard" className="hidden sm:inline-flex items-center gap-2 rounded-full border border-pink-100 px-4 py-2 text-[18px] font-bold">Dashboard <ArrowRight className="h-4 w-4" /></Link>
           </div>
-        </main>
+        </main></PageTransition>
       </div>
     </div>
   )

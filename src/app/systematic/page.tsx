@@ -1,6 +1,7 @@
 "use client";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { MobileTopbar } from "@/components/layout/MobileTopbar";
+import { PageTransition } from "@/components/layout/PageTransition";
 import { FileScan, Check, X, HelpCircle, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
@@ -16,7 +17,7 @@ export default function SystematicPage(){
             <p className="text-[18px] text-black font-medium">Decide include / exclude / maybe - with a trail you can show your supervisor.</p>
           </div>
         </header>
-        <main className="px-6 lg:px-8 py-8 max-w-[1080px] w-full mx-auto space-y-6">
+        <PageTransition><main className="px-6 lg:px-8 py-8 max-w-[1080px] w-full mx-auto space-y-6">
           {/* No fake PRISMA numbers - show how it will look when real */}
           <div className="rounded-[24px] border border-pink-100 bg-white p-6 lg:p-7">
             <h2 className="font-black">PRISMA - built from your real collection</h2>
@@ -70,7 +71,7 @@ export default function SystematicPage(){
               <p className="text-[16px] text-black mt-3">No demo rows. Your table will appear when your papers do.</p>
             </div>
           </div>
-        </main>
+        </main></PageTransition>
       </div>
     </div>
   )

@@ -1,6 +1,7 @@
 "use client";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { MobileTopbar } from "@/components/layout/MobileTopbar";
+import { PageTransition } from "@/components/layout/PageTransition";
 import Link from "next/link";
 import { PenLine, ShieldCheck, BookMarked, ArrowRight } from "lucide-react";
 

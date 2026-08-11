@@ -1,4 +1,4 @@
-# MONIRESH — AGENT MODE RESEARCH OPERATING PROTOCOL
+# MONIRESH - AGENT MODE RESEARCH OPERATING PROTOCOL
 **Autonomous 15-Stage Research Lifecycle, 24-Column Evidence Matrix Automation & APA 7th Edition SOP**  
 **Style Baseline:** APA 7th Edition (with DOI metadata verification via Crossref)  
 **AI Gateway Stack:** OpenRouter (Claude 3.5 Sonnet / GPT-4o) + Hugging Face (Llama 3 8B Batch) + NVIDIA NIM (Llama 3.1 405B / NV-Embed / NeVA-22B)
@@ -13,9 +13,9 @@ Academic research writing is a formal, evidence-based process of discovering, ap
 > **Problem → Question → Objective → Evidence & Method → Analysis → Conclusion**
 
 Every claim in a manuscript must be traceable to empirical findings or published evidence. MONIRESH enforces an absolute ethical boundary:
-- **No invented citations** — references are fetched via Crossref/DOI.
-- **No invented statistical results** — p-values, effect sizes, and degrees of freedom are derived from real dataset execution or published tables.
-- **No fabricated ethics approval** — if ethics approval or dataset files do not exist, the agent explicitly flags the requirement.
+- **No invented citations** - references are fetched via Crossref/DOI.
+- **No invented statistical results** - p-values, effect sizes, and degrees of freedom are derived from real dataset execution or published tables.
+- **No fabricated ethics approval** - if ethics approval or dataset files do not exist, the agent explicitly flags the requirement.
 
 ---
 
@@ -63,7 +63,7 @@ The uploaded `literature_evidence_matrix_template.csv` defines 24 critical colum
 1. **Columns 1–5 (Bibliographic & Identification):** `Record_ID`, `Full_APA_Reference` (formatted automatically via Crossref DOI), `DOI_or_Stable_URL`, `Publication_Type` (journal, book, conf), `Peer_Review_Status`.
 2. **Columns 6–11 (Study Design & Methods):** `Country_or_Context`, `Aim_or_Research_Question`, `Theory_or_Framework`, `Design_and_Methods`, `Population_or_Sample` (with sample size N), `Variables_Measures_or_Qualitative_Focus`.
 3. **Columns 12–16 (Findings & Appraisal):** `Analysis_Method`, `Main_Findings`, `Effect_Estimate_or_Theme_and_Uncertainty` (e.g., $r = .42, p < .01$), `Limitations_or_Risk_of_Bias`, `Funding_and_Conflicts`.
-4. **Columns 17–20 (Evidence Extraction — Three-Note Rule):** `Relevant_Quotation` (verbatim text), `Page_or_Paragraph`, `Your_Paraphrase_or_Interpretation`, `Theme_or_Planned_Section` (e.g., Intro, Lit Review Theme A).
+4. **Columns 17–20 (Evidence Extraction - Three-Note Rule):** `Relevant_Quotation` (verbatim text), `Page_or_Paragraph`, `Your_Paraphrase_or_Interpretation`, `Theme_or_Planned_Section` (e.g., Intro, Lit Review Theme A).
 5. **Columns 21–24 (Screening & Integrity Audit):** `Include_or_Exclude` (Include / Exclude / Maybe), `Exclusion_Reason`, `Correction_or_Retraction_Status` (verified via Crossmark), `Verification_Notes`.
 
 The **Three-Note Rule** is strictly enforced: every cell in the matrix stores (1) the verbatim quotation and exact page, (2) the researcher's objective paraphrase, and (3) the synthesis tag showing where the finding fits into the paper outline.

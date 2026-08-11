@@ -1,6 +1,7 @@
 "use client";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { MobileTopbar } from "@/components/layout/MobileTopbar";
+import { PageTransition } from "@/components/layout/PageTransition";
 import { Sparkles, ShieldCheck, ArrowRight, Lightbulb } from "lucide-react";
 import Link from "next/link";
 
@@ -16,7 +17,7 @@ export default function GapsPage(){
             <p className="text-[18px] text-black font-medium">Turn patterns into a gap statement you can defend.</p>
           </div>
         </header>
-        <main className="px-6 lg:px-8 py-8 max-w-[1080px] w-full mx-auto space-y-6">
+        <PageTransition><main className="px-6 lg:px-8 py-8 max-w-[1080px] w-full mx-auto space-y-6">
           <div className="rounded-[24px] border border-pink-100 bg-white p-6 lg:p-7">
             <h2 className="font-black tracking-tight">How MONIRESH finds gaps - honestly</h2>
             <p className="text-[18px] text-black mt-1.5 leading-relaxed font-medium max-w-[640px]">We don’t invent gaps. We map what you collected: who was studied, where, how, and what was found. Contradictions and blind spots emerge from <em>your</em> evidence.</p>
@@ -49,7 +50,7 @@ export default function GapsPage(){
             <h3 className="font-black">What you’ll see when it’s real</h3>
             <p className="text-[18px] text-black font-medium">Your gap cards will show: type, evidence (“Only 3 of 12 included studies…”), verification result, and a draft research question - all linked to the papers they came from.</p>
           </div>
-        </main>
+        </main></PageTransition>
       </div>
     </div>
   )

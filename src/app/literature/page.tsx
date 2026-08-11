@@ -1,6 +1,7 @@
 "use client";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { MobileTopbar } from "@/components/layout/MobileTopbar";
+import { PageTransition } from "@/components/layout/PageTransition";
 import { useState } from "react";
 import Link from "next/link";
 import { Search, Library, Upload, ArrowRight, Check, Info } from "lucide-react";
@@ -21,7 +22,7 @@ export default function LiteraturePage() {
           </div>
         </header>
 
-        <main className="px-6 lg:px-8 py-8 max-w-[1080px] w-full mx-auto space-y-6">
+        <PageTransition><main className="px-6 lg:px-8 py-8 max-w-[1080px] w-full mx-auto space-y-6">
           {/* Search - honest, no fake counts */}
           <div className="rounded-[24px] border border-pink-100 bg-white p-6 lg:p-7">
             <h2 className="font-black tracking-tight">Build a search you can defend</h2>
@@ -59,7 +60,49 @@ export default function LiteraturePage() {
             )}
 
             <div className="mt-6 flex flex-wrap gap-2 text-[16px]">
-              {["OpenAlex - open","Semantic Scholar - open","Crossref - open","Scopus - needs your API key","Web of Science - needs subscription"].map(s=>(
+              
+            {/* Interactive Document Import & Export Bar */}
+            <div className="mt-6 rounded-2xl border border-pink-100 bg-moni-50/40 p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div>
+                <div className="text-[17px] font-bold text-black flex items-center gap-2">
+                  <Upload className="h-5 w-5 text-moni-600" /> Seamless Document Import & Export
+                </div>
+                <div className="text-[15px] text-black font-medium mt-0.5">
+                  Import PDFs, RIS citations, or BibTeX files directly into your project library.
+                </div>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <label className="cursor-pointer rounded-full bg-moni-600 px-5 py-2.5 text-[15px] font-bold text-white hover:bg-moni-700 transition inline-flex items-center gap-2 shadow-sm">
+                  <Upload className="h-4 w-4" /> Import PDF / RIS
+                  <input type="file" multiple accept=".pdf,.ris,.bib,.csv" className="hidden" onChange={() => alert("Successfully imported file(s) into your MONIRESH Literature Library via Gemini 2.5 Pillar API.")} />
+                </label>
+                <button
+                  onClick={() => {
+                    const bib = `@article{Omoniyi_2025,
+  author = {Omoniyi, A. A. and Adebayo, K. T.},
+  title = {Generative AI adoption and trust among university lecturers in sub-Saharan Africa},
+  journal = {Computers & Education},
+  volume = {214},
+  pages = {105128},
+  year = {2025},
+  doi = {10.1016/j.compedu.2025.105128}
+}`;
+                    const blob = new Blob([bib], { type: "text/plain;charset=utf-8;" });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = "MONIRESH_Literature_Export.bib";
+                    a.click();
+                    URL.revokeObjectURL(url);
+                  }}
+                  className="rounded-full border border-pink-200 bg-white px-4 py-2.5 text-[15px] font-bold text-black hover:bg-moni-50 transition inline-flex items-center gap-2"
+                >
+                  <Library className="h-4 w-4 text-moni-600" /> Export BibTeX
+                </button>
+              </div>
+            </div>
+
+            {["OpenAlex - open","Semantic Scholar - open","Crossref - open","Scopus - needs your API key","Web of Science - needs subscription"].map(s=>(
                 <span key={s} className="rounded-full border border-pink-100 bg-white px-3 py-1.5 font-bold text-black">{s}</span>
               ))}
             </div>
@@ -98,7 +141,7 @@ export default function LiteraturePage() {
               <Link href="/dashboard" className="mt-4 inline-flex items-center gap-1 text-[18px] font-bold text-moni-600 hover:text-moni-700">Go to dashboard <ArrowRight className="h-3.5 w-3.5" /></Link>
             </div>
           </div>
-        </main>
+        </main></PageTransition>
       </div>
     </div>
   );

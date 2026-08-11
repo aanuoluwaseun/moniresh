@@ -1,6 +1,7 @@
 "use client";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { MobileTopbar } from "@/components/layout/MobileTopbar";
+import { PageTransition } from "@/components/layout/PageTransition";
 import { GraduationCap, ShieldCheck, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
@@ -16,7 +17,7 @@ export default function JournalsPage(){
             <p className="text-[18px] text-black font-medium">Find a fit - and see risks before you submit.</p>
           </div>
         </header>
-        <main className="px-6 lg:px-8 py-8 max-w-[1080px] w-full mx-auto space-y-6">
+        <PageTransition><main className="px-6 lg:px-8 py-8 max-w-[1080px] w-full mx-auto space-y-6">
           <div className="rounded-[24px] border border-pink-100 bg-white p-6 lg:p-7">
             <h2 className="font-black">Journal matching - when you’re ready</h2>
             <p className="text-[18px] text-black mt-1.5 leading-relaxed font-medium max-w-[640px]">Add your manuscript and we suggest venues by scope fit, not by invented impact. We show APC, open-access, and integrity checks - verifiable, not scraped hype.</p>
@@ -42,7 +43,7 @@ export default function JournalsPage(){
               <div className="mt-4 inline-flex rounded-full bg-moni-50 border border-moni-100 px-3 py-1.5 text-[16px] font-bold text-moni-700">Predatory check included</div>
             </div>
           </div>
-        </main>
+        </main></PageTransition>
       </div>
     </div>
   )

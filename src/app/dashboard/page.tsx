@@ -1,6 +1,7 @@
 "use client";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { MobileTopbar } from "@/components/layout/MobileTopbar";
+import { PageTransition } from "@/components/layout/PageTransition";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { firebaseAuth, firebaseDb } from "@/lib/firebase";
@@ -52,7 +53,7 @@ export default function DashboardPage() {
           </div>
         </header>
 
-        <main className="px-6 lg:px-8 py-8 max-w-[1080px] w-full mx-auto space-y-8">
+        <PageTransition><main className="px-6 lg:px-8 py-8 max-w-[1080px] w-full mx-auto space-y-8">
           {/* Enticing but honest - no fake percentages */}
           <div className="rounded-[24px] border border-pink-100 bg-white p-6 lg:p-7 flex flex-col lg:flex-row gap-6 items-start justify-between">
             <div>
@@ -146,7 +147,7 @@ export default function DashboardPage() {
           </section>
 
           <p className="text-[16px] text-black text-center">No fabricated numbers anywhere. You’ll see real counts only after you add real papers.</p>
-        </main>
+        </main></PageTransition>
       </div>
     </div>
   );

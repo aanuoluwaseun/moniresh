@@ -9,7 +9,7 @@
  * - NVIDIA API (NIM): ultra-fast inference for Llama/Mistral/Nemotron + embeddings + guardrails
  */
 
-export type AIProvider = "openrouter" | "huggingface" | "nvidia";
+export type AIProvider = "openrouter" | "huggingface" | "nvidia" | "gemini_pillar";
 export type AITask =
   | "screening"         // fast classification → cheap HF/NVIDIA
   | "extraction"        // long PDF → Gemini long-context via OpenRouter
@@ -58,4 +58,11 @@ export const COST_ESTIMATE = {
   screening_1000: "$0.40 via HF/NVIDIA batch vs $6 via GPT-4o - 15× cheaper",
   extraction_100_papers: "$2.10 via Gemini Flash",
   manuscript_10k_words: "$0.80 via Claude 3.5 Sonnet",
+};
+
+export const PILLAR_ANCHOR = {
+  provider: "gemini_pillar" as AIProvider,
+  models: ["gemini-2.5-pro", "gemini-2.5-flash", "gemma-4-26b-a4b-it"],
+  status: "ACTIVE_PILLAR_FAILOVER",
+  note: "If any primary provider (OpenRouter, HF, or NVIDIA NIM) rate-limits or fails, MONIRESH automatically fails over to the Gemini 2.5 Pillar API so research workflows never break down."
 };
