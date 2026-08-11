@@ -20,10 +20,10 @@ export const metadata: Metadata = {
     icon: [
       { url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" },
       { url: "/icon.png", sizes: "192x192", type: "image/png" },
-      { url: "/moniresh-logo.png", sizes: "512x512", type: "image/png" },
+      { url: "/logo-moniresh-v2.png", sizes: "512x512", type: "image/png" },
     ],
     shortcut: "/favicon.ico",
-    apple: "/moniresh-logo.png",
+    apple: "/logo-moniresh-v2.png",
   },
 };
 

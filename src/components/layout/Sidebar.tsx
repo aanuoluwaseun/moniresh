@@ -38,7 +38,7 @@ export function Sidebar() {
     <aside className="hidden lg:flex w-[280px] shrink-0 flex-col border-r border-pink-100 bg-white">
       {/* Logo - pink/white premium */}
       <div className="flex h-[68px] items-center gap-3 border-b border-pink-50 px-6">
-        <img src="/moniresh-logo.png" alt="MONIRESH Logo" className="h-9 w-9 rounded-xl object-cover shadow-sm border border-pink-100" />
+        <img src="/logo-moniresh-v2.png" alt="MONIRESH Logo" className="h-9 w-9 rounded-xl object-cover shadow-sm border border-pink-100" />
         <div>
           <div className="text-[18px] font-black tracking-tight leading-none text-black">MONIRESH</div>
           <div className="text-[12px] font-bold tracking-[0.18em] text-moni-500 uppercase">Research OS</div>

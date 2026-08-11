@@ -10,7 +10,7 @@ export default function HomePage() {
       <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-pink-50">
         <div className="mx-auto max-w-[1080px] px-6 lg:px-8 flex items-center justify-between h-[64px]">
           <Link href="/" className="flex items-center gap-3">
-            <img src="/moniresh-logo.png" alt="MONIRESH Logo" className="h-8 w-8 rounded-lg object-cover shadow-sm border border-pink-100" />
+            <img src="/logo-moniresh-v2.png" alt="MONIRESH Logo" className="h-8 w-8 rounded-lg object-cover shadow-sm border border-pink-100" />
             <span className="text-[17px] font-black tracking-tight">MONIRESH</span>
             <span className="hidden sm:inline text-[12px] font-bold tracking-[0.16em] text-moni-500 border border-moni-100 bg-moni-50 px-2 py-0.5 rounded-full">RESEARCH OS</span>
           </Link>
@@ -183,7 +183,7 @@ export default function HomePage() {
       <footer className="border-t border-pink-50">
         <div className="mx-auto max-w-[1080px] px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <img src="/moniresh-logo.png" alt="MONIRESH Logo" className="h-7 w-7 rounded-lg object-cover shadow-sm border border-pink-100" />
+            <img src="/logo-moniresh-v2.png" alt="MONIRESH Logo" className="h-7 w-7 rounded-lg object-cover shadow-sm border border-pink-100" />
             <span className="text-[18px] font-bold">MONIRESH</span>
             <span className="text-[16px] text-black">© {new Date().getFullYear()} - Evidence, with care.</span>
           </div>

@@ -12,7 +12,7 @@ export default function SystematicPage(){
         <MobileTopbar/>
         <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-xl border-b border-pink-50">
           <div className="px-6 lg:px-8 py-5">
-            <h1 className="text-[22px] font-black tracking-tight flex items-center gap-2"><img src="/moniresh-logo.png" alt="MONIRESH Logo" className="h-7 w-7 rounded-lg object-cover shadow-sm border border-pink-100 inline-block mr-2.5 -mt-1" /> <FileScan className="h-5 w-5 text-moni-500" /> Screening & PRISMA</h1>
+            <h1 className="text-[22px] font-black tracking-tight flex items-center gap-2"><img src="/logo-moniresh-v2.png" alt="MONIRESH Logo" className="h-7 w-7 rounded-lg object-cover shadow-sm border border-pink-100 inline-block mr-2.5 -mt-1" /> <FileScan className="h-5 w-5 text-moni-500" /> Screening & PRISMA</h1>
             <p className="text-[18px] text-black font-medium">Decide include / exclude / maybe - with a trail you can show your supervisor.</p>
           </div>
         </header>

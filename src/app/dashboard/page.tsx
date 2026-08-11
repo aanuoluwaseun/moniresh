@@ -41,7 +41,7 @@ export default function DashboardPage() {
         <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-xl border-b border-pink-50">
           <div className="px-6 lg:px-8 py-5 flex items-start justify-between gap-4">
             <div>
-              <h1 className="text-[24px] font-black tracking-tight leading-none"><img src="/moniresh-logo.png" alt="MONIRESH Logo" className="h-7 w-7 rounded-lg object-cover shadow-sm border border-pink-100 inline-block mr-2.5 -mt-1" /> Dashboard</h1>
+              <h1 className="text-[24px] font-black tracking-tight leading-none"><img src="/logo-moniresh-v2.png" alt="MONIRESH Logo" className="h-7 w-7 rounded-lg object-cover shadow-sm border border-pink-100 inline-block mr-2.5 -mt-1" /> Dashboard</h1>
               <p className="text-[18px] text-black mt-1 font-medium">
                 {user ? `Hi, ${user.displayName || user.email?.split("@")[0]} -` : ""} your workspace is ready. No clutter, just your work.
               </p>

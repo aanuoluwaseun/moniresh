@@ -31,7 +31,7 @@ export default function SignupPage() {
     <div className="min-h-screen bg-white flex flex-col">
       <div className="mx-auto w-full max-w-[1080px] px-6 lg:px-8 h-[64px] flex items-center justify-between border-b border-pink-50">
         <Link href="/" className="flex items-center gap-2">
-          <img src="/moniresh-logo.png" alt="MONIRESH Logo" className="h-8 w-8 rounded-lg object-cover shadow-sm border border-pink-100" />
+          <img src="/logo-moniresh-v2.png" alt="MONIRESH Logo" className="h-8 w-8 rounded-lg object-cover shadow-sm border border-pink-100" />
           <span className="font-black tracking-tight">MONIRESH</span>
         </Link>
         <Link href="/login" className="text-[18px] font-bold hover:text-moni-600">Already have an account? Log in</Link>

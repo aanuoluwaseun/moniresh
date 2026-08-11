@@ -12,7 +12,7 @@ export function MobileTopbar() {
           <Menu className="h-4 w-4 text-black" />
         </button>
         <Link href="/" className="flex items-center gap-2">
-          <img src="/moniresh-logo.png" alt="MONIRESH Logo" className="h-7 w-7 rounded-lg object-cover shadow-sm border border-pink-100" />
+          <img src="/logo-moniresh-v2.png" alt="MONIRESH Logo" className="h-7 w-7 rounded-lg object-cover shadow-sm border border-pink-100" />
           <span className="text-[18px] font-black tracking-tight text-black">MONIRESH</span>
         </Link>
       </div>
