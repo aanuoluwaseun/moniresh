@@ -3,71 +3,110 @@
 @tailwind utilities;
 
 :root {
-  --background: #F8FAFC;
-  --foreground: #0F172A;
+  --background: #FFF8FB;
+  --foreground: #1A0B14;
 }
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background: #FFF8FB;
   font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #CBD5E1 transparent;
+  scrollbar-color: #FFC2D4 transparent;
 }
 
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: linear-gradient(180deg, #FF5A8A, #FF2D78);
   border-radius: 999px;
 }
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+::-webkit-scrollbar-track { background: transparent; }
 
-/* Tiptap / Editor */
-.ProseMirror {
-  outline: none;
-}
-.prose-rigora h2 {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #0F172A;
+/* Prose */
+.prose-moni h2 {
+  font-size: 1.4rem;
+  font-weight: 850;
+  color: #1A0B14;
   margin-top: 2rem;
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.015em;
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.02em;
 }
-.prose-rigora h3 {
+.prose-moni h3 {
   font-size: 1.05rem;
-  font-weight: 650;
-  color: #1E293B;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
+  font-weight: 750;
+  color: #4A2A3D;
+  margin-top: 1.6rem;
+  margin-bottom: 0.6rem;
 }
-.prose-rigora p {
-  line-height: 1.75;
-  color: #334155;
+.prose-moni p {
+  line-height: 1.8;
+  color: #4A2A3D;
   margin-bottom: 1rem;
 }
-.prose-rigora .citation {
-  background: #EFF6FF;
-  border: 1px solid #BFDBFE;
-  color: #1D4ED8;
-  padding: 0 6px;
-  border-radius: 4px;
+.prose-moni .citation {
+  background: #FFF0F6;
+  border: 1px solid #FFC2D4;
+  color: #E6005C;
+  padding: 1px 7px;
+  border-radius: 999px;
   font-size: 0.78em;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
+  transition: all 0.2s;
 }
-.prose-rigora .claim-highlight {
-  background: linear-gradient(to bottom, transparent 60%, #FEF3C7 60%);
-  padding: 0 2px;
-  border-radius: 2px;
+.prose-moni .citation:hover {
+  background: #FF2D78;
+  color: white;
+  border-color: #FF2D78;
+}
+.claim-highlight {
+  background: linear-gradient(to bottom, transparent 55%, #FFE4EC 55%);
+  padding: 0 3px;
+  border-radius: 3px;
+}
+
+/* Utilities */
+.glass {
+  background: rgba(255,255,255,0.78);
+  backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.7);
+}
+.pink-gradient {
+  background: linear-gradient(135deg, #FF2D78 0%, #FF5A8A 50%, #FF8FAD 100%);
+}
+.pink-glow {
+  box-shadow: 0 8px 32px -8px rgba(255,45,120,0.4), 0 0 0 1px rgba(255,45,120,0.08);
+}
+.text-gradient {
+  background: linear-gradient(135deg, #FF2D78, #E6005C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.card-hover {
+  transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px -12px rgba(255,45,120,0.18), 0 8px 20px -6px rgba(0,0,0,0.08);
+  border-color: #FFC2D4 !important;
+}
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  transform: translateX(-100%);
+  animation: shine 2.2s infinite;
 }

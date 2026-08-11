@@ -4,8 +4,6 @@ import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   Search,
-  Library,
-  GitBranch,
   FileScan,
   Table2,
   Sparkles,
@@ -13,7 +11,6 @@ import {
   BookMarked,
   GraduationCap,
   FileCheck2,
-  Database,
   BarChart3,
   Settings,
   HelpCircle,
@@ -38,27 +35,27 @@ const nav = [
 export function Sidebar() {
   const pathname = usePathname();
   return (
-    <aside className="hidden lg:flex w-[272px] shrink-0 flex-col border-r border-slate-200 bg-white">
-      {/* Logo */}
-      <div className="flex h-[64px] items-center gap-3 border-b border-slate-100 px-6">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 text-white font-black text-[13px] tracking-tight">
-          R<span className="text-amber-500">.</span>
+    <aside className="hidden lg:flex w-[280px] shrink-0 flex-col border-r border-pink-100 bg-white">
+      {/* Logo — pink/white premium */}
+      <div className="flex h-[68px] items-center gap-3 border-b border-pink-50 px-6">
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl pink-gradient text-white font-black text-[13px] tracking-tight shadow-pink">
+          M
         </div>
         <div>
-          <div className="text-[15px] font-extrabold tracking-tight leading-none text-slate-900">RIGORA</div>
-          <div className="text-[10px] font-semibold tracking-widest text-slate-500 uppercase">Research OS</div>
+          <div className="text-[16px] font-black tracking-tight leading-none text-ink-900">MONIRESH</div>
+          <div className="text-[10px] font-bold tracking-[0.18em] text-moni-500 uppercase">Research OS</div>
         </div>
-        <div className="ml-auto flex h-6 items-center rounded-full bg-amber-50 px-2 text-[10px] font-bold text-amber-700 border border-amber-200">V1</div>
+        <div className="ml-auto flex h-6 items-center rounded-full bg-moni-50 px-2.5 text-[10px] font-black text-moni-600 border border-moni-200">V1</div>
       </div>
 
-      {/* Project switcher */}
+      {/* Project switcher — pink glow */}
       <div className="px-3 py-4">
-        <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-          <div className="text-[11px] font-semibold tracking-widest text-slate-500 uppercase">Active Project</div>
-          <div className="mt-1 text-[13px] font-bold leading-tight text-slate-900">AI Adoption in Higher Education</div>
-          <div className="text-[11px] text-slate-500">Progress 62% • 163 included</div>
-          <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
-            <div className="h-full w-[62%] bg-slate-900" />
+        <div className="rounded-2xl border border-pink-100 bg-gradient-to-br from-white to-moni-50 p-4 pink-glow">
+          <div className="text-[11px] font-bold tracking-widest text-moni-400 uppercase">Active Project</div>
+          <div className="mt-1 text-[13px] font-extrabold leading-tight text-ink-900">AI Adoption in Higher Education</div>
+          <div className="text-[11px] text-ink-500">Progress 62% • 163 included</div>
+          <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-moni-100">
+            <div className="h-full w-[62%] pink-gradient rounded-full" />
           </div>
         </div>
       </div>
@@ -71,17 +68,19 @@ export function Sidebar() {
               key={item.label}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 rounded-lg px-3 py-2 text-[13.5px] font-medium transition",
-                active ? "bg-slate-900 text-white" : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                "group flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13.5px] font-semibold transition-all duration-200",
+                active
+                  ? "bg-ink-900 text-white shadow-lg shadow-ink-900/15"
+                  : "text-ink-700 hover:bg-moni-50 hover:text-moni-700"
               )}
             >
-              <item.icon className={cn("h-4 w-4", active ? "text-white" : "text-slate-500")} />
+              <item.icon className={cn("h-[18px] w-[18px] transition", active ? "text-white" : "text-moni-400 group-hover:text-moni-500")} />
               <span className="flex-1">{item.label}</span>
               {item.badge && (
                 <span
                   className={cn(
-                    "rounded-full px-2 py-0.5 text-[10px] font-bold",
-                    active ? "bg-white/15 text-white" : "bg-slate-100 text-slate-600 border border-slate-200"
+                    "rounded-full px-2.5 py-0.5 text-[10px] font-black",
+                    active ? "bg-white/15 text-white" : "bg-moni-50 text-moni-600 border border-moni-100"
                   )}
                 >
                   {item.badge}
@@ -92,20 +91,20 @@ export function Sidebar() {
         })}
       </nav>
 
-      <div className="border-t border-slate-100 p-3 space-y-1">
-        <Link href="#" className="flex items-center gap-3 rounded-lg px-3 py-2 text-[13px] font-medium text-slate-600 hover:bg-slate-50">
-          <Settings className="h-4 w-4 text-slate-400" /> Settings
+      <div className="border-t border-pink-50 p-3 space-y-1">
+        <Link href="#" className="flex items-center gap-3 rounded-xl px-3 py-2 text-[13px] font-semibold text-ink-700 hover:bg-moni-50">
+          <Settings className="h-4 w-4 text-moni-300" /> Settings
         </Link>
-        <Link href="#" className="flex items-center gap-3 rounded-lg px-3 py-2 text-[13px] font-medium text-slate-600 hover:bg-slate-50">
-          <HelpCircle className="h-4 w-4 text-slate-400" /> Help & Docs
+        <Link href="#" className="flex items-center gap-3 rounded-xl px-3 py-2 text-[13px] font-semibold text-ink-700 hover:bg-moni-50">
+          <HelpCircle className="h-4 w-4 text-moni-300" /> Help & Docs
         </Link>
-        <div className="rounded-xl bg-slate-900 p-4 text-white mt-3">
-          <div className="text-xs font-bold">Need 1,000+ papers screened?</div>
-          <div className="text-xs opacity-70 mt-1 leading-relaxed">RIGORA Orchestrator can screen 2,284 abstracts with audit trail in &lt; 8 min.</div>
-          <button className="mt-3 w-full rounded-lg bg-white py-2 text-xs font-bold text-slate-900">Run Orchestrator</button>
+        <div className="rounded-2xl pink-gradient p-4 text-white mt-3 shadow-pink">
+          <div className="text-xs font-black">Screen 2,284 abstracts in 8 minutes?</div>
+          <div className="text-xs opacity-90 mt-1 leading-relaxed">Orchestrator routes via Hugging Face batch — 15× cheaper, full audit trail.</div>
+          <button className="mt-3 w-full rounded-full bg-white py-2.5 text-xs font-black text-moni-600 hover:bg-moni-50 transition">Run Orchestrator</button>
         </div>
-        <div className="px-3 py-3 text-[11px] leading-relaxed text-slate-400">
-          Evidence-first • No invented citations • No fabricated data
+        <div className="px-3 py-3 text-[11px] leading-relaxed text-ink-500 font-medium">
+          White & Pink • Evidence-first • No invented citations
         </div>
       </div>
     </aside>
