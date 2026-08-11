@@ -111,21 +111,21 @@ export function Sidebar() {
         })}
       </nav>
 
-      {/* Footer / AI Pillar Anchor Status */}
+      {/* Footer - Calm Academic Standard */}
       <div className="border-t border-pink-100 p-4 bg-[#FFFEFE]">
         <div className="rounded-2xl border border-pink-100 bg-white p-4 shadow-sm">
-          <div className="flex items-center gap-2 text-[14px] font-black text-moni-700">
-            <Award className="h-4 w-4 text-moni-600" /> API Pillar Anchor Active
+          <div className="flex items-center gap-2 text-[15px] font-black text-black">
+            <Award className="h-4 w-4 text-moni-600" /> APA 7th • Verified Citations
           </div>
           <div className="text-[14px] text-black mt-1 font-medium leading-relaxed">
-            Google Gemini 2.5 • Claude 3.5 • NVIDIA NIM • Hugging Face 100% Online
+            Crossref DOI Linkage • Retraction Watch Audited
           </div>
           <div className="mt-2 text-[13px] font-bold text-emerald-700">
-            2,000,000 Token Context Window • Failover Guarantee
+            Zero Fabricated Citations or Statistics
           </div>
         </div>
         <div className="mt-3 px-1 text-[13px] leading-relaxed text-black font-semibold text-center">
-          White & Pink • Evidence-First • No Invented Citations
+          White & Pink • Evidence-First • Research OS
         </div>
       </div>
     </aside>

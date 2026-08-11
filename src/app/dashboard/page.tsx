@@ -72,7 +72,7 @@ export default function DashboardPage() {
     if (!files || files.length === 0) return;
     const names = Array.from(files).map((f) => f.name);
     setIsProcessing(true);
-    setUploadStatus(`Parsing & extracting 24 matrix columns via Gemini 2.5 Pillar API...`);
+    setUploadStatus(`Parsing & extracting 24 matrix columns via MONIRESH Autonomous Engine...`);
 
     setTimeout(() => {
       setIsProcessing(false);
@@ -136,26 +136,7 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            {/* AI Gateway status banner */}
-            <div className="bg-moni-50/50 border-t border-pink-50 px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center gap-4 sm:gap-6 text-[13px] sm:text-[14px] font-bold">
-              <span className="flex items-center gap-1.5 text-black">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                OpenRouter: <span className="text-moni-600 font-black">Claude 3.5 & GPT-4o</span>
-              </span>
-              <span className="flex items-center gap-1.5 text-black">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                Hugging Face: <span className="text-moni-600 font-black">Llama 3 8B Batch</span>
-              </span>
-              <span className="flex items-center gap-1.5 text-black">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                NVIDIA NIM: <span className="text-moni-600 font-black">Llama 3.1 405B / NeVA</span>
-              </span>
-              <span className="flex items-center gap-1.5 text-black">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                Pillar API Anchor: <span className="text-moni-600 font-black">Gemini 2.5 Pro / Flash</span>
-              </span>
-            </div>
-          </header>
+            </header>
 
           <main className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8 max-w-[1240px] w-full mx-auto space-y-8">
             {/* Section 1: Executive Academic Lifecycle Bar */}
@@ -296,8 +277,8 @@ export default function DashboardPage() {
                 },
                 {
                   title: "24-Column Evidence Matrix",
-                  badge: "GEMINI 2.5 PILLAR",
-                  desc: "Decompose uploaded PDFs into all 24 columns via Gemini 2.5 Pro/Flash under the Three-Note Rule.",
+                  badge: "AUTOMATED MATRIX",
+                  desc: "Decompose uploaded PDFs into all 24 columns via MONIRESH Evidence Engine under the Three-Note Rule.",
                   href: "/agent-mode",
                   icon: Database,
                 },

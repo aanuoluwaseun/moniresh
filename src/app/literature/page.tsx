@@ -74,7 +74,7 @@ export default function LiteraturePage() {
               <div className="flex flex-wrap items-center gap-2">
                 <label className="cursor-pointer rounded-full bg-moni-600 px-5 py-2.5 text-[15px] font-bold text-white hover:bg-moni-700 transition inline-flex items-center gap-2 shadow-sm">
                   <Upload className="h-4 w-4" /> Import PDF / RIS
-                  <input type="file" multiple accept=".pdf,.ris,.bib,.csv" className="hidden" onChange={() => alert("Successfully imported file(s) into your MONIRESH Literature Library via Gemini 2.5 Pillar API.")} />
+                  <input type="file" multiple accept=".pdf,.ris,.bib,.csv" className="hidden" onChange={() => alert("Successfully imported file(s) into your MONIRESH Literature Library into your MONIRESH Research Library.")} />
                 </label>
                 <button
                   onClick={() => {

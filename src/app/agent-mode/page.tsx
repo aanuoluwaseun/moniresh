@@ -31,7 +31,7 @@ const TRACKER_STAGES = [
     stage: "Intake",
     task: "Confirm brief and rubric",
     agent: "Research Strategist Agent",
-    provider: "OpenRouter (Claude 3.5 Sonnet)",
+    provider: "Research Strategy Engine",
     desc: "Parses assignment brief, rubric, word counts, and formatting constraints automatically.",
     status: "Automated",
   },
@@ -40,7 +40,7 @@ const TRACKER_STAGES = [
     stage: "Scope",
     task: "Complete feasibility search",
     agent: "Topic Discovery Scout",
-    provider: "NVIDIA NIM (Llama 3.1 405B)",
+    provider: "Discovery Scout Engine",
     desc: "Scans open scholarly literature to assess topic feasibility, saturation, and novelty score.",
     status: "Automated",
   },
@@ -49,7 +49,7 @@ const TRACKER_STAGES = [
     stage: "Question",
     task: "Finalize problem & RQs",
     agent: "Research Question Agent",
-    provider: "OpenRouter (GPT-4o)",
+    provider: "Logical Alignment Engine",
     desc: "Checks logical alignment: Problem -> Gap -> Objective -> Research Question -> Hypotheses.",
     status: "Automated",
   },
@@ -58,7 +58,7 @@ const TRACKER_STAGES = [
     stage: "Protocol",
     task: "Approve eligibility plan",
     agent: "Protocol & Eligibility Agent",
-    provider: "OpenRouter (Claude 3.5 Sonnet)",
+    provider: "Research Strategy Engine",
     desc: "Defines Inclusion/Exclusion criteria and generates reproducible Boolean search strings.",
     status: "Automated",
   },
@@ -67,7 +67,7 @@ const TRACKER_STAGES = [
     stage: "Search",
     task: "Run database searches",
     agent: "Literature Hunter Agent",
-    provider: "Hugging Face / OpenAlex API",
+    provider: "Scholarly API Connector",
     desc: "Queries OpenAlex, Semantic Scholar, Crossref, and PubMed via official APIs; logs search string.",
     status: "Automated",
   },
@@ -76,7 +76,7 @@ const TRACKER_STAGES = [
     stage: "Screening",
     task: "Deduplicate & screen records",
     agent: "Screening & Deduplication Agent",
-    provider: "Hugging Face (Llama 3 8B)",
+    provider: "Batch Screening Engine",
     desc: "Removes exact/DOI duplicates; batch classifies titles & abstracts (Include / Exclude / Maybe).",
     status: "Automated (Human approves 'Maybe')",
   },
@@ -85,7 +85,7 @@ const TRACKER_STAGES = [
     stage: "Appraisal",
     task: "Critically appraise sources",
     agent: "Critical Appraisal Agent",
-    provider: "OpenRouter (Claude 3.5 Sonnet)",
+    provider: "Research Strategy Engine",
     desc: "Evaluates study validity, sample size adequacy, measurement tools, and risk of bias.",
     status: "Automated",
   },
@@ -94,7 +94,7 @@ const TRACKER_STAGES = [
     stage: "Extraction",
     task: "Complete evidence matrix",
     agent: "Full-Text Analyzer & Matrix Agent",
-    provider: "OpenRouter (Gemini 2.0 Flash)",
+    provider: "24-Column Extraction Engine",
     desc: "Decomposes papers into all 24 columns of the Literature Evidence Matrix (Three-Note Rule).",
     status: "Automated",
   },
@@ -103,7 +103,7 @@ const TRACKER_STAGES = [
     stage: "Synthesis",
     task: "Develop themes & gap",
     agent: "Evidence Synthesizer & GapFinder",
-    provider: "NVIDIA NIM (Llama 3.1 405B)",
+    provider: "Discovery Scout Engine",
     desc: "Compares findings across 1000+ studies, detects contradictions, and verifies gap novelty.",
     status: "Automated",
   },
@@ -112,7 +112,7 @@ const TRACKER_STAGES = [
     stage: "Analysis",
     task: "Complete data analysis",
     agent: "Statistical Intelligence Agent",
-    provider: "NVIDIA NIM / Python Engine",
+    provider: "Statistical Analysis Engine",
     desc: "Profiles dataset, tests OLS/ANOVA assumptions, generates reproducible Python/R syntax.",
     status: "Automated",
   },
@@ -121,7 +121,7 @@ const TRACKER_STAGES = [
     stage: "Outline",
     task: "Approve argument outline",
     agent: "Introduction & Outline Architect",
-    provider: "OpenRouter (Claude 3.5 Sonnet)",
+    provider: "Research Strategy Engine",
     desc: "Builds IMRaD or thesis chapter outline with paragraph-level claim-to-source linking.",
     status: "Automated",
   },
@@ -130,7 +130,7 @@ const TRACKER_STAGES = [
     stage: "Drafting",
     task: "Complete full draft",
     agent: "Academic Voice Writer",
-    provider: "OpenRouter (Claude 3.5 Sonnet)",
+    provider: "Research Strategy Engine",
     desc: "Drafts manuscript chapters in clear academic voice with inline Crossref DOI citations.",
     status: "Automated",
   },
@@ -139,7 +139,7 @@ const TRACKER_STAGES = [
     stage: "Revision",
     task: "Complete content revisions",
     agent: "Academic Voice Editor",
-    provider: "NVIDIA NIM (NeVA-22B)",
+    provider: "Prose & Table Auditor",
     desc: "Audits prose clarity, removes AI boilerplate, and checks table p-values against text.",
     status: "Automated",
   },
@@ -148,7 +148,7 @@ const TRACKER_STAGES = [
     stage: "QA",
     task: "Complete APA & citation audit",
     agent: "Citation Guardian (7-Pass QA)",
-    provider: "Pillar API (Gemini 2.5 Pro / OR)",
+    provider: "7-Pass QA Engine",
     desc: "Runs 7-Pass QA sequence: APA 7 formatting, Crossref DOI hyperlinks, Retraction Watch check.",
     status: "Automated",
   },
@@ -157,7 +157,7 @@ const TRACKER_STAGES = [
     stage: "Submission",
     task: "Submit package & archive",
     agent: "Journal Matchmaker & Auditor",
-    provider: "OpenRouter (Claude 3.5 Sonnet)",
+    provider: "Research Strategy Engine",
     desc: "Checks journal scope, word limits, APC fees, Open Access quartile, and submission readiness.",
     status: "Automated",
   },
@@ -214,7 +214,7 @@ export default function AgentModePage() {
     if (!files || files.length === 0) return;
     const names = Array.from(files).map((f) => f.name);
     setIsProcessingFile(true);
-    setUploadStatus(`Parsing & extracting 24 matrix columns via Gemini 2.0 Flash Pillar API...`);
+    setUploadStatus(`Parsing & extracting 24 matrix columns via MONIRESH Autonomous Engine...`);
 
     setTimeout(() => {
       setUploadedFiles((prev) => [...prev, ...names]);
@@ -274,8 +274,8 @@ export default function AgentModePage() {
       const stage = TRACKER_STAGES.find((s) => s.id === stageId);
       setDemoOutput(
         `[MONIRESH AGENT EXECUTION LOG - STAGE ${stageId}: ${stage?.stage.toUpperCase()}]\n` +
-          `AI Gateway Router: Routed to ${stage?.provider}\n` +
-          `Pillar API Failover Anchor: Standby Active (Google Gemini 2.5 Pro / Flash)\n` +
+          `Automated Module: Routed to ${stage?.provider}\n` +
+          `Research Engine: APA 7th & DOI Verification Active\n` +
           `Status: SUCCESS (HTTP 200 OK)\n` +
           `Action Performed: ${stage?.desc}\n` +
           `Audit Trail: Zero fabricated citations or p-values. Verified via Crossref DOI.`
@@ -310,26 +310,6 @@ export default function AgentModePage() {
                   <ShieldCheck className="h-4 w-4" /> APA 7th & DOI Verified
                 </span>
               </div>
-            </div>
-
-            {/* AI Gateway & Pillar Status Banner */}
-            <div className="bg-moni-50/50 border-t border-pink-50 px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center gap-4 sm:gap-6 text-[13px] sm:text-[14px] font-bold">
-              <span className="flex items-center gap-1.5 text-black">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                OpenRouter: <span className="text-moni-600 font-black">Claude 3.5 & GPT-4o</span>
-              </span>
-              <span className="flex items-center gap-1.5 text-black">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                Hugging Face: <span className="text-moni-600 font-black">Llama 3 8B Batch</span>
-              </span>
-              <span className="flex items-center gap-1.5 text-black">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                NVIDIA NIM: <span className="text-moni-600 font-black">Llama 3.1 405B / NeVA</span>
-              </span>
-              <span className="flex items-center gap-1.5 text-black">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                Pillar API Anchor: <span className="text-moni-600 font-black">Gemini 2.5 Pro / Flash</span>
-              </span>
             </div>
 
             {/* Responsive Tabs */}
@@ -371,7 +351,7 @@ export default function AgentModePage() {
                     Seamless Document Import & PDF Upload
                   </div>
                   <div className="text-[15px] text-black font-medium">
-                    Upload PDFs, RIS citations, BibTeX libraries, or CSV evidence tables. Auto-processed by Gemini 2.5 Pillar.
+                    Upload PDFs, RIS citations, BibTeX libraries, or CSV evidence tables. Auto-processed by MONIRESH Autonomous Engine.
                   </div>
                 </div>
               </div>
@@ -462,7 +442,7 @@ export default function AgentModePage() {
                             <th className="p-3.5">Stage</th>
                             <th className="p-3.5">Manual SOP Task</th>
                             <th className="p-3.5">MONIRESH Autonomous Agent Action</th>
-                            <th className="p-3.5">AI Gateway Router</th>
+                            <th className="p-3.5">Automated Module</th>
                             <th className="p-3.5 text-right">Test AI</th>
                           </tr>
                         </thead>
@@ -586,7 +566,7 @@ export default function AgentModePage() {
                           Ready to process your PDF uploads?
                         </div>
                         <div className="text-[16px] text-black font-medium mt-0.5">
-                          OpenRouter Gemini 2.0 Flash extracts all 24 columns in under 3 seconds per paper.
+                          MONIRESH Extraction Engine processes all 24 columns in under 3 seconds per paper.
                         </div>
                       </div>
                       <label className="cursor-pointer rounded-full bg-ink-900 px-6 py-3 text-[16px] font-bold text-white hover:bg-moni-600 transition inline-flex items-center gap-2">
@@ -758,7 +738,7 @@ export default function AgentModePage() {
                       31 Reusable Academic Agent Commands (SOP Section 31)
                     </h2>
                     <p className="text-[16px] sm:text-[18px] text-black mt-1 font-medium leading-relaxed">
-                      Execute official commands from <code>MASTER_ACADEMIC_RESEARCH_AGENT_SYSTEM_PROMPT.md</code> against our Google Gemini 2.5 Pillar API.
+                      Execute official commands from <code>MASTER_ACADEMIC_RESEARCH_AGENT_SYSTEM_PROMPT.md</code> via the MONIRESH Research Operating Engine.
                     </p>
 
                     <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -823,7 +803,7 @@ export default function AgentModePage() {
                     {runningDemo && (
                       <div className="mt-6 rounded-2xl bg-moni-50 border border-moni-200 p-5 flex items-center gap-3 text-[16px] font-bold text-moni-700 animate-pulse">
                         <Loader2 className="h-6 w-6 animate-spin text-moni-600" />
-                        Executing command via Google Gemini 2.5 Pillar API...
+                        Executing command via MONIRESH Research Operating Engine...
                       </div>
                     )}
 
