@@ -20,6 +20,7 @@ import { cn } from "@/lib/utils";
 
 const nav = [
   { label: "Dashboard", icon: LayoutDashboard, href: "/dashboard", badge: null },
+  { label: "Agent Mode SOP", icon: FlaskConical, href: "/agent-mode", badge: "AUTONOMOUS" },
   { label: "Research Lab", icon: FlaskConical, href: "/systematic", badge: "LIVE" },
   { label: "Literature Search", icon: Search, href: "/literature", badge: null },
   { label: "Screening & PRISMA", icon: FileScan, href: "/systematic", badge: "163" },

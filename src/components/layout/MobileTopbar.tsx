@@ -20,6 +20,7 @@ export function MobileTopbar() {
       {open && (
         <div className="absolute left-0 top-14 w-full border-b border-pink-100 bg-white p-3 shadow-xl animate-rise">
           <div className="grid grid-cols-2 gap-2 text-[16px]">
+            <Link href="/agent-mode" className="rounded-xl border border-pink-100 p-3 font-bold bg-moni-50 text-moni-600">Agent Mode SOP</Link>
             <Link href="/literature" className="rounded-xl border border-pink-100 p-3 font-bold bg-moni-50">Literature Search</Link>
             <Link href="/gaps" className="rounded-xl border border-pink-100 p-3 font-bold bg-moni-50">GapFinder</Link>
             <Link href="/writing" className="rounded-xl border border-pink-100 p-3 font-bold bg-moni-50">Manuscript</Link>
