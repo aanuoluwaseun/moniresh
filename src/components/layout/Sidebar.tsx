@@ -19,7 +19,7 @@ import {
 import { cn } from "@/lib/utils";
 
 const nav = [
-  { label: "Dashboard", icon: LayoutDashboard, href: "/", badge: null },
+  { label: "Dashboard", icon: LayoutDashboard, href: "/dashboard", badge: null },
   { label: "Research Lab", icon: FlaskConical, href: "/systematic", badge: "LIVE" },
   { label: "Literature Search", icon: Search, href: "/literature", badge: null },
   { label: "Screening & PRISMA", icon: FileScan, href: "/systematic", badge: "163" },
