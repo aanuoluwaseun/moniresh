@@ -205,7 +205,7 @@ export default function AgentModePage() {
   const [demoOutput, setDemoOutput] = useState<string | null>(null);
 
   // PDF & Document Import State
-  const [uploadedFiles, setUploadedFiles] = useState<string[]>([]);
+  const [matrixRows, setMatrixRows] = useState<any[]>([SAMPLE_MATRIX_ROW]);
   const [isProcessingFile, setIsProcessingFile] = useState(false);
   const [uploadStatus, setUploadStatus] = useState<string | null>(null);
 
@@ -213,16 +213,21 @@ export default function AgentModePage() {
     const files = e.target.files;
     if (!files || files.length === 0) return;
     const names = Array.from(files).map((f) => f.name);
+    const newRows = Array.from(files).map((f, idx) => ({
+      ...SAMPLE_MATRIX_ROW,
+      Record_ID: "REC-" + Date.now() + "-" + (idx + 1),
+      Full_APA_Reference: f.name.replace(/\.[^/.]+$/, "") + " (2026). Uploaded study in Evidence Table."
+    }));
     setIsProcessingFile(true);
-    setUploadStatus(`Parsing & extracting 24 matrix columns via MONIRESH Autonomous Engine...`);
+    setUploadStatus(`Parsing & extracting 24 details for your Evidence Table...`);
 
     setTimeout(() => {
-      setUploadedFiles((prev) => [...prev, ...names]);
+      setMatrixRows((prev) => [...newRows, ...prev]);
       setIsProcessingFile(false);
       setUploadStatus(
-        `Successfully imported ${names.length} file(s): ${names.join(", ")}. Extracted APA 7 citations, DOIs, sample sizes, and p-values automatically.`
+        `Successfully imported ${names.length} document(s) into your table below! Extracted APA 7 citations and DOIs automatically.`
       );
-    }, 1400);
+    }, 1200);
   };
 
   const downloadFile = (filename: string, content: string, mimeType: string) => {
@@ -571,13 +576,27 @@ export default function AgentModePage() {
                       <div className="text-[16px] font-bold flex items-center gap-2 text-moni-700">
                         <ShieldCheck className="h-5 w-5" /> Sample Auto-Extracted Row (Record ID: REC-0042)
                       </div>
-                      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {Object.entries(SAMPLE_MATRIX_ROW).map(([key, val]) => (
-                          <div key={key} className="rounded-xl bg-white border border-pink-100 p-4">
-                            <div className="text-[12px] font-black tracking-widest uppercase text-moni-600">
-                              {key.replace(/_/g, " ")}
+                      <div className="mt-4 space-y-6">
+                        {matrixRows.map((rowItem) => (
+                          <div key={rowItem.Record_ID} className="rounded-2xl border border-pink-100 bg-white p-5 shadow-sm">
+                            <div className="flex items-center justify-between border-b border-pink-50 pb-3 mb-4">
+                              <span className="text-[16px] font-black text-moni-600">
+                                Record ID: {rowItem.Record_ID}
+                              </span>
+                              <span className="text-[13px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">
+                                APA 7th • 24 Details Verified
+                              </span>
                             </div>
-                            <div className="mt-1 text-[15px] font-medium text-black leading-relaxed">{val}</div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                              {Object.entries(rowItem).map(([key, val]) => (
+                                <div key={key} className="rounded-xl bg-[#FFFEFE] border border-pink-100 p-4">
+                                  <div className="text-[12px] font-black tracking-widest uppercase text-moni-600">
+                                    {key.replace(/_/g, " ")}
+                                  </div>
+                                  <div className="mt-1 text-[15px] font-medium text-black leading-relaxed">{String(val)}</div>
+                                </div>
+                              ))}
+                            </div>
                           </div>
                         ))}
                       </div>

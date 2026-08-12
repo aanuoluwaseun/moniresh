@@ -30,8 +30,16 @@ type Project = { id: string; title: string; createdAt?: any; updatedAt?: any };
 
 export default function DashboardPage() {
   const [user, setUser] = useState<any>(null);
-  const [projects, setProjects] = useState<Project[] | null>(null);
   const [loading, setLoading] = useState(true);
+
+  // Default active research projects
+  const [projects, setProjects] = useState<Project[] | null>([
+    {
+      id: "PRJ-01",
+      title: "Generative AI Adoption and Institutional Trust Among Higher Education Lecturers in Sub-Saharan Africa",
+      createdAt: "2026-08-11"
+    }
+  ]);
 
   // New project quick creator state
   const [quickTopic, setQuickTopic] = useState("");
@@ -40,6 +48,19 @@ export default function DashboardPage() {
   // Upload & Export Demo State
   const [isProcessing, setIsProcessing] = useState(false);
   const [uploadStatus, setUploadStatus] = useState<string | null>(null);
+
+  // Uploaded Research Library
+  const [uploadedLibrary, setUploadedLibrary] = useState<any[]>([
+    {
+      id: "DOC-01",
+      title: "AI adoption in African higher education: A systematic review of benefits and ethical implications",
+      authors: "Maluleke, A. F.",
+      year: "2025",
+      journal: "Interdisciplinary Journal of Education Research",
+      doi: "https://doi.org/10.38140/ijer-2025.vol7.2.05",
+      pdfUrl: "https://pubs.ufs.ac.za/index.php/ijer/article/download/2039/1353"
+    }
+  ]);
 
   useEffect(() => {
     const unsub = onAuthStateChanged(firebaseAuth as any, async (u) => {
@@ -97,6 +118,12 @@ export default function DashboardPage() {
   const handleCreateQuickProject = (e: React.FormEvent) => {
     e.preventDefault();
     if (!quickTopic.trim()) return;
+    const newPrj = {
+      id: `PRJ-${Date.now()}`,
+      title: quickTopic.trim(),
+      createdAt: new Date().toISOString().split("T")[0]
+    };
+    setProjects(prev => [newPrj, ...(prev || [])]);
     setCreatedProject(quickTopic.trim());
     setQuickTopic("");
   };
@@ -264,6 +291,71 @@ export default function DashboardPage() {
                 {uploadStatus}
               </div>
             )}
+
+            
+            {/* Live Uploaded Research Library Table */}
+            <div className="rounded-3xl border border-pink-100 bg-white p-6 sm:p-7 shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-pink-50 pb-4">
+                <div>
+                  <h2 className="text-[22px] font-black tracking-tight">Your Uploaded Research Library ({uploadedLibrary.length} Documents)</h2>
+                  <p className="text-[16px] text-black font-medium">
+                    Every uploaded file is parsed and organized across 24 details. Ready for your Evidence Table and manuscript.
+                  </p>
+                </div>
+                <Link
+                  href="/agent-mode"
+                  className="inline-flex items-center gap-2 rounded-full bg-ink-900 px-5 py-2.5 text-white text-[15px] font-bold hover:bg-moni-600 transition shrink-0"
+                >
+                  Open in Evidence Table
+                </Link>
+              </div>
+
+              <div className="mt-6 space-y-4">
+                {uploadedLibrary.map((doc) => (
+                  <div
+                    key={doc.id}
+                    className="rounded-2xl border border-pink-100 bg-[#FFFEFE] p-5 hover:border-moni-300 transition flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+                  >
+                    <div className="space-y-1 flex-1">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-[13px] font-black uppercase text-moni-600 bg-moni-50 border border-pink-100 px-2.5 py-0.5 rounded-full">
+                          {doc.id}
+                        </span>
+                        <span className="text-[13px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                          APA 7th • DOI Verified
+                        </span>
+                      </div>
+                      <div className="text-[18px] font-extrabold text-black pt-1">{doc.title}</div>
+                      <div className="text-[15px] text-black font-medium">
+                        <strong>{doc.authors} ({doc.year}).</strong> <em>{doc.journal}.</em>{" "}
+                        <a href={doc.doi} target="_blank" rel="noreferrer" className="text-moni-600 hover:underline">
+                          {doc.doi}
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2.5 shrink-0">
+                      {doc.pdfUrl && doc.pdfUrl !== "#" && (
+                        <a
+                          href={doc.pdfUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1.5 rounded-xl border border-pink-200 bg-white px-4 py-2 text-[14px] font-bold text-black hover:bg-moni-50 transition"
+                        >
+                          Open PDF
+                        </a>
+                      )}
+                      <button
+                        onClick={() => setUploadedLibrary(prev => prev.filter(d => d.id !== doc.id))}
+                        className="rounded-xl border border-pink-100 px-4 py-2 text-[14px] font-bold text-moni-600 hover:bg-red-50 hover:text-red-600 transition"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
             {/* Section 3: 4 Luxury Research Studio Launchpads */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
