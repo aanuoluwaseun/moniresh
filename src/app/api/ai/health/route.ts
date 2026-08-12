@@ -26,6 +26,7 @@ export async function GET() {
   let exaOk: boolean | string = false;
   let tavilyOk: boolean | string = false;
   let openAlexOk: boolean | string = false;
+  const crossrefOk = "api.crossref.org/works active (150M+ verified DOIs & citation graphs with mailto Polite Pool)";
   const semanticScholarOk = "api.semanticscholar.org/graph/v1/paper/search/bulk active (214M+ papers with OpenAccess PDFs)";
 
   if (hasOR) {
@@ -59,7 +60,7 @@ export async function GET() {
     serperOk = "google.serper.dev/scholar active (2,500 credits — primary Google Scholar engine)";
   }
   if (hasSerpApi) {
-    serpApiOk = "serpapi google_scholar ready (automatic failover to NCBI / Exa / Semantic Scholar / OpenAlex)";
+    serpApiOk = "serpapi google_scholar ready (automatic failover to NCBI / Crossref / Exa / Semantic Scholar / OpenAlex)";
   }
   if (hasNCBI) {
     ncbiOk = "eutils.ncbi.nlm.nih.gov active (36M+ biomedical & scientific articles with 10 req/s SLA)";
@@ -84,6 +85,7 @@ export async function GET() {
       serper_scholar: hasSerper,
       serpapi_scholar: hasSerpApi,
       ncbi_pubmed: hasNCBI,
+      crossref_polite_pool: true,
       exa_ai_search: hasExa,
       semanticscholar_bulk: true,
       openalex_api: hasOpenAlex,
@@ -97,6 +99,7 @@ export async function GET() {
       serper_scholar: serperOk,
       serpapi_scholar: serpApiOk,
       ncbi_pubmed: ncbiOk,
+      crossref_polite_pool: crossrefOk,
       exa_ai_search: exaOk,
       semanticscholar_bulk: semanticScholarOk,
       openalex_api: openAlexOk,
@@ -107,7 +110,7 @@ export async function GET() {
       extraction: "openrouter/gemini-2.0-flash",
       synthesis: "openrouter/claude-3.5-sonnet",
       gap_find: "nvidia/llama-3.1-405b",
-      search_failover_chain: "Serper Google Scholar -> SerpApi -> NCBI PubMed/PMC -> Exa AI -> Semantic Scholar Bulk -> OpenAlex Premium -> Tavily Search -> Gemini 2.5 Pillar",
+      search_failover_chain: "Serper Google Scholar -> SerpApi -> NCBI PubMed/PMC -> Crossref Polite Pool -> Exa AI -> Semantic Scholar Bulk -> OpenAlex Premium -> Tavily Search -> Gemini 2.5 Pillar",
       pillar_anchor: "google/gemini-2.5-pro-flash (failover guarantee)",
     },
     ok: hasOR && hasHF && hasNV && hasFB && hasPillar && (hasSerper || hasSerpApi || hasNCBI || hasExa || hasOpenAlex || hasTavily),
