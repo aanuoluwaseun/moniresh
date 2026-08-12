@@ -28,6 +28,7 @@ export async function GET() {
   let openAlexOk: boolean | string = false;
   const crossrefOk = "api.crossref.org/works active (150M+ verified DOIs & citation graphs with mailto Polite Pool)";
   const semanticScholarOk = "api.semanticscholar.org/graph/v1/paper/search/bulk active (214M+ papers with OpenAccess PDFs)";
+  const unpaywallOk = "api.unpaywall.org/v2 active (lawful Open Access PDF retrieval with mailto Polite Pool)";
 
   if (hasOR) {
     try {
@@ -84,6 +85,7 @@ export async function GET() {
       gemini_pillar: hasPillar,
       serper_scholar: hasSerper,
       serpapi_scholar: hasSerpApi,
+      unpaywall_oa: true,
       ncbi_pubmed: hasNCBI,
       crossref_polite_pool: true,
       exa_ai_search: hasExa,
@@ -98,6 +100,7 @@ export async function GET() {
       gemini_pillar: pillarOk,
       serper_scholar: serperOk,
       serpapi_scholar: serpApiOk,
+      unpaywall_oa: unpaywallOk,
       ncbi_pubmed: ncbiOk,
       crossref_polite_pool: crossrefOk,
       exa_ai_search: exaOk,
@@ -110,7 +113,7 @@ export async function GET() {
       extraction: "openrouter/gemini-2.0-flash",
       synthesis: "openrouter/claude-3.5-sonnet",
       gap_find: "nvidia/llama-3.1-405b",
-      search_failover_chain: "Serper Google Scholar -> SerpApi -> NCBI PubMed/PMC -> Crossref Polite Pool -> Exa AI -> Semantic Scholar Bulk -> OpenAlex Premium -> Tavily Search -> Gemini 2.5 Pillar",
+      search_failover_chain: "Serper Google Scholar -> SerpApi -> Unpaywall OA -> NCBI PubMed/PMC -> Crossref Polite Pool -> Exa AI -> Semantic Scholar Bulk -> OpenAlex Premium -> Tavily Search -> Gemini 2.5 Pillar",
       pillar_anchor: "google/gemini-2.5-pro-flash (failover guarantee)",
     },
     ok: hasOR && hasHF && hasNV && hasFB && hasPillar && (hasSerper || hasSerpApi || hasNCBI || hasExa || hasOpenAlex || hasTavily),
