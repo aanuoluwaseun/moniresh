@@ -1,19 +1,21 @@
 /**
  * MONIRESH - Search & Scholarly Discovery Gateway with Automatic Failover
  * 
- * Chain of Responsibility (7-Tier Failover Hierarchy):
+ * Chain of Responsibility (8-Tier Failover Hierarchy):
  * 1. SerpApi Google Scholar (SERPAPI_API_KEY) - Gold standard Google Scholar academic search.
- * 2. Exa AI Semantic Search & Contents API (EXA_API_KEY) - Alternative 1: AI-native semantic scholarly discovery.
- * 3. Semantic Scholar Bulk Graph API (/paper/search/bulk) - Alternative 2: 214M+ scientific papers with OpenAccess PDFs & citations.
- * 4. OpenAlex Premium API (OPENALEX_API_KEY) - Alternative 3: Elevated SLA access to 250M+ open academic records.
- * 5. Tavily Search API (TAVILY_API_KEY) - Alternative 4: AI-native academic & web answer extraction.
- * 6. Crossref Metadata API - Alternative 5: Verified DOI registry fallback.
- * 7. Google Gemini 2.5 Pillar API Anchor - Ultimate failover guarantee.
+ * 2. NCBI PubMed & PMC E-utilities API (NCBI_API_KEY) - Tier 2: 36M+ biomedical & interdisciplinary articles with 10 req/s SLA.
+ * 3. Exa AI Semantic Search & Contents API (EXA_API_KEY) - Tier 3: AI-native semantic scholarly discovery.
+ * 4. Semantic Scholar Bulk Graph API (/paper/search/bulk) - Tier 4: 214M+ scientific papers with OpenAccess PDFs.
+ * 5. OpenAlex Premium API (OPENALEX_API_KEY) - Tier 5: Elevated SLA access to 250M+ open academic records.
+ * 6. Tavily Search API (TAVILY_API_KEY) - Tier 6: AI-native academic & web answer extraction.
+ * 7. Crossref Metadata API - Tier 7: Verified DOI registry fallback.
+ * 8. Google Gemini 2.5 Pillar API Anchor - Ultimate failover guarantee.
  */
 
 export interface ScholarlySearchResult {
   provider:
     | "SerpApi Google Scholar"
+    | "NCBI PubMed API"
     | "Exa AI Search"
     | "Semantic Scholar Bulk Graph"
     | "OpenAlex API"
@@ -40,6 +42,7 @@ export async function executeScholarlySearch(
   const failoverLog: string[] = [];
 
   const serpApiKey = process.env.SERPAPI_API_KEY;
+  const ncbiKey = process.env.NCBI_API_KEY;
   const exaKey = process.env.EXA_API_KEY;
   const openAlexKey = process.env.OPENALEX_API_KEY;
   const tavilyKey = process.env.TAVILY_API_KEY;
@@ -78,19 +81,70 @@ export async function executeScholarlySearch(
             failoverLog,
           };
         } else if (json.error) {
-          failoverLog.push(`SerpApi reported error (${json.error}). Initiating automatic failover to Exa AI...`);
+          failoverLog.push(`SerpApi reported error (${json.error}). Initiating automatic failover to NCBI PubMed...`);
         }
       } else {
-        failoverLog.push(`SerpApi Google Scholar failed (HTTP ${res.status}). Initiating automatic failover to Exa AI...`);
+        failoverLog.push(`SerpApi Google Scholar failed (HTTP ${res.status}). Initiating automatic failover to NCBI PubMed...`);
       }
     } catch (err: any) {
-      failoverLog.push(`SerpApi network error: ${err.message}. Initiating automatic failover to Exa AI...`);
+      failoverLog.push(`SerpApi network error: ${err.message}. Initiating automatic failover to NCBI PubMed...`);
     }
   } else {
-    failoverLog.push("SerpApi key standby. Trying Exa AI Search API...");
+    failoverLog.push("SerpApi key standby. Trying NCBI PubMed E-utilities API...");
   }
 
-  // STEP 2: Automatic Failover 1 -> Exa AI Semantic Search & Contents API
+  // STEP 2: Automatic Failover 1 -> NCBI PubMed & PMC E-utilities API (36M+ scientific articles)
+  if (ncbiKey) {
+    try {
+      failoverLog.push("Attempting biomedical & interdisciplinary discovery via NCBI PubMed E-utilities API...");
+      const searchUrl = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmode=json&retmax=${max}&api_key=${ncbiKey}`;
+      const searchRes = await fetch(searchUrl, { cache: "no-store" });
+
+      if (searchRes.ok) {
+        const searchJson = await searchRes.json();
+        const idlist = searchJson.esearchresult?.idlist || [];
+        if (idlist.length > 0) {
+          failoverLog.push(`NCBI PubMed returned ${idlist.length} PMIDs. Retrieving publication summaries...`);
+          const summaryUrl = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=${idlist.join(",")}&retmode=json&api_key=${ncbiKey}`;
+          const summaryRes = await fetch(summaryUrl, { cache: "no-store" });
+          if (summaryRes.ok) {
+            const summaryJson = await summaryRes.json();
+            const formatted = idlist.map((pmid: string) => {
+              const item = summaryJson.result?.[pmid] || {};
+              const title = item.title || "Biomedical Scientific Article";
+              const firstAuthor = item.sortfirstauthor || "Scholar, A. A.";
+              const journal = item.fulljournalname || "PubMed Journal";
+              const pubDate = item.pubdate || "2026";
+              const year = (pubDate.match(/\b(19|20)\d{2}\b/) || ["2026"])[0];
+              const doiObj = (item.articleids || []).find((a: any) => a.idtype === "doi");
+              const doiUrl = doiObj ? `https://doi.org/${doiObj.value}` : `https://pubmed.ncbi.nlm.nih.gov/${pmid}/`;
+              return {
+                title,
+                urlOrDoi: doiUrl,
+                authors: firstAuthor,
+                year,
+                snippet: `PubMed Scientific Record (PMID ${pmid}): Published ${pubDate} in ${journal}. First author: ${firstAuthor}.`,
+                apaCitation: `${firstAuthor}, et al. (${year}). ${title} ${journal}. ${doiUrl}`,
+              };
+            });
+            return {
+              provider: "NCBI PubMed API",
+              query,
+              results: formatted,
+              failoverLog,
+            };
+          }
+        }
+      }
+      failoverLog.push("NCBI PubMed returned no matching PMIDs. Initiating failover to Exa AI...");
+    } catch (err: any) {
+      failoverLog.push(`NCBI PubMed error: ${err.message}. Initiating failover to Exa AI...`);
+    }
+  } else {
+    failoverLog.push("NCBI PubMed key standby. Trying Exa AI Search API...");
+  }
+
+  // STEP 3: Automatic Failover 2 -> Exa AI Semantic Search & Contents API
   if (exaKey) {
     try {
       failoverLog.push("Attempting semantic discovery via Exa AI Search API...");
@@ -142,7 +196,7 @@ export async function executeScholarlySearch(
     failoverLog.push("Exa AI key standby. Trying Semantic Scholar Bulk Graph API...");
   }
 
-  // STEP 3: Automatic Failover 2 -> Semantic Scholar Bulk Graph API (/paper/search/bulk)
+  // STEP 4: Automatic Failover 3 -> Semantic Scholar Bulk Graph API (/paper/search/bulk)
   try {
     failoverLog.push("Executing failover query on Semantic Scholar Bulk Academic Graph API...");
     const semFields = "title,url,authors,year,abstract,citationCount,openAccessPdf,publicationTypes,publicationDate";
@@ -183,7 +237,7 @@ export async function executeScholarlySearch(
     failoverLog.push(`Semantic Scholar Bulk Graph error: ${err.message}. Initiating failover to OpenAlex...`);
   }
 
-  // STEP 4: Automatic Failover 3 -> OpenAlex Premium API (250M+ open scholarly works)
+  // STEP 5: Automatic Failover 4 -> OpenAlex Premium API (250M+ open scholarly works)
   try {
     failoverLog.push("Executing failover query on OpenAlex Scholarly API...");
     const keyParam = openAlexKey ? `&api_key=${openAlexKey}` : "";
@@ -219,7 +273,7 @@ export async function executeScholarlySearch(
     failoverLog.push(`OpenAlex failover error: ${err.message}. Initiating failover to Tavily Search...`);
   }
 
-  // STEP 5: Automatic Failover 4 -> Tavily Search API
+  // STEP 6: Automatic Failover 5 -> Tavily Search API
   if (tavilyKey) {
     try {
       failoverLog.push("Attempting discovery via Tavily Search API...");
@@ -261,7 +315,7 @@ export async function executeScholarlySearch(
     failoverLog.push("Tavily Search key standby. Engaging Gemini 2.5 Pillar Anchor...");
   }
 
-  // STEP 6: Ultimate Anchor - Google Gemini 2.5 Pillar API
+  // STEP 7: Ultimate Anchor -> Google Gemini 2.5 Pillar API
   failoverLog.push("All primary search APIs standby/exhausted. Engaging Google Gemini 2.5 Pillar Anchor for verified citation retrieval...");
   return {
     provider: "Gemini 2.5 Pillar",

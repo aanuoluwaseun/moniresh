@@ -8,6 +8,7 @@ export async function GET() {
   const hasNV = Boolean(process.env.NVIDIA_API_KEY);
   const hasPillar = Boolean(process.env.GEMINI_API_KEY || process.env.PILLAR_API_KEY);
   const hasSerpApi = Boolean(process.env.SERPAPI_API_KEY);
+  const hasNCBI = Boolean(process.env.NCBI_API_KEY);
   const hasExa = Boolean(process.env.EXA_API_KEY);
   const hasTavily = Boolean(process.env.TAVILY_API_KEY);
   const hasOpenAlex = Boolean(process.env.OPENALEX_API_KEY);
@@ -19,6 +20,7 @@ export async function GET() {
   let nvOk: boolean | string = false;
   let pillarOk: boolean | string = false;
   let serpApiOk: boolean | string = false;
+  let ncbiOk: boolean | string = false;
   let exaOk: boolean | string = false;
   let tavilyOk: boolean | string = false;
   let openAlexOk: boolean | string = false;
@@ -52,7 +54,10 @@ export async function GET() {
     } catch (e: any) { pillarOk = e.message; }
   }
   if (hasSerpApi) {
-    serpApiOk = "serpapi google_scholar ready (automatic failover to Exa AI / Semantic Scholar / OpenAlex)";
+    serpApiOk = "serpapi google_scholar ready (automatic failover to NCBI / Exa / Semantic Scholar / OpenAlex)";
+  }
+  if (hasNCBI) {
+    ncbiOk = "eutils.ncbi.nlm.nih.gov active (36M+ biomedical & scientific articles with 10 req/s SLA)";
   }
   if (hasExa) {
     exaOk = "exa.ai active (semantic scholarly search & contents)";
@@ -72,6 +77,7 @@ export async function GET() {
       nvidia: hasNV,
       gemini_pillar: hasPillar,
       serpapi_scholar: hasSerpApi,
+      ncbi_pubmed: hasNCBI,
       exa_ai_search: hasExa,
       semanticscholar_bulk: true,
       openalex_api: hasOpenAlex,
@@ -83,6 +89,7 @@ export async function GET() {
       nvidia: nvOk,
       gemini_pillar: pillarOk,
       serpapi_scholar: serpApiOk,
+      ncbi_pubmed: ncbiOk,
       exa_ai_search: exaOk,
       semanticscholar_bulk: semanticScholarOk,
       openalex_api: openAlexOk,
@@ -93,10 +100,10 @@ export async function GET() {
       extraction: "openrouter/gemini-2.0-flash",
       synthesis: "openrouter/claude-3.5-sonnet",
       gap_find: "nvidia/llama-3.1-405b",
-      search_failover_chain: "SerpApi Google Scholar -> Exa AI -> Semantic Scholar Bulk -> OpenAlex Premium -> Tavily Search -> Gemini 2.5 Pillar",
+      search_failover_chain: "SerpApi Google Scholar -> NCBI PubMed/PMC -> Exa AI -> Semantic Scholar Bulk -> OpenAlex Premium -> Tavily Search -> Gemini 2.5 Pillar",
       pillar_anchor: "google/gemini-2.5-pro-flash (failover guarantee)",
     },
-    ok: hasOR && hasHF && hasNV && hasFB && hasPillar && (hasSerpApi || hasExa || hasOpenAlex || hasTavily),
+    ok: hasOR && hasHF && hasNV && hasFB && hasPillar && (hasSerpApi || hasNCBI || hasExa || hasOpenAlex || hasTavily),
     timestamp: new Date().toISOString(),
   });
 }
