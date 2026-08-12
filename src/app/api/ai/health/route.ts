@@ -58,7 +58,7 @@ export async function GET() {
     } catch (e: any) { pillarOk = e.message; }
   }
   if (hasSerper) {
-    serperOk = "google.serper.dev/scholar active (2,500 credits — primary Google Scholar engine)";
+    serperOk = "google.serper.dev/scholar active (2,500 credits - primary Google Scholar engine)";
   }
   if (hasSerpApi) {
     serpApiOk = "serpapi google_scholar ready (automatic failover to NCBI / Crossref / Exa / Semantic Scholar / OpenAlex)";

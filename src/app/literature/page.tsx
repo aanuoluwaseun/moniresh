@@ -25,8 +25,8 @@ export default function LiteraturePage() {
         <PageTransition><main className="px-6 lg:px-8 py-8 max-w-[1080px] w-full mx-auto space-y-6">
           {/* Search - honest, no fake counts */}
           <div className="rounded-[24px] border border-pink-100 bg-white p-6 lg:p-7">
-            <h2 className="font-black tracking-tight">Build a search you can defend</h2>
-            <p className="text-[18px] text-black mt-1.5 leading-relaxed font-medium max-w-[640px]">Write your idea in plain language. We’ll help turn it into keywords and a Boolean string you can paste into OpenAlex, Semantic Scholar, Crossref - no hidden scraping where it isn’t allowed.</p>
+            <h2 className="font-black tracking-tight">Find papers with a search you can trust</h2>
+            <p className="text-[18px] text-black mt-1.5 leading-relaxed font-medium max-w-[640px]">Type your topic in everyday words. We’ll generate clean search terms you can use in Google Scholar, PubMed, OpenAlex, or your university library.</p>
 
             <div className="mt-6">
               <label className="text-[16px] font-bold tracking-widest uppercase text-black">Your topic, in your words</label>
@@ -51,7 +51,7 @@ export default function LiteraturePage() {
                     </div>
                   </div>
                   <div className="rounded-xl bg-white border border-pink-100 p-4">
-                    <div className="text-[16px] font-bold tracking-widest uppercase text-black">Boolean (paste-ready)</div>
+                    <div className="text-[16px] font-bold tracking-widest uppercase text-black">Database Search String (ready to copy)</div>
                     <code className="mt-2 block text-[16px] bg-ink-900 text-white rounded-lg p-3 leading-relaxed">("artificial intelligence" OR "generative AI") AND ("adoption" OR "intention to use") AND ("higher education" OR universit*)</code>
                   </div>
                 </div>

@@ -23,17 +23,17 @@ import { cn } from "@/lib/utils";
 
 const nav = [
   { label: "Dashboard", icon: LayoutDashboard, href: "/dashboard", badge: null },
-  { label: "Agent Mode SOP", icon: FlaskConical, href: "/agent-mode", badge: "AUTONOMOUS" },
+  { label: "Step-by-Step Guide", icon: FlaskConical, href: "/agent-mode", badge: "AUTONOMOUS" },
   { label: "Research Lab", icon: Layers, href: "/systematic", badge: "LIVE" },
   { label: "Literature Search", icon: Search, href: "/literature", badge: null },
   { label: "Screening & PRISMA", icon: FileScan, href: "/systematic", badge: null },
-  { label: "Evidence Matrix", icon: Table2, href: "/gaps", badge: "24-COL" },
+  { label: "Evidence Table", icon: Table2, href: "/gaps", badge: "TABLE" },
   { label: "GapFinder", icon: Sparkles, href: "/gaps", badge: null },
-  { label: "Manuscript Studio", icon: PenLine, href: "/writing", badge: null },
-  { label: "References & APA 7", icon: BookMarked, href: "/writing", badge: null },
+  { label: "Writing Workspace", icon: PenLine, href: "/writing", badge: null },
+  { label: "Reference Checker", icon: BookMarked, href: "/writing", badge: null },
   { label: "Data Analysis", icon: BarChart3, href: "/data-analysis", badge: null },
   { label: "Journals", icon: GraduationCap, href: "/journals", badge: null },
-  { label: "Quality Audit", icon: FileCheck2, href: "/writing", badge: "7-PASS" },
+  { label: "Quality Check", icon: FileCheck2, href: "/writing", badge: "AUDIT" },
 ];
 
 export function Sidebar() {
@@ -58,16 +58,16 @@ export function Sidebar() {
       <div className="px-3 py-4">
         <div className="rounded-2xl border border-pink-100 bg-gradient-to-br from-white to-moni-50/70 p-4 shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-[13px] font-black tracking-widest text-moni-600 uppercase">Academic Lab</span>
+            <span className="text-[13px] font-black tracking-widest text-moni-600 uppercase">Research Lab</span>
             <span className="inline-flex items-center gap-1 text-[13px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
               <ShieldCheck className="h-3.5 w-3.5" /> APA 7th
             </span>
           </div>
           <div className="mt-2 text-[16px] font-extrabold leading-tight text-black">
-            Authoritative Research Operating System
+            Your complete workspace for research
           </div>
           <div className="mt-1.5 text-[14px] text-black font-medium leading-relaxed">
-            Zero invented citations. Crossref DOI verification across every claim.
+            No made-up citations. Every reference is checked and verified.
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@ export function Sidebar() {
           </div>
         </div>
         <div className="mt-3 px-1 text-[13px] leading-relaxed text-black font-semibold text-center">
-          White & Pink • Evidence-First • Research OS
+          White & Pink • Simple & Easy • Evidence-First
         </div>
       </div>
     </aside>

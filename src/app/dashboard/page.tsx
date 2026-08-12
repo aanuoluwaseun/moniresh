@@ -116,16 +116,16 @@ export default function DashboardPage() {
                     alt="MONIRESH Logo"
                     className="h-8 w-8 rounded-lg object-cover shadow-sm border border-pink-100"
                   />
-                  Dashboard Control Center
+                  Your Research Dashboard
                 </h1>
                 <p className="text-[16px] sm:text-[18px] text-black mt-1.5 font-medium">
                   {user ? `Welcome, ${user.displayName || user.email?.split("@")[0]}. ` : ""}
-                  Authoritative Research Operating System. Zero fabricated citations or statistics.
+                  Your calm workspace for research. No made-up citations or fake statistics.
                 </p>
               </div>
               <div className="flex items-center gap-2 self-start sm:self-auto">
                 <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1.5 text-[14px] font-bold text-emerald-700">
-                  <ShieldCheck className="h-4 w-4" /> APA 7th • Crossref DOI Verified
+                  <ShieldCheck className="h-4 w-4" /> Verified References (APA 7th)
                 </span>
                 <Link
                   href="/literature"
@@ -144,10 +144,10 @@ export default function DashboardPage() {
               <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
                 <div>
                   <div className="inline-flex items-center gap-2 rounded-full border border-pink-200 bg-moni-50 px-3.5 py-1 text-[13px] font-extrabold text-moni-700 uppercase tracking-wider">
-                    <Sparkles className="h-3.5 w-3.5 text-moni-600" /> Autonomous 15-Stage Protocol
+                    <Sparkles className="h-3.5 w-3.5 text-moni-600" /> 15-Step Research Guide
                   </div>
                   <h2 className="mt-3 text-[24px] sm:text-[28px] font-black tracking-tight leading-tight">
-                    From Research Brief to Publication-Ready Evidence
+                    From your first idea to a finished, well-supported paper
                   </h2>
                   <p className="mt-2 text-[16px] sm:text-[18px] text-black font-medium max-w-[680px] leading-relaxed">
                     MONIRESH automates your Literature Matrix and 15-Stage SOP Tracker. Enforces the Central Quality
@@ -174,12 +174,12 @@ export default function DashboardPage() {
               {/* Central Quality Rule Progression Pills */}
               <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-6 border-t border-pink-100">
                 {[
-                  ["1. Problem & Brief", "Intake & Rubric"],
+                  ["1. Start & Brief", "Intake & Rubric"],
                   ["2. Research Question", "Logical Alignment"],
-                  ["3. 24-Col Matrix", "PDF Decomposition"],
-                  ["4. Synthesis & Gaps", "Novelty Score"],
-                  ["5. Analysis & Code", "Statistical Syntax"],
-                  ["6. APA 7 Guardian", "7-Pass QA Audit"],
+                  ["3. Evidence Table", "Paper Summary"],
+                  ["4. Find Real Gaps", "Check Novelty"],
+                  ["5. Analyze Data", "Run Statistics"],
+                  ["6. Check Citations", "Verify References"],
                 ].map(([title, desc], idx) => (
                   <Link
                     key={title}
@@ -206,10 +206,10 @@ export default function DashboardPage() {
                 </div>
                 <div>
                   <div className="text-[19px] font-extrabold text-black">
-                    Seamless Document Import & PDF Library
+                    Upload Your Papers & Citations
                   </div>
                   <div className="text-[16px] text-black font-medium">
-                    Upload PDFs, RIS citations, BibTeX libraries, or CSV evidence tables.
+                    Upload PDF papers, citation files (RIS/BibTeX), or spreadsheets. We’ll read and organize them for you.
                   </div>
                 </div>
               </div>
@@ -269,30 +269,30 @@ export default function DashboardPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
                 {
-                  title: "15-Stage Autonomous SOP Tracker",
+                  title: "15-Step Research Tracker",
                   badge: "AUTONOMOUS",
-                  desc: "Automate stages 1 to 15 without manual data entry. Human-in-the-loop approval on screening and outlines.",
+                  desc: "Follow your project from topic choice to final submission. You stay in control of every decision.",
                   href: "/agent-mode",
                   icon: Layers,
                 },
                 {
-                  title: "24-Column Evidence Matrix",
+                  title: "Paper Comparison Table",
                   badge: "AUTOMATED MATRIX",
                   desc: "Decompose uploaded PDFs into all 24 columns via MONIRESH Evidence Engine under the Three-Note Rule.",
                   href: "/agent-mode",
                   icon: Database,
                 },
                 {
-                  title: "APA 7th Citation Guardian",
+                  title: "Reference & Citation Checker",
                   badge: "7-PASS AUDIT",
-                  desc: "Run 7-Pass Quality Control, verify Crossref DOIs, and audit for Retraction Watch notices.",
+                  desc: "We check your references, verify every source link, and make sure all citations are clean and accurate.",
                   href: "/writing",
                   icon: Award,
                 },
                 {
-                  title: "Literature Boolean Builder",
+                  title: "Database Search Helper",
                   badge: "REPRODUCIBLE",
-                  desc: "Generate DB-specific search syntax for OpenAlex, Semantic Scholar, Crossref, and PubMed.",
+                  desc: "Type what you want to study in plain words. We generate paste-ready search queries for any academic database.",
                   href: "/literature",
                   icon: Search,
                 },
@@ -317,8 +317,8 @@ export default function DashboardPage() {
                       <p className="mt-2 text-[16px] text-black font-medium leading-relaxed">{l.desc}</p>
                     </div>
                     <div className="mt-6 pt-4 border-t border-pink-50 flex items-center justify-between text-[14px] font-bold text-moni-600">
-                      <span>Launch Studio Module</span>
-                      <span className="text-black font-medium">Instant Access</span>
+                      <span>Open Feature</span>
+                      <span className="text-black font-medium">Ready to use</span>
                     </div>
                   </Link>
                 );
@@ -364,7 +364,7 @@ export default function DashboardPage() {
                 <div className="mt-6 rounded-2xl border border-pink-100 bg-[#FFFEFE] p-6 sm:p-7">
                   <div className="max-w-[640px]">
                     <div className="text-[18px] font-black text-black">
-                      Quick-Initialize a New 15-Stage Research Project
+                      Start a New Research Project
                     </div>
                     <p className="text-[15px] text-black font-medium mt-1">
                       Enter your topic or research problem below. MONIRESH will set up your 15-Stage Tracker and

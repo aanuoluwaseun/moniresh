@@ -285,7 +285,7 @@ export default function AgentModePage() {
       setDemoOutput(
         `[MONIRESH AGENT EXECUTION LOG - STAGE ${stageId}: ${stage?.stage?.toUpperCase()}]
 ` +
-        `Automated Module: ${stage?.provider}
+        `Research Assistant: ${stage?.provider}
 ` +
         `Backend Engine Status: SUCCESS (HTTP 200 OK)
 
@@ -325,12 +325,12 @@ export default function AgentModePage() {
                   MONIRESH Agent Mode
                 </h1>
                 <p className="text-[16px] sm:text-[18px] text-black mt-1.5 font-medium">
-                  Autonomous 15-Stage Research Operating Protocol & 24-Column Evidence Matrix SOP.
+                  Your step-by-step research guide and automated paper comparison table.
                 </p>
               </div>
               <div className="flex items-center gap-2 self-start sm:self-auto">
                 <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1.5 text-[14px] font-bold text-emerald-700">
-                  <ShieldCheck className="h-4 w-4" /> APA 7th & DOI Verified
+                  <ShieldCheck className="h-4 w-4" /> Verified References (APA 7th)
                 </span>
               </div>
             </div>
@@ -338,11 +338,11 @@ export default function AgentModePage() {
             {/* Responsive Tabs */}
             <div className="px-4 sm:px-6 lg:px-8 flex gap-2 sm:gap-3 border-t border-pink-50 pt-3 overflow-x-auto pb-2">
               {[
-                { id: "tracker", label: "15-Stage Tracker", icon: Layers },
-                { id: "matrix", label: "24-Col Matrix", icon: Database },
-                { id: "sources", label: "Document Sourcing", icon: Search },
-                { id: "apa", label: "APA 7th Guardian", icon: Award },
-                { id: "commands", label: "Reusable Agent Commands", icon: Sparkles },
+                { id: "tracker", label: "Step-by-Step Tracker", icon: Layers },
+                { id: "matrix", label: "Evidence Table", icon: Database },
+                { id: "sources", label: "Scholarly Sources", icon: Search },
+                { id: "apa", label: "Citation Checker", icon: Award },
+                { id: "commands", label: "Quick Commands", icon: Sparkles },
               ].map((t) => {
                 const Icon = t.icon;
                 return (
@@ -441,7 +441,7 @@ export default function AgentModePage() {
                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                       <div>
                         <h2 className="text-[20px] sm:text-[22px] font-black tracking-tight">
-                          End-to-End Autonomous Project Tracker (SOP Phase 1–15)
+                          Your 15-Step Research Tracker (from start to finish)
                         </h2>
                         <p className="text-[16px] sm:text-[18px] text-black mt-1 font-medium leading-relaxed">
                           Every stage from <code>research_project_tracker_template.csv</code> is assigned to an AI
@@ -451,7 +451,7 @@ export default function AgentModePage() {
                       <div className="inline-flex items-center gap-2 bg-moni-50 border border-pink-200 rounded-2xl px-4 py-2 self-start sm:self-auto">
                         <Sparkles className="h-5 w-5 text-moni-500" />
                         <span className="text-[15px] sm:text-[16px] font-black text-moni-700">
-                          Zero Manual Tedium
+                          No Busywork
                         </span>
                       </div>
                     </div>
@@ -465,7 +465,7 @@ export default function AgentModePage() {
                             <th className="p-3.5">Stage</th>
                             <th className="p-3.5">Manual SOP Task</th>
                             <th className="p-3.5">MONIRESH Autonomous Agent Action</th>
-                            <th className="p-3.5">Automated Module</th>
+                            <th className="p-3.5">Research Assistant</th>
                             <th className="p-3.5 text-right">Test AI</th>
                           </tr>
                         </thead>
@@ -559,7 +559,7 @@ export default function AgentModePage() {
                 >
                   <div className="rounded-3xl border border-pink-100 bg-white p-5 sm:p-7 shadow-sm">
                     <h2 className="text-[20px] sm:text-[22px] font-black tracking-tight">
-                      24-Column Automated Literature Evidence Matrix
+                      Your 24-Detail Paper Comparison Table
                     </h2>
                     <p className="text-[16px] sm:text-[18px] text-black mt-1 font-medium leading-relaxed">
                       Maps all 24 columns from <code>literature_evidence_matrix_template.csv</code>. Enforces the{" "}
@@ -617,7 +617,7 @@ export default function AgentModePage() {
                 >
                   <div className="rounded-3xl border border-pink-100 bg-white p-5 sm:p-7 shadow-sm">
                     <h2 className="text-[20px] sm:text-[22px] font-black tracking-tight">
-                      Authorized Scholarly Document Sourcing & APIs
+                      Trusted Academic Databases & Sources
                     </h2>
                     <p className="text-[16px] sm:text-[18px] text-black mt-1 font-medium leading-relaxed">
                       MONIRESH never scrapes protected publisher websites illegally. We connect to authoritative
@@ -702,7 +702,7 @@ export default function AgentModePage() {
                 >
                   <div className="rounded-3xl border border-pink-100 bg-white p-5 sm:p-7 shadow-sm">
                     <h2 className="text-[20px] sm:text-[22px] font-black tracking-tight">
-                      APA 7th Edition Citation Guardian & 7-Pass QA
+                      Reference Verification & APA 7th Citation Checker
                     </h2>
                     <p className="text-[16px] sm:text-[18px] text-black mt-1 font-medium leading-relaxed">
                       Every citation is audited against APA 7th Edition rules and Crossref DOI registries to eliminate
@@ -758,7 +758,7 @@ export default function AgentModePage() {
                 >
                   <div className="rounded-3xl border border-pink-100 bg-white p-5 sm:p-7 shadow-sm">
                     <h2 className="text-[20px] sm:text-[22px] font-black tracking-tight text-black">
-                      31 Reusable Academic Agent Commands (SOP Section 31)
+                      Quick Action Commands for Research & Writing
                     </h2>
                     <p className="text-[16px] sm:text-[18px] text-black mt-1 font-medium leading-relaxed">
                       Execute official commands from <code>MASTER_ACADEMIC_RESEARCH_AGENT_SYSTEM_PROMPT.md</code> via the MONIRESH Research Operating Engine.

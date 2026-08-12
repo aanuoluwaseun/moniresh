@@ -15,7 +15,7 @@ export default function WritingPage(){
           <div className="px-6 lg:px-8 py-3 flex items-center gap-3">
             <PenLine className="h-4 w-4 text-moni-500" />
             <h1 className="text-[17px] font-black"><img src="/logo-moniresh-v2.png" alt="MONIRESH Logo" className="h-7 w-7 rounded-lg object-cover shadow-sm border border-pink-100 inline-block mr-2.5 -mt-1" /> Manuscript</h1>
-            <span className="ml-2 hidden sm:inline text-[16px] text-black">Write with sources at your side.</span>
+            <span className="ml-2 hidden sm:inline text-[16px] text-black">Write your paper with your sources right beside you.</span>
             <div className="ml-auto flex gap-2">
               <Link href="/dashboard" className="rounded-full border border-pink-100 bg-white px-4 py-1.5 text-[16px] font-bold">Back to dashboard</Link>
             </div>
@@ -45,8 +45,8 @@ export default function WritingPage(){
                 <div className="text-[16px] font-bold">What you’ll get when you start</div>
                 <ul className="mt-2 space-y-1.5 text-[18px] font-medium text-black">
                   <li className="flex gap-2"><ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" /> Citation Guardian checks claim → source</li>
-                  <li className="flex gap-2"><BookMarked className="h-4 w-4 text-moni-500 shrink-0" /> References via DOI, formatted correctly</li>
-                  <li className="flex gap-2"><ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" /> Warnings if text and table disagree</li>
+                  <li className="flex gap-2"><BookMarked className="h-4 w-4 text-moni-500 shrink-0" /> References formatted correctly via Crossref</li>
+                  <li className="flex gap-2"><ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" /> Alerts if your text and table numbers don’t match</li>
                 </ul>
               </div>
 
