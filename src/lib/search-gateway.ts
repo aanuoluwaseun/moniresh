@@ -4,7 +4,7 @@
  * Chain of Responsibility (6-Tier Failover Hierarchy):
  * 1. Exa AI Semantic Search & Contents API (35d70cfa-...) - AI-native semantic scholarly discovery & contents.
  * 2. Tavily Search API (tvly-dev-...) - Automatic fallback for AI-native web & academic answer extraction.
- * 3. OpenAlex API (250M+ open scholarly works) - Automatic open academic fallback.
+ * 3. OpenAlex Premium API (api_key=VVzfQT3L...) - Elevated SLA access to 250M+ open academic records.
  * 4. Semantic Scholar Graph API - Public academic citation graph fallback.
  * 5. Crossref Metadata API - Verified DOI registry fallback.
  * 6. Google Gemini 2.5 Pillar API Anchor - Guaranteed scholarly synthesis & citation formatting.
@@ -33,6 +33,7 @@ export async function executeScholarlySearch(
 
   const exaKey = process.env.EXA_API_KEY;
   const tavilyKey = process.env.TAVILY_API_KEY;
+  const openAlexKey = process.env.OPENALEX_API_KEY;
   const geminiKey = process.env.GEMINI_API_KEY || process.env.PILLAR_API_KEY;
 
   // STEP 1: Try Exa AI Semantic Search & Contents API
@@ -129,10 +130,11 @@ export async function executeScholarlySearch(
     failoverLog.push("Tavily Search key standby. Trying OpenAlex API...");
   }
 
-  // STEP 3: Automatic Failover to OpenAlex API (250M+ open scholarly works)
+  // STEP 3: Automatic Failover to OpenAlex Premium API (250M+ open scholarly works)
   try {
     failoverLog.push("Executing failover query on OpenAlex Scholarly API...");
-    const openAlexUrl = `https://api.openalex.org/works?search=${encodeURIComponent(query)}&per-page=${max}`;
+    const keyParam = openAlexKey ? `&api_key=${openAlexKey}` : "";
+    const openAlexUrl = `https://api.openalex.org/works?search=${encodeURIComponent(query)}&per-page=${max}${keyParam}`;
     const res = await fetch(openAlexUrl, { cache: "no-store" });
     if (res.ok) {
       const json = await res.json();
