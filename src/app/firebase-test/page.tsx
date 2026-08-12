@@ -18,7 +18,7 @@ export default function FirebaseTest() {
         try { await signInAnonymously(auth); } catch {}
         const db = getFirestore(firebaseApp);
         const ref = doc(db, "moniresh_health", "test");
-        await setDoc(ref, { ping: Date.now(), at: new Date().toISOString(), from: "MONIRESH pink v1" }, { merge: true });
+        await setDoc(ref, { ping: Date.now(), at: new Date().toISOString(), from: "MONIRESH Research OS" }, { merge: true });
         const snap = await getDoc(ref);
         setDetails(snap.data());
         setStatus("✅ Firebase is LIVE - read/write OK");

@@ -51,9 +51,7 @@ export function Sidebar() {
           <div className="text-[20px] font-black tracking-tight leading-none text-black">MONIRESH</div>
           <div className="text-[13px] font-bold tracking-[0.18em] text-moni-600 uppercase">Research OS</div>
         </div>
-        <div className="ml-auto flex h-6 items-center rounded-full bg-moni-50 px-2.5 text-[13px] font-black text-moni-600 border border-moni-200">
-          V1
-        </div>
+        
       </div>
 
       {/* High-Class Academic Workspace Indicator */}
