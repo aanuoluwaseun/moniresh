@@ -7,6 +7,7 @@ export async function GET() {
   const hasHF = Boolean(process.env.HUGGINGFACE_API_KEY);
   const hasNV = Boolean(process.env.NVIDIA_API_KEY);
   const hasPillar = Boolean(process.env.GEMINI_API_KEY || process.env.PILLAR_API_KEY);
+  const hasSerpApi = Boolean(process.env.SERPAPI_API_KEY);
   const hasExa = Boolean(process.env.EXA_API_KEY);
   const hasTavily = Boolean(process.env.TAVILY_API_KEY);
   const hasOpenAlex = Boolean(process.env.OPENALEX_API_KEY);
@@ -17,6 +18,7 @@ export async function GET() {
   let hfOk: boolean | string = false;
   let nvOk: boolean | string = false;
   let pillarOk: boolean | string = false;
+  let serpApiOk: boolean | string = false;
   let exaOk: boolean | string = false;
   let tavilyOk: boolean | string = false;
   let openAlexOk: boolean | string = false;
@@ -48,6 +50,9 @@ export async function GET() {
       pillarOk = r.ok ? (j.models ? "gemini-2.5-pro/flash active" : true) : `http ${r.status}`;
     } catch (e: any) { pillarOk = e.message; }
   }
+  if (hasSerpApi) {
+    serpApiOk = "serpapi google_scholar ready (automatic failover to Exa AI / Tavily / OpenAlex)";
+  }
   if (hasExa) {
     exaOk = "exa.ai active (semantic scholarly search & contents)";
   }
@@ -65,6 +70,7 @@ export async function GET() {
       huggingface: hasHF,
       nvidia: hasNV,
       gemini_pillar: hasPillar,
+      serpapi_scholar: hasSerpApi,
       exa_ai_search: hasExa,
       tavily_search: hasTavily,
       openalex_api: hasOpenAlex,
@@ -74,6 +80,7 @@ export async function GET() {
       huggingface: hfOk,
       nvidia: nvOk,
       gemini_pillar: pillarOk,
+      serpapi_scholar: serpApiOk,
       exa_ai_search: exaOk,
       tavily_search: tavilyOk,
       openalex_api: openAlexOk,
@@ -83,10 +90,10 @@ export async function GET() {
       extraction: "openrouter/gemini-2.0-flash",
       synthesis: "openrouter/claude-3.5-sonnet",
       gap_find: "nvidia/llama-3.1-405b",
-      search_failover_chain: "Exa AI -> Tavily Search -> OpenAlex Premium -> Semantic Scholar -> Gemini 2.5 Pillar",
+      search_failover_chain: "SerpApi Google Scholar -> Exa AI -> Tavily Search -> OpenAlex Premium -> Semantic Scholar -> Gemini 2.5 Pillar",
       pillar_anchor: "google/gemini-2.5-pro-flash (failover guarantee)",
     },
-    ok: hasOR && hasHF && hasNV && hasFB && hasPillar && (hasExa || hasTavily || hasOpenAlex),
+    ok: hasOR && hasHF && hasNV && hasFB && hasPillar && (hasSerpApi || hasExa || hasTavily || hasOpenAlex),
     timestamp: new Date().toISOString(),
   });
 }
