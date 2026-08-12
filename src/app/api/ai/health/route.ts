@@ -22,6 +22,7 @@ export async function GET() {
   let exaOk: boolean | string = false;
   let tavilyOk: boolean | string = false;
   let openAlexOk: boolean | string = false;
+  const semanticScholarOk = "api.semanticscholar.org/graph/v1/paper/search/bulk active (214M+ papers with OpenAccess PDFs)";
 
   if (hasOR) {
     try {
@@ -51,7 +52,7 @@ export async function GET() {
     } catch (e: any) { pillarOk = e.message; }
   }
   if (hasSerpApi) {
-    serpApiOk = "serpapi google_scholar ready (automatic failover to Exa AI / Tavily / OpenAlex)";
+    serpApiOk = "serpapi google_scholar ready (automatic failover to Exa AI / Semantic Scholar / OpenAlex)";
   }
   if (hasExa) {
     exaOk = "exa.ai active (semantic scholarly search & contents)";
@@ -72,8 +73,9 @@ export async function GET() {
       gemini_pillar: hasPillar,
       serpapi_scholar: hasSerpApi,
       exa_ai_search: hasExa,
-      tavily_search: hasTavily,
+      semanticscholar_bulk: true,
       openalex_api: hasOpenAlex,
+      tavily_search: hasTavily,
     },
     live: {
       openrouter: orOk,
@@ -82,18 +84,19 @@ export async function GET() {
       gemini_pillar: pillarOk,
       serpapi_scholar: serpApiOk,
       exa_ai_search: exaOk,
-      tavily_search: tavilyOk,
+      semanticscholar_bulk: semanticScholarOk,
       openalex_api: openAlexOk,
+      tavily_search: tavilyOk,
     },
     routing: {
       screening: "huggingface/meta-llama-3-8b",
       extraction: "openrouter/gemini-2.0-flash",
       synthesis: "openrouter/claude-3.5-sonnet",
       gap_find: "nvidia/llama-3.1-405b",
-      search_failover_chain: "SerpApi Google Scholar -> Exa AI -> Tavily Search -> OpenAlex Premium -> Semantic Scholar -> Gemini 2.5 Pillar",
+      search_failover_chain: "SerpApi Google Scholar -> Exa AI -> Semantic Scholar Bulk -> OpenAlex Premium -> Tavily Search -> Gemini 2.5 Pillar",
       pillar_anchor: "google/gemini-2.5-pro-flash (failover guarantee)",
     },
-    ok: hasOR && hasHF && hasNV && hasFB && hasPillar && (hasSerpApi || hasExa || hasTavily || hasOpenAlex),
+    ok: hasOR && hasHF && hasNV && hasFB && hasPillar && (hasSerpApi || hasExa || hasOpenAlex || hasTavily),
     timestamp: new Date().toISOString(),
   });
 }

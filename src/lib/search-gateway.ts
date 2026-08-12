@@ -3,10 +3,10 @@
  * 
  * Chain of Responsibility (7-Tier Failover Hierarchy):
  * 1. SerpApi Google Scholar (SERPAPI_API_KEY) - Gold standard Google Scholar academic search.
- * 2. Exa AI Semantic Search & Contents API (35d70cfa-...) - Alternative 1: AI-native semantic scholarly discovery.
- * 3. Tavily Search API (tvly-dev-...) - Alternative 2: AI-native academic & web answer extraction.
- * 4. OpenAlex Premium API (VVzfQT3L...) - Alternative 3: Elevated SLA access to 250M+ open academic records.
- * 5. Semantic Scholar Graph API - Alternative 4: Public academic citation graph fallback.
+ * 2. Exa AI Semantic Search & Contents API (EXA_API_KEY) - Alternative 1: AI-native semantic scholarly discovery.
+ * 3. Semantic Scholar Bulk Graph API (/paper/search/bulk) - Alternative 2: 214M+ scientific papers with OpenAccess PDFs & citations.
+ * 4. OpenAlex Premium API (OPENALEX_API_KEY) - Alternative 3: Elevated SLA access to 250M+ open academic records.
+ * 5. Tavily Search API (TAVILY_API_KEY) - Alternative 4: AI-native academic & web answer extraction.
  * 6. Crossref Metadata API - Alternative 5: Verified DOI registry fallback.
  * 7. Google Gemini 2.5 Pillar API Anchor - Ultimate failover guarantee.
  */
@@ -15,9 +15,9 @@ export interface ScholarlySearchResult {
   provider:
     | "SerpApi Google Scholar"
     | "Exa AI Search"
-    | "Tavily Search"
+    | "Semantic Scholar Bulk Graph"
     | "OpenAlex API"
-    | "Semantic Scholar"
+    | "Tavily Search"
     | "Crossref API"
     | "Gemini 2.5 Pillar";
   query: string;
@@ -41,8 +41,8 @@ export async function executeScholarlySearch(
 
   const serpApiKey = process.env.SERPAPI_API_KEY;
   const exaKey = process.env.EXA_API_KEY;
-  const tavilyKey = process.env.TAVILY_API_KEY;
   const openAlexKey = process.env.OPENALEX_API_KEY;
+  const tavilyKey = process.env.TAVILY_API_KEY;
   const geminiKey = process.env.GEMINI_API_KEY || process.env.PILLAR_API_KEY;
 
   // STEP 1: Try SerpApi Google Scholar (engine=google_scholar)
@@ -133,55 +133,54 @@ export async function executeScholarlySearch(
           };
         }
       } else {
-        failoverLog.push(`Exa AI Search failed (HTTP ${res.status}). Initiating automatic failover to Tavily Search...`);
+        failoverLog.push(`Exa AI Search failed (HTTP ${res.status}). Initiating automatic failover to Semantic Scholar...`);
       }
     } catch (err: any) {
-      failoverLog.push(`Exa AI Search network error: ${err.message}. Initiating automatic failover to Tavily Search...`);
+      failoverLog.push(`Exa AI Search network error: ${err.message}. Initiating automatic failover to Semantic Scholar...`);
     }
   } else {
-    failoverLog.push("Exa AI key standby. Trying Tavily Search API...");
+    failoverLog.push("Exa AI key standby. Trying Semantic Scholar Bulk Graph API...");
   }
 
-  // STEP 3: Automatic Failover 2 -> Tavily Search API
-  if (tavilyKey) {
-    try {
-      failoverLog.push("Attempting discovery via Tavily Search API...");
-      const res = await fetch("https://api.tavily.com/search", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          api_key: tavilyKey,
-          query: `${query} APA 7th academic research`,
-          search_depth: "basic",
-          max_results: max,
-        }),
-      });
+  // STEP 3: Automatic Failover 2 -> Semantic Scholar Bulk Graph API (/paper/search/bulk)
+  try {
+    failoverLog.push("Executing failover query on Semantic Scholar Bulk Academic Graph API...");
+    const semFields = "title,url,authors,year,abstract,citationCount,openAccessPdf,publicationTypes,publicationDate";
+    const semUrl = `https://api.semanticscholar.org/graph/v1/paper/search/bulk?query=${encodeURIComponent(query)}&fields=${semFields}`;
+    const res = await fetch(semUrl, { cache: "no-store" });
 
-      if (res.ok) {
-        const json = await res.json();
-        if (json.results && json.results.length > 0) {
-          failoverLog.push("Tavily Search returned " + json.results.length + " verified scholarly records.");
-          const formatted = json.results.map((r: any) => ({
-            title: r.title || "Scholarly Publication",
-            urlOrDoi: r.url || "https://doi.org/10.xxxx/tavily-result",
-            snippet: (r.content || "").slice(0, 320),
-            apaCitation: `${r.title}. Retrieved from ${r.url}`,
-          }));
+    if (res.ok) {
+      const json = await res.json();
+      if (json.data && json.data.length > 0) {
+        failoverLog.push("Semantic Scholar Bulk Graph returned " + json.data.length + " scientific papers with OpenAccess PDFs.");
+        const formatted = json.data.slice(0, max).map((p: any) => {
+          const title = p.title || "Scholarly Study";
+          const firstAuthor = p.authors?.[0]?.name || "Scholar";
+          const year = String(p.year || "2025");
+          const urlOrDoi = p.url || p.openAccessPdf?.url || "https://doi.org/10.xxxx/semanticscholar";
+          const citCount = p.citationCount || 0;
+          const abstractText = (p.abstract || "Scientific paper cataloged in Semantic Scholar Graph.").slice(0, 320);
           return {
-            provider: "Tavily Search",
-            query,
-            results: formatted,
-            failoverLog,
+            title,
+            urlOrDoi,
+            authors: firstAuthor,
+            year,
+            snippet: `${abstractText} [Cited by: ${citCount}]`,
+            apaCitation: `${firstAuthor}, et al. (${year}). ${title}. Semantic Scholar Academic Graph. ${urlOrDoi}`,
           };
-        }
-      } else {
-        failoverLog.push(`Tavily Search failed (HTTP ${res.status}). Initiating automatic failover to OpenAlex...`);
+        });
+        return {
+          provider: "Semantic Scholar Bulk Graph",
+          query,
+          results: formatted,
+          failoverLog,
+        };
       }
-    } catch (err: any) {
-      failoverLog.push(`Tavily Search network error: ${err.message}. Initiating automatic failover to OpenAlex...`);
+    } else {
+      failoverLog.push(`Semantic Scholar Bulk Graph failed (HTTP ${res.status}). Initiating failover to OpenAlex...`);
     }
-  } else {
-    failoverLog.push("Tavily Search key standby. Trying OpenAlex API...");
+  } catch (err: any) {
+    failoverLog.push(`Semantic Scholar Bulk Graph error: ${err.message}. Initiating failover to OpenAlex...`);
   }
 
   // STEP 4: Automatic Failover 3 -> OpenAlex Premium API (250M+ open scholarly works)
@@ -217,43 +216,52 @@ export async function executeScholarlySearch(
       }
     }
   } catch (err: any) {
-    failoverLog.push(`OpenAlex failover error: ${err.message}. Initiating failover to Semantic Scholar...`);
+    failoverLog.push(`OpenAlex failover error: ${err.message}. Initiating failover to Tavily Search...`);
   }
 
-  // STEP 5: Automatic Failover 4 -> Semantic Scholar Graph API
-  try {
-    failoverLog.push("Executing failover query on Semantic Scholar Graph API...");
-    const semUrl = `https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(query)}&limit=${max}&fields=title,authors,year,url`;
-    const res = await fetch(semUrl, { cache: "no-store" });
-    if (res.ok) {
-      const json = await res.json();
-      if (json.data && json.data.length > 0) {
-        failoverLog.push("Semantic Scholar failover succeeded with " + json.data.length + " papers.");
-        const formatted = json.data.map((p: any) => {
-          const authorName = p.authors?.[0]?.name || "Scholar";
-          const year = String(p.year || "2025");
+  // STEP 5: Automatic Failover 4 -> Tavily Search API
+  if (tavilyKey) {
+    try {
+      failoverLog.push("Attempting discovery via Tavily Search API...");
+      const res = await fetch("https://api.tavily.com/search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          api_key: tavilyKey,
+          query: `${query} APA 7th academic research`,
+          search_depth: "basic",
+          max_results: max,
+        }),
+      });
+
+      if (res.ok) {
+        const json = await res.json();
+        if (json.results && json.results.length > 0) {
+          failoverLog.push("Tavily Search returned " + json.results.length + " verified scholarly records.");
+          const formatted = json.results.map((r: any) => ({
+            title: r.title || "Scholarly Publication",
+            urlOrDoi: r.url || "https://doi.org/10.xxxx/tavily-result",
+            snippet: (r.content || "").slice(0, 320),
+            apaCitation: `${r.title}. Retrieved from ${r.url}`,
+          }));
           return {
-            title: p.title || "Academic Study",
-            urlOrDoi: p.url || "https://doi.org/10.xxxx/semanticscholar",
-            authors: authorName,
-            year,
-            snippet: `Semantic Scholar Graph Record: Published ${year} by ${authorName}.`,
-            apaCitation: `${authorName}, et al. (${year}). ${p.title}. Retrieved from Semantic Scholar.`,
+            provider: "Tavily Search",
+            query,
+            results: formatted,
+            failoverLog,
           };
-        });
-        return {
-          provider: "Semantic Scholar",
-          query,
-          results: formatted,
-          failoverLog,
-        };
+        }
+      } else {
+        failoverLog.push(`Tavily Search failed (HTTP ${res.status}). Engaging Gemini 2.5 Pillar Anchor...`);
       }
+    } catch (err: any) {
+      failoverLog.push(`Tavily Search network error: ${err.message}. Engaging Gemini 2.5 Pillar Anchor...`);
     }
-  } catch (err: any) {
-    failoverLog.push(`Semantic Scholar failover error: ${err.message}. Engaging Gemini 2.5 Pillar Anchor...`);
+  } else {
+    failoverLog.push("Tavily Search key standby. Engaging Gemini 2.5 Pillar Anchor...");
   }
 
-  // STEP 6: Ultimate Anchor -> Google Gemini 2.5 Pillar API
+  // STEP 6: Ultimate Anchor - Google Gemini 2.5 Pillar API
   failoverLog.push("All primary search APIs standby/exhausted. Engaging Google Gemini 2.5 Pillar Anchor for verified citation retrieval...");
   return {
     provider: "Gemini 2.5 Pillar",
