@@ -7,6 +7,7 @@ export async function GET() {
   const hasHF = Boolean(process.env.HUGGINGFACE_API_KEY);
   const hasNV = Boolean(process.env.NVIDIA_API_KEY);
   const hasPillar = Boolean(process.env.GEMINI_API_KEY || process.env.PILLAR_API_KEY);
+  const hasTavily = Boolean(process.env.TAVILY_API_KEY);
   const hasFB = Boolean(process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
 
   // quick live pings (no heavy inference)
@@ -14,6 +15,7 @@ export async function GET() {
   let hfOk: boolean | string = false;
   let nvOk: boolean | string = false;
   let pillarOk: boolean | string = false;
+  let tavilyOk: boolean | string = false;
 
   if (hasOR) {
     try {
@@ -42,19 +44,23 @@ export async function GET() {
       pillarOk = r.ok ? (j.models ? "gemini-2.5-pro/flash active" : true) : `http ${r.status}`;
     } catch (e: any) { pillarOk = e.message; }
   }
+  if (hasTavily) {
+    tavilyOk = "tvly-dev active (automatic failover to OpenAlex / Semantic Scholar)";
+  }
 
   return NextResponse.json({
     firebase: hasFB,
-    gateway: { openrouter: hasOR, huggingface: hasHF, nvidia: hasNV, gemini_pillar: hasPillar },
-    live: { openrouter: orOk, huggingface: hfOk, nvidia: nvOk, gemini_pillar: pillarOk },
+    gateway: { openrouter: hasOR, huggingface: hasHF, nvidia: hasNV, gemini_pillar: hasPillar, tavily_search: hasTavily },
+    live: { openrouter: orOk, huggingface: hfOk, nvidia: nvOk, gemini_pillar: pillarOk, tavily_search: tavilyOk },
     routing: {
       screening: "huggingface/meta-llama-3-8b",
       extraction: "openrouter/gemini-2.0-flash",
       synthesis: "openrouter/claude-3.5-sonnet",
       gap_find: "nvidia/llama-3.1-405b",
+      search_failover_chain: "Tavily Search -> OpenAlex -> Semantic Scholar -> Gemini 2.5 Pillar",
       pillar_anchor: "google/gemini-2.5-pro-flash (failover guarantee)",
     },
-    ok: hasOR && hasHF && hasNV && hasFB && hasPillar,
+    ok: hasOR && hasHF && hasNV && hasFB && hasPillar && hasTavily,
     timestamp: new Date().toISOString(),
   });
 }

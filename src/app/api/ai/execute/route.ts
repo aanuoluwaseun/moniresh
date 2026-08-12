@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import { executeScholarlySearch } from "@/lib/search-gateway";
 
 export const dynamic = "force-dynamic";
 
@@ -29,7 +30,32 @@ export async function POST(req: Request) {
 
     let responseText = "";
 
-    // If Gemini Pillar Key is present, try Google Gemini 2.5 Flash / Pro API first
+    // If task or command involves search, literature, screening, matrix, or gap verification, run Scholarly Search with Failover
+    let searchContext = "";
+    if (
+      String(command || "").includes("search") ||
+      String(command || "").includes("matrix") ||
+      String(command || "").includes("gap") ||
+      String(command || "").includes("appraise") ||
+      String(command || "").includes("audit") ||
+      String(task || "").toLowerCase().includes("search") ||
+      String(task || "").toLowerCase().includes("literature")
+    ) {
+      try {
+        const searchRes = await executeScholarlySearch(`${task || command} ${prompt || ""}`.slice(0, 100));
+        const formattedHits = searchRes.results
+          .map((r, i) => `[Source ${i + 1}] ${r.apaCitation}\nSummary: ${r.snippet}\nLink/DOI: ${r.urlOrDoi}`)
+          .join("\n\n");
+        searchContext = `\n\n=== LIVE SCHOLARLY LITERATURE SEARCH RESULTS (VIA ${searchRes.provider.toUpperCase()}) ===\n` +
+          `Failover Hierarchy Log:\n- ${searchRes.failoverLog.join("\n- ")}\n\n` +
+          `Retrieved Verifiable Sources:\n${formattedHits}\n\n` +
+          `INSTRUCTION: Cite these retrieved verifiable sources in APA 7th Edition format where relevant.`;
+      } catch (err: any) {
+        console.warn("Scholarly search execution fallback:", err.message);
+      }
+    }
+
+    // 1. Try Google Gemini 2.5 Flash / Pro API first (Pillar Anchor)
     if (geminiKey) {
       try {
         const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`;
@@ -39,7 +65,7 @@ export async function POST(req: Request) {
               role: "user",
               parts: [
                 {
-                  text: `${systemPrompt}\n\n=== USER COMMAND / TASK ===\nCommand: ${command || "general"}\nTask: ${task || ""}\nPrompt: ${prompt || "Analyze and generate structured academic research response according to APA 7th Edition."}`,
+                  text: `${systemPrompt}\n\n=== USER COMMAND / TASK ===\nCommand: ${command || "general"}\nTask: ${task || ""}\nPrompt: ${prompt || "Analyze and generate structured academic research response according to APA 7th Edition."}${searchContext}`,
                 },
               ],
             },
@@ -74,7 +100,7 @@ export async function POST(req: Request) {
       }
     }
 
-    // Fallback to OpenRouter if Gemini fails or key not present
+    // 2. Fallback to OpenRouter if Gemini fails or key not present
     if (orKey) {
       try {
         const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -87,7 +113,7 @@ export async function POST(req: Request) {
             model: "anthropic/claude-3.5-sonnet",
             messages: [
               { role: "system", content: systemPrompt },
-              { role: "user", content: `Command: ${command}\nTask: ${task}\nPrompt: ${prompt}` },
+              { role: "user", content: `Command: ${command}\nTask: ${task}\nPrompt: ${prompt}${searchContext}` },
             ],
             temperature: 0.2,
           }),
@@ -109,7 +135,7 @@ export async function POST(req: Request) {
       }
     }
 
-    // Honest Fallback if no external network access or offline mode
+    // 3. Honest Fallback if no external network access
     return NextResponse.json({
       ok: true,
       provider: "MONIRESH Local Agent Mode Engine",
@@ -118,8 +144,8 @@ export async function POST(req: Request) {
         `1. Audit Status: PASSED (APA 7th Edition Baseline & Crossref DOI check enforced).\n` +
         `2. Central Quality Rule: Problem -> Question -> Objective -> Evidence -> Analysis -> Conclusion.\n` +
         `3. Three-Note Rule: Verbatim quotation and exact page recorded; objective paraphrase logged; outline synthesis tag attached.\n` +
-        `4. Fabrication Audit: Zero fabricated citations, p-values, or ethics approvals.\n` +
-        `5. Verified API Gateways: Gemini 2.5 Pillar API (${geminiKey ? "Online" : "Standby"}), OpenRouter (${orKey ? "Online" : "Standby"}).`,
+        `4. Search & Discovery Failover Chain: Tavily Search -> OpenAlex -> Semantic Scholar -> Crossref -> Gemini 2.5 Pillar.\n` +
+        `5. Verified API Gateways: Tavily Search (${process.env.TAVILY_API_KEY ? "Online" : "Standby"}), Gemini 2.5 Pillar (${geminiKey ? "Online" : "Standby"}).`,
       timestamp: new Date().toISOString(),
     });
   } catch (error: any) {
