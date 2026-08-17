@@ -29,8 +29,8 @@ export function Sidebar() {
   const pathname = usePathname();
   return (
     <aside className="hidden lg:flex w-[240px] shrink-0 flex-col border-r border-[#E2E8F0] bg-white">
-      <div className="flex h-[56px] items-center gap-2 px-5 border-b border-[#E2E8F0]">
-        <div className="h-7 w-7 rounded-[8px] bg-[#4F46E5] text-white grid place-items-center font-bold text-[11px]">M</div>
+      <div className="flex h-[56px] items-center gap-3 px-4 border-b border-[#E2E8F0]">
+        <img src="/moniresh-logo-exceptional.png" alt="MONIRESH" className="h-8 w-8 rounded-[8px] object-contain bg-white border border-[#E2E8F0] p-1" />
         <span className="font-semibold tracking-tight text-[14px]">MONIRESH</span>
       </div>
 

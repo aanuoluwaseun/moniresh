@@ -132,7 +132,10 @@ export default function LiteraturePage() {
               <div className="card p-4">
                 <div className="font-medium text-[14px] flex items-center gap-2"><Sparkles className="h-4 w-4 text-[#4F46E5]" /> Pro tip</div>
                 <p className="text-[13px] text-[#475569] mt-1 leading-relaxed">Paste your exact Boolean string into OpenAlex and save the date for your PRISMA. MONIRESH does it for you.</p>
-                <Link href="/dashboard" className="mt-3 inline-flex items-center gap-1 text-[13px] font-semibold text-[#4F46E5]">Go to dashboard <ArrowRight className="h-3.5 w-3.5" /></Link>
+                <div className="mt-3 flex gap-3">
+                <Link href="/dashboard" className="inline-flex items-center gap-1 text-[13px] font-semibold text-[#4F46E5]">Go to dashboard <ArrowRight className="h-3.5 w-3.5" /></Link>
+                <Link href="/gaps" className="inline-flex items-center gap-1 text-[13px] font-semibold text-[#4F46E5]">Find gaps →</Link>
+              </div>
               </div>
             </div>
           </div>

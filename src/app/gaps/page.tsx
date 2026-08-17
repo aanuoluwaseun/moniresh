@@ -1,144 +1,98 @@
 "use client";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { MobileTopbar } from "@/components/layout/MobileTopbar";
-import { PageTransition } from "@/components/layout/PageTransition";
-import { Sparkles, ShieldCheck, ArrowRight, Lightbulb, CheckCircle2, Play, Search } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { Sparkles, ShieldCheck, ArrowRight, Play, Search, Layers } from "lucide-react";
 
 export default function GapsPage() {
   const [topic, setTopic] = useState("");
-  const [isSearching, setIsSearching] = useState(false);
   const [gaps, setGaps] = useState([
-    {
-      id: "GAP-01",
-      type: "Population Gap",
-      title: "Limited Research on Higher Education Lecturers in Africa",
-      evidence: "Only 3 of 42 reviewed empirical studies examined university lecturers; 39 focused exclusively on students in North America and Asia.",
-      verification: "Verified via Crossref & OpenAlex (Confidence 92% - zero contradictory studies found in 2024-2026).",
-      draftRQ: "What are the primary institutional and trust determinants of Generative AI adoption among university lecturers in Africa?",
-      novelty: "92 / 100"
-    },
-    {
-      id: "GAP-02",
-      type: "Contextual Gap",
-      title: "Absence of Longitudinal Governance Models in African Higher Education",
-      evidence: "Most AI adoption literature in Africa relies on cross-sectional surveys without longitudinal tracking of policy outcomes.",
-      verification: "Verified via PubMed & Semantic Scholar (Confidence 89%).",
-      draftRQ: "How does institutional AI governance policy influence long-term pedagogical integrity in African universities?",
-      novelty: "89 / 100"
-    }
+    { id: "GAP-01", type: "Population Gap", title: "Lecturers in Africa — almost absent", evidence: "3 of 42 studies examined lecturers; 39 focused on students in North America/Asia.", verification: "Crossref + OpenAlex • Confidence 92%", draftRQ: "What drives Generative AI adoption among lecturers in Africa?" },
   ]);
 
-  const handleFindGaps = (e: React.FormEvent) => {
+  const onFind = (e: React.FormEvent) => {
     e.preventDefault();
     if (!topic.trim()) return;
-    setIsSearching(true);
-    setTimeout(() => {
-      const newGap = {
-        id: `GAP-${Date.now()}`,
-        type: "Methodological & Theoretical Gap",
-        title: `Under-explored UTAUT2 and Trust Predictors in ${topic.trim()}`,
-        evidence: "Existing literature lacks empirical integration of institutional trust with UTAUT2 constructs in this domain.",
-        verification: "Verified via Crossref Polite Pool & OpenAlex API (Confidence 91%).",
-        draftRQ: `To what extent does perceived institutional trust mediate AI adoption in ${topic.trim()}?`,
-        novelty: "94 / 100"
-      };
-      setGaps(prev => [newGap, ...prev]);
-      setIsSearching(false);
-      setTopic("");
-    }, 1000);
+    setGaps([{ id: Date.now().toString(), type: "Theoretical Gap", title: `Trust + UTAUT2 in ${topic.trim()}`, evidence: "No study integrates institutional trust with UTAUT2 in this context.", verification: "Crossref Polite Pool • 91%", draftRQ: `Does trust mediate AI adoption in ${topic.trim()}?` }, ...gaps]);
+    setTopic("");
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFEFE] flex text-black">
+    <div className="min-h-screen bg-white flex">
       <Sidebar />
       <div className="flex-1 min-w-0 flex flex-col">
         <MobileTopbar />
-        <PageTransition>
-          <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-xl border-b border-pink-50">
-            <div className="px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between gap-4">
-              <div>
-                <h1 className="text-[26px] sm:text-[28px] font-black tracking-tight flex items-center gap-3">
-                  <Sparkles className="h-6 w-6 text-moni-600" />
-                  Find Real Research Gaps (GapFinder)
-                </h1>
-                <p className="text-[18px] sm:text-[20px] text-black font-medium">
-                  We find real gaps in the literature and check counter-evidence so you don't claim a gap that isn't there.
-                </p>
-              </div>
+        <header className="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-[#E2E8F0]">
+          <div className="px-6 lg:px-8 py-5 flex items-center gap-3">
+            <div className="h-9 w-9 rounded-[10px] bg-[#4F46E5] text-white grid place-items-center"><Sparkles className="h-4 w-4" /></div>
+            <div>
+              <h1 className="text-[18px] font-semibold tracking-tight">GapFinder</h1>
+              <p className="text-[13px] text-[#64748B]">Real gaps, verified — not invented.</p>
             </div>
-          </header>
+          </div>
+        </header>
 
-          <main className="px-4 sm:px-6 lg:px-8 py-8 max-w-[1240px] w-full mx-auto space-y-8">
-            {/* Interactive GapFinder Search Box */}
-            <div className="rounded-3xl border border-pink-100 bg-white p-6 sm:p-7 shadow-sm">
-              <h2 className="text-[24px] font-black tracking-tight">Search for Defensible Gaps in Your Field</h2>
-              <p className="text-[18px] sm:text-[20px] text-black mt-1.5 leading-relaxed font-medium max-w-[680px]">
-                Type your topic below. We analyze published studies across OpenAlex and Crossref to surface verified gaps in population, geography, and methodology.
-              </p>
-
-              <form onSubmit={handleFindGaps} className="mt-6 flex flex-col sm:flex-row gap-2.5">
-                <input
-                  type="text"
-                  value={topic}
-                  onChange={e => setTopic(e.target.value)}
-                  placeholder="e.g., Generative AI adoption among university lecturers in Africa"
-                  className="flex-1 rounded-full border border-pink-200 bg-[#FFFEFE] px-5 py-3.5 text-[18px] sm:text-[20px] text-black outline-none focus:border-moni-500 focus:ring-4 focus:ring-moni-100"
-                />
-                <button
-                  type="submit"
-                  disabled={isSearching}
-                  className="rounded-full bg-ink-900 px-7 py-3.5 text-[18px] sm:text-[20px] font-bold text-white hover:bg-moni-600 transition shadow-sm inline-flex items-center justify-center gap-2"
-                >
-                  <Search className="h-4 w-4" />
-                  {isSearching ? "Verifying Gaps in Literature..." : "Find Verified Gaps"}
-                </button>
+        <main className="px-6 lg:px-8 py-6 max-w-[1120px] w-full mx-auto space-y-6">
+          {/* Hero with image */}
+          <div className="card p-0 overflow-hidden grid lg:grid-cols-[1.15fr_0.85fr]">
+            <div className="p-6 lg:p-7">
+              <h2 className="text-[20px] font-semibold tracking-tight">Find a gap you can defend</h2>
+              <p className="text-[14px] text-[#475569] mt-1.5 leading-relaxed">We map who was studied, where, and how — then re-search against each candidate to check counter-evidence.</p>
+              <form onSubmit={onFind} className="mt-5 flex gap-2">
+                <input value={topic} onChange={e=>setTopic(e.target.value)} placeholder="e.g., AI adoption among lecturers in Africa" className="flex-1 rounded-[10px] border border-[#E2E8F0] px-4 py-3 text-[14px] outline-none focus:border-[#4F46E5] focus:ring-2 focus:ring-[#EEF2FF]" />
+                <button type="submit" className="btn-primary !py-3 gap-2 hidden sm:inline-flex"><Search className="h-4 w-4" /> Find gaps</button>
               </form>
+              <button onClick={onFind as any} className="sm:hidden mt-2 w-full btn-primary">Find gaps</button>
+              <div className="mt-3 flex items-center gap-2 text-[12px] text-[#64748B]"><ShieldCheck className="h-3.5 w-3.5 text-emerald-600" /> Verification checks Crossref & OpenAlex for contradictory studies</div>
             </div>
-
-            {/* Verified Gaps List */}
-            <div className="rounded-3xl border border-pink-100 bg-white p-6 sm:p-7 shadow-sm">
-              <div className="flex items-center justify-between border-b border-pink-50 pb-4 mb-6">
-                <h2 className="text-[24px] font-black tracking-tight">
-                  Verified Research Gaps ({gaps.length} Found)
-                </h2>
-                <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-[16px] font-bold text-emerald-700">
-                  <ShieldCheck className="h-4 w-4" /> Counter-Evidence Checked
-                </span>
+            <div className="relative hidden lg:block bg-[#F8FAFC] border-l border-[#E2E8F0]">
+              <Image src="/images/use-case-researcher.jpg" alt="Researcher" width={440} height={320} className="w-full h-full object-cover" />
+              <div className="absolute bottom-3 left-3 right-3 bg-white border border-[#E2E8F0] rounded-[10px] p-3 flex gap-2">
+                <span className="h-8 w-8 rounded-full bg-[#4F46E5] text-white grid place-items-center"><Layers className="h-4 w-4" /></span>
+                <div className="text-[12px]"><div className="font-medium">Population • Geography • Method</div><div className="text-[#64748B]">Gaps by type, not slogans</div></div>
               </div>
+            </div>
+          </div>
 
-              <div className="space-y-6">
-                {gaps.map(g => (
-                  <div key={g.id} className="rounded-2xl border border-pink-100 bg-[#FFFEFE] p-6 hover:border-moni-300 transition space-y-4">
-                    <div className="flex items-center justify-between flex-wrap gap-2">
-                      <span className="text-[16px] font-black uppercase text-moni-600 bg-moni-50 border border-pink-200 px-3 py-1 rounded-full">
-                        {g.type}
-                      </span>
-                      <span className="text-[16px] font-bold text-black bg-white border border-pink-200 px-3 py-1 rounded-full">
-                        Novelty Score: {g.novelty}
-                      </span>
-                    </div>
-                    <div className="text-[22px] font-extrabold text-black">{g.title}</div>
-                    <div className="text-[18px] text-black font-medium leading-relaxed">
-                      <strong>Supporting Evidence:</strong> {g.evidence}
-                    </div>
-                    <div className="text-[17px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 p-3.5 rounded-xl">
-                      <CheckCircle2 className="h-4 w-4 inline mr-2 text-emerald-600" />
-                      <strong>Verification Result:</strong> {g.verification}
-                    </div>
-                    <div className="rounded-xl bg-white border border-pink-100 p-4">
-                      <div className="text-[15px] font-black tracking-widest uppercase text-moni-600">
-                        Suggested Research Question
-                      </div>
-                      <div className="mt-1 text-[19px] font-bold text-black">{g.draftRQ}</div>
-                    </div>
+          {/* Video + Gap list */}
+          <div className="grid lg:grid-cols-[1.4fr_0.8fr] gap-6">
+            <div className="space-y-4">
+              {gaps.map(g => (
+                <div key={g.id} className="card p-5">
+                  <div className="flex items-center gap-2">
+                    <span className="badge-bright">{g.type}</span>
+                    <span className="text-[12px] text-[#64748B]">{g.verification}</span>
                   </div>
-                ))}
+                  <div className="font-semibold mt-2">{g.title}</div>
+                  <p className="text-[14px] text-[#475569] mt-1 leading-relaxed">{g.evidence}</p>
+                  <div className="mt-3 rounded-[10px] bg-[#EEF2FF] border border-[#C7D2FE] p-3">
+                    <div className="text-[12px] font-semibold text-[#4338CA]">Draft RQ</div>
+                    <div className="text-[13px] mt-1">{g.draftRQ}</div>
+                  </div>
+                  <Link href="/writing" className="mt-3 inline-flex items-center gap-1 text-[13px] font-semibold text-[#4F46E5]">Use in manuscript <ArrowRight className="h-3.5 w-3.5" /></Link>
+                </div>
+              ))}
+            </div>
+            <div className="space-y-4">
+              <div className="card overflow-hidden">
+                <video autoPlay muted loop playsInline poster="/images/hero-workspace.jpg" className="w-full h-[160px] object-cover">
+                  <source src="https://videos.pexels.com/video-files/18069234/18069234-uhd_1440_1440_24fps.mp4" type="video/mp4" />
+                </video>
+                <div className="p-4">
+                  <div className="font-medium text-[14px] flex items-center gap-2"><Play className="h-4 w-4 text-[#4F46E5]" /> How verification works</div>
+                  <p className="text-[13px] text-[#64748B] mt-1">We re-query for counter-evidence so you don’t claim a gap that isn’t there.</p>
+                </div>
+              </div>
+              <div className="card p-4">
+                <Image src="/images/use-case-team.jpg" alt="Team" width={400} height={160} className="rounded-[10px] w-full h-[140px] object-cover border border-[#E2E8F0]" />
+                <div className="font-medium mt-3">For teams, for theses, for labs</div>
+                <p className="text-[13px] text-[#64748B] mt-1">Share gaps, keep one source of truth, and export the verification log for your appendix.</p>
               </div>
             </div>
-          </main>
-        </PageTransition>
+          </div>
+        </main>
       </div>
     </div>
   );
