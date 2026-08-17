@@ -1,21 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-:root { --background: #FFFFFF; --foreground: #000000; }
-body { color: #000000; background: #FFFFFF; font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
-* { scrollbar-width: thin; scrollbar-color: #FFC2D4 transparent; }
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #0A0A0A;
+  --border: #E5E7EB;
+}
+
+* { border-color: var(--border); }
+
+html { scroll-behavior: smooth; }
+
+body {
+  color: #0A0A0A;
+  background: #FFFFFF;
+  font-family: var(--font-geist-sans), Inter, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01" 1;
+}
+
+/* Hairline borders everywhere */
+.border, .border-t, .border-b, .border-l, .border-r { border-color: #E5E7EB; }
+
+/* Focus ring - unibeing style: black ring */
+*:focus-visible {
+  outline: 2px solid #0A0A0A;
+  outline-offset: 2px;
+}
+
+/* Scrollbar minimal */
+* { scrollbar-width: thin; scrollbar-color: #E5E7EB transparent; }
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #FF5A8A, #FF2D78); border-radius: 999px; }
+::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 999px; }
 ::-webkit-scrollbar-track { background: transparent; }
-.text-black { color: #000000 !important; }
-h1,h2,h3,h4,h5,h6,p,span,div,label,li,a { color: #000000; }
-.text-moni-500, .text-moni-600, .text-emerald-600, .text-emerald-700, .text-white { color: inherit; }
-a.text-moni-600 { color: #E6005C !important; }
-.text-gradient { background: linear-gradient(135deg, #FF2D78, #E6005C); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.prose-moni h2 { font-size: 1.5rem; font-weight: 850; color: #000000; margin-top: 2rem; margin-bottom: 0.8rem; letter-spacing: -0.02em; }
-.prose-moni h3 { font-size: 1.15rem; font-weight: 750; color: #000000; margin-top: 1.6rem; margin-bottom: 0.6rem; }
-.prose-moni p { line-height: 1.8; color: #000000; margin-bottom: 1rem; }
-.pink-gradient { background: linear-gradient(135deg, #FF2D78 0%, #FF5A8A 50%, #FF8FAD 100%); }
-.pink-glow { box-shadow: 0 8px 32px -8px rgba(255,45,120,0.4), 0 0 0 1px rgba(255,45,120,0.08); }
-.card-hover { transition: all 0.35s cubic-bezier(0.16,1,0.3,1); }
-.card-hover:hover { transform: translateY(-4px); box-shadow: 0 16px 48px -12px rgba(255,45,120,0.18), 0 8px 20px -6px rgba(0,0,0,0.08); border-color: #FFC2D4 !important; }
+
+/* Unibeing-like utilities */
+.container-content { max-width: 1120px; margin-left: auto; margin-right: auto; padding-left: 24px; padding-right: 24px; }
+@media (min-width: 1024px) { .container-content { padding-left: 32px; padding-right: 32px; } }
+
+.card { background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 12px; }
+.card-hover { transition: border-color 0.15s, box-shadow 0.15s; }
+.card-hover:hover { border-color: #D1D5DB; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+
+.btn-primary { background: #0A0A0A; color: #FFFFFF; border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 14px; line-height: 20px; transition: background 0.15s, opacity 0.15s; }
+.btn-primary:hover { background: #171717; }
+.btn-secondary { background: #FFFFFF; color: #0A0A0A; border: 1px solid #E5E7EB; border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 14px; transition: background 0.15s, border-color 0.15s; }
+.btn-secondary:hover { background: #F9FAFB; border-color: #D1D5DB; }
+
+.hairline { border-top: 1px solid #E5E7EB; }
+
+/* Typography - unibeing editorial */
+h1, h2, h3 { letter-spacing: -0.02em; }

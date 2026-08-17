@@ -1,196 +1,236 @@
 "use client";
 import Link from "next/link";
-import { ArrowRight, Search, ShieldCheck, PenLine, Sparkles, FileText, Check } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowRight, Check, X, ArrowDown } from "lucide-react";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white text-black selection:bg-moni-100">
-      {/* Nav - minimal, editorial */}
-      <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-pink-50">
-        <div className="mx-auto max-w-[1080px] px-6 lg:px-8 flex items-center justify-between h-[64px]">
-          <Link href="/" className="flex items-center gap-3">
-            <img src="/logo-moniresh-v2.png" alt="MONIRESH Logo" className="h-8 w-8 rounded-lg object-cover shadow-sm border border-pink-100" />
-            <span className="text-[19px] font-black tracking-tight">MONIRESH</span>
-            <span className="hidden sm:inline text-[14px] font-bold tracking-[0.16em] text-moni-500 border border-moni-100 bg-moni-50 px-2 py-0.5 rounded-full">RESEARCH OS</span>
+    <div className="min-h-screen bg-white text-[#0A0A0A]">
+      {/* Nav - unibeing style: thin, spacious */}
+      <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-[#E5E7EB]">
+        <div className="container-content h-[56px] flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2">
+            <div className="h-7 w-7 rounded-[8px] bg-[#0A0A0A] text-white grid place-items-center font-bold text-[12px] tracking-tight">M</div>
+            <span className="font-semibold tracking-tight text-[15px]">MONIRESH</span>
+            <span className="hidden sm:inline text-[11px] tracking-wide text-[#6B7280] border border-[#E5E7EB] rounded-full px-2 py-0.5 ml-1">Research OS</span>
           </Link>
-          <div className="hidden md:flex items-center gap-7 text-[17px] font-medium text-black">
-            <a href="#features" className="hover:text-black">Features</a>
+          <div className="hidden md:flex items-center gap-6 text-[14px] text-[#0A0A0A]">
             <a href="#how" className="hover:text-black">How it works</a>
-            <a href="#pricing" className="hover:text-black">Pricing</a>
-            <Link href="/login" className="hover:text-black">Log in</Link>
-            <Link href="/signup" className="inline-flex items-center gap-2 rounded-full bg-ink-900 px-5 py-2 text-white font-bold text-[17px] hover:bg-moni-600 transition">Start for free <ArrowRight className="h-3.5 w-3.5" /></Link>
+            <a href="#research" className="hover:text-black">Research</a>
+            <Link href="/login" className="hover:text-black">Sign in</Link>
+            <Link href="/signup" className="btn-primary inline-flex items-center gap-1.5 !py-2 !px-4 !text-[14px]">Start free <ArrowRight className="h-3.5 w-3.5" /></Link>
           </div>
-          <div className="md:hidden flex items-center gap-2">
-            <Link href="/login" className="text-[20px] font-bold">Log in</Link>
-            <Link href="/signup" className="rounded-full bg-ink-900 px-4 py-2 text-white text-[20px] font-bold">Start</Link>
+          <div className="md:hidden flex items-center gap-3">
+            <Link href="/login" className="text-[14px] font-medium">Sign in</Link>
+            <Link href="/signup" className="btn-primary !py-2">Start free</Link>
           </div>
         </div>
       </nav>
 
-      {/* Hero - clean, editorial, no AI hype */}
-      <section className="mx-auto max-w-[1080px] px-6 lg:px-8 pt-14 lg:pt-20 pb-10">
-        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 items-center">
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <div className="inline-flex items-center gap-2 rounded-full border border-pink-100 bg-moni-50 px-3 py-1 text-[15px] font-bold tracking-widest uppercase text-moni-600">
-              <span className="h-2 w-2 rounded-full bg-moni-500" /> For serious researchers
-            </div>
-            <h1 className="mt-5 text-[46px] lg:text-[56px] font-black tracking-[-0.035em] leading-[0.92] text-black">
-              Research,<br />
-              <span className="font-light italic tracking-tight">without the chaos.</span>
-            </h1>
-            <p className="mt-4 text-[21px] leading-relaxed text-black font-medium max-w-[520px]">
-              One calm workspace to find literature, spot real gaps, and write papers that hold up to scrutiny. No invented citations. No invented data. Just evidence.
-            </p>
-            <div className="mt-7 flex flex-col sm:flex-row gap-3">
-              <Link href="/signup" className="inline-flex items-center justify-center gap-2 rounded-full bg-ink-900 px-7 py-3.5 text-white font-bold hover:bg-moni-600 transition shadow-lg shadow-ink-900/10">
-                Start your first project <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link href="/login" className="inline-flex items-center justify-center rounded-full border border-pink-100 bg-white px-7 py-3.5 font-bold hover:bg-moni-50 transition">See how it works</Link>
-            </div>
-            <p className="mt-3 text-[18px] text-black">Free for one project. No credit card. Your data stays yours.</p>
-            <div className="mt-8 flex items-center gap-6 text-[18px] text-black border-t border-pink-50 pt-6">
-              <span className="inline-flex items-center gap-2"><Check className="h-3.5 w-3.5 text-emerald-600" /> No fake references</span>
-              <span className="inline-flex items-center gap-2"><Check className="h-3.5 w-3.5 text-emerald-600" /> No made-up stats</span>
-              <span className="inline-flex items-center gap-2"><Check className="h-3.5 w-3.5 text-emerald-600" /> Export anytime</span>
-            </div>
-          </motion.div>
+      {/* Hero - unibeing: large, centered, clean */}
+      <section className="container-content pt-12 md:pt-20 pb-10">
+        <div className="max-w-[720px]">
+          <p className="text-[13px] tracking-wide text-[#6B7280]">Research operating system for your papers</p>
+          <h1 className="mt-3 text-[42px] md:text-[56px] font-semibold tracking-[-0.03em] leading-[0.95]">Your research, running<br />itself.</h1>
+          <p className="mt-4 text-[17px] md:text-[18px] leading-[1.6] text-[#4B5563] max-w-[600px]">
+            MONIRESH learns your topic, finds the papers, and keeps every claim linked to its source — so your work stays defensible while you do the thinking.
+          </p>
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <Link href="/signup" className="btn-primary inline-flex justify-center items-center gap-2 !px-6 !py-3 !text-[15px]">Start free <ArrowRight className="h-4 w-4" /></Link>
+            <a href="#how" className="btn-secondary inline-flex justify-center items-center gap-2 !px-6 !py-3 !text-[15px]">See it in action <ArrowDown className="h-4 w-4" /></a>
+          </div>
+          <p className="mt-3 text-[13px] text-[#6B7280]">No credit card required. Set up in about 5 minutes. Review once a week.</p>
+        </div>
 
-          {/* Preview - like a real doc, not a dashboard of numbers */}
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="relative">
-            <div className="rounded-[24px] bg-[#FFF8FB] border border-pink-100 p-3 shadow-card">
-              <div className="rounded-[18px] bg-white border border-pink-50 overflow-hidden">
-                <div className="flex items-center gap-2 px-4 py-3 border-b border-pink-50">
-                  <div className="h-2.5 w-2.5 rounded-full bg-moni-200" />
-                  <div className="h-2.5 w-2.5 rounded-full bg-pink-100" />
-                  <div className="h-2.5 w-2.5 rounded-full bg-moni-50" />
-                  <span className="ml-3 text-[18px] font-bold text-black">Manuscript - Introduction</span>
-                  <span className="ml-auto text-[15px] font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full">Evidence linked</span>
+        {/* Dashboard preview - unibeing style: hairline, numbers */}
+        <div className="mt-10 card overflow-hidden">
+          <div className="px-4 md:px-6 py-3 border-b border-[#E5E7EB] flex items-center justify-between">
+            <span className="text-[13px] font-medium flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-[#0A0A0A]" /> moniresh — dashboard</span>
+            <span className="text-[12px] text-[#6B7280]">This week</span>
+          </div>
+          <div className="grid grid-cols-3 divide-x divide-[#E5E7EB] border-b border-[#E5E7EB]">
+            {[
+              ["3", "Projects"],
+              ["18", "Papers"],
+              ["2", "Drafts ready"],
+            ].map(([n, l]) => (
+              <div key={l} className="px-4 md:px-6 py-5">
+                <div className="text-[28px] font-semibold tracking-tight leading-none">{n}</div>
+                <div className="text-[12px] text-[#6B7280] mt-1">{l}</div>
+              </div>
+            ))}
+          </div>
+          <div className="p-4 md:p-6">
+            <div className="text-[13px] font-medium mb-3">Upcoming work</div>
+            <div className="space-y-2">
+              {[
+                ["Literature review", "Due tomorrow • 12 papers to screen", "Ready"],
+                ["Evidence extraction", "5 papers • APA 7", "In progress"],
+                ["Gap note", "Population gap • Africa", "Draft"],
+              ].map(([t, d, s]) => (
+                <div key={t} className="flex items-center justify-between rounded-[8px] border border-[#E5E7EB] px-4 py-3">
+                  <div>
+                    <div className="text-[14px] font-medium">{t}</div>
+                    <div className="text-[13px] text-[#6B7280]">{d}</div>
+                  </div>
+                  <span className="text-[12px] font-medium border border-[#E5E7EB] rounded-full px-2.5 py-1">{s}</span>
                 </div>
-                <div className="p-6 lg:p-7">
-                  <div className="text-[15px] font-bold tracking-widest uppercase text-moni-500">Working title</div>
-                  <h3 className="text-[22px] font-bold leading-tight mt-1">AI Literacy and Trust Among University Lecturers</h3>
-                  <p className="text-[20px] leading-relaxed text-black mt-3">
-                    “We reviewed <span className="bg-moni-50 border border-moni-100 px-1.5 py-0.5 rounded-full text-moni-700 font-semibold">42 papers</span> that actually met our criteria. The gap became obvious once we plotted who was studied and where.”
-                  </p>
-                  <div className="mt-5 rounded-xl border border-pink-100 bg-moni-50/60 p-4">
-                    <div className="text-[18px] font-bold">Gap note - found in Sources</div>
-                    <p className="text-[20px] text-black mt-1 leading-relaxed">Most studies look at students in North America and Asia. Few look at lecturers in Africa. That’s our contribution.</p>
-                    <div className="mt-3 flex gap-2">
-                      <span className="text-[15px] font-bold bg-white border border-pink-100 px-2.5 py-1 rounded-full">Population gap</span>
-                      <span className="text-[15px] font-bold bg-white border border-pink-100 px-2.5 py-1 rounded-full">Context gap</span>
-                    </div>
-                  </div>
-                  <div className="mt-5 flex items-center gap-2 text-[18px]">
-                    <span className="h-6 w-6 rounded-full bg-ink-900 text-white flex items-center justify-center font-bold">A</span>
-                    <span className="font-medium">Aanuoluwa is writing</span>
-                    <span className="text-black">• 2 sources attached</span>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute -right-4 -bottom-4 hidden lg:block rounded-full bg-ink-900 text-white px-4 py-2 text-[18px] font-bold shadow-lg">Evidence-first, always</div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Features - quiet, useful */}
-      <section id="features" className="mx-auto max-w-[1080px] px-6 lg:px-8 py-12 lg:py-16">
-        <div className="max-w-[620px]">
-          <h2 className="text-[32px] font-black tracking-tight leading-none">A workspace that respects the work.</h2>
-          <p className="text-black mt-3 leading-relaxed font-medium">Not a chatbot. Not a paper mill. A calm place to do rigorous work, step by step.</p>
-        </div>
-        <div className="mt-8 grid md:grid-cols-3 gap-6">
-          {[
-            { icon: Search, title: "Find what matters", desc: "Build a proper search, not a guess. Save your exact query for your appendix. No hidden scraping." },
-            { icon: Sparkles, title: "See the gap, for real", desc: "We map who was studied, where, and how - so you can defend your contribution." },
-            { icon: PenLine, title: "Write with sources attached", desc: "Every claim can be opened to its source. If you delete the source, the warning appears." },
-            { icon: FileText, title: "Screen with an audit trail", desc: "Decide include / exclude / maybe. Export PRISMA when you're ready." },
-            { icon: ShieldCheck, title: "No hallucinations, period", desc: "References come from Crossref/DOI, not from a language model. Stats come from your file." },
-            { icon: Search, title: "Your lab, your rules", desc: "Start with an idea, a pile of PDFs, a dataset, or a draft. Enter anywhere." },
-          ].map((f) => (
-            <div key={f.title} className="rounded-2xl border border-pink-100 bg-white p-6 hover:border-moni-200 transition">
-              <f.icon className="h-5 w-5 text-moni-500" />
-              <h3 className="mt-3 font-bold">{f.title}</h3>
-              <p className="mt-1.5 text-[20px] leading-relaxed text-black font-medium">{f.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* How it works - timeline, not numbers */}
-      <section id="how" className="bg-[#FFF8FB] border-y border-pink-50">
-        <div className="mx-auto max-w-[1080px] px-6 lg:px-8 py-12 lg:py-16">
-          <div className="grid lg:grid-cols-2 gap-10 items-start">
-            <div>
-              <h2 className="text-[28px] font-black tracking-tight">How it flows</h2>
-              <div className="mt-6 space-y-5">
-                {[
-                  ["1 - Collect", "Add papers via search or upload (RIS, BibTeX, PDFs). We de-duplicate quietly."],
-                  ["2 - Screen", "Apply your inclusion criteria. Keep the maybe pile for human review."],
-                  ["3 - Synthesize", "Extract what each paper did, found, and missed. Your matrix stays editable."],
-                  ["4 - Discover", "Turn patterns into a gap statement you can defend in front of your supervisor."],
-                  ["5 - Write", "Draft with sources at your side. Check coverage before you submit."],
-                ].map(([t, d]) => (
-                  <div key={t} className="flex gap-4">
-                    <div className="h-8 w-8 rounded-full bg-white border border-pink-100 flex items-center justify-center text-[18px] font-black shrink-0">{t[0]}</div>
-                    <div>
-                      <div className="font-bold text-[20px]">{t}</div>
-                      <div className="text-[20px] text-black leading-relaxed font-medium">{d}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="rounded-3xl bg-white border border-pink-100 p-7">
-              <div className="text-[20px] font-bold">What MONIRESH will never do</div>
-              <ul className="mt-3 space-y-2 text-[20px] text-black">
-                <li className="flex gap-2"><span className="text-moni-500">-</span> Invent a citation to make your paragraph look better</li>
-                <li className="flex gap-2"><span className="text-moni-500">-</span> Fake a p-value or a table to support your hypothesis</li>
-                <li className="flex gap-2"><span className="text-moni-500">-</span> Write an ethics approval you don’t have</li>
-                <li className="flex gap-2"><span className="text-moni-500">-</span> Bypass detection - we help you write in your voice, clearly</li>
-              </ul>
-              <div className="mt-6 rounded-2xl bg-ink-900 text-white p-5">
-                <div className="text-[20px] font-bold">Promise</div>
-                <p className="text-[20px] opacity-80 mt-1 leading-relaxed">If data doesn’t exist, MONIRESH says: “I can’t produce that until you provide the dataset.” That’s the whole point.</p>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing - honest */}
-      <section id="pricing" className="mx-auto max-w-[1080px] px-6 lg:px-8 py-12 lg:py-16">
-        <h2 className="text-[28px] font-black tracking-tight">Simple, honest pricing</h2>
-        <div className="mt-6 grid md:grid-cols-3 gap-6">
+      {/* Built for */}
+      <section className="hairline">
+        <div className="container-content py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <span className="text-[13px] text-[#6B7280]">Built for the sources you trust</span>
+          <div className="flex flex-wrap gap-2 text-[12px] font-medium">
+            {["OpenAlex", "Crossref", "PubMed", "Semantic Scholar", "Unpaywall"].map(s => (
+              <span key={s} className="border border-[#E5E7EB] rounded-full px-3 py-1">{s}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Problem */}
+      <section className="container-content py-12 md:py-16">
+        <h2 className="text-[28px] md:text-[32px] font-semibold tracking-tight">Presence takes a full-time job.</h2>
+        <p className="mt-2 text-[15px] text-[#4B5563] max-w-[640px]">Most tools make you do the work. They store what you've already found, but they don't help you find, appraise, or connect.</p>
+        <div className="mt-6 grid md:grid-cols-2 gap-3 max-w-[720px]">
           {[
-            { name: "Free", price: "₦0", desc: "One active project. Try the full flow.", cta: "Start free", featured: false },
-            { name: "Researcher", price: "₦8,500 / mo", desc: "Unlimited projects, exports, and checks. For theses & papers.", cta: "Choose Researcher", featured: true },
-            { name: "Lab", price: "Custom", desc: "For supervisors and teams. Shared libraries & review.", cta: "Contact us", featured: false },
-          ].map((p) => (
-            <div key={p.name} className={`rounded-3xl border p-7 flex flex-col ${p.featured ? "bg-ink-900 text-white border-ink-900 shadow-xl" : "bg-white border-pink-100"}`}>
-              <div className="text-[20px] font-bold tracking-widest uppercase opacity-60">{p.name}</div>
-              <div className="text-[26px] font-black mt-1">{p.price}</div>
-              <div className={`text-[20px] mt-2 ${p.featured ? "opacity-70" : "text-black"} font-medium`}>{p.desc}</div>
-              <Link href="/signup" className={`mt-6 inline-flex justify-center rounded-full px-5 py-3 font-bold ${p.featured ? "bg-white text-black hover:bg-moni-50" : "bg-ink-900 text-white hover:bg-moni-600"}`}>{p.cta}</Link>
+            "Tabs, PDFs, and spreadsheets everywhere",
+            "Claims without sources",
+            "Deduplication by hand",
+            "Reference formatting at midnight",
+            "Gaps you can't defend",
+            "Drafts that never become papers",
+          ].map(t => (
+            <div key={t} className="flex items-center gap-2 text-[14px]"><span className="h-5 w-5 grid place-items-center rounded-full border border-[#E5E7EB] text-[#6B7280]"><X className="h-3 w-3" /></span> {t}</div>
+          ))}
+        </div>
+      </section>
+
+      {/* Transformation */}
+      <section className="hairline bg-[#F9FAFB]">
+        <div className="container-content py-12 md:py-16 grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-[18px] font-semibold">Before</h3>
+            <p className="text-[14px] text-[#6B7280] mt-1">You search, download, dedupe, extract, and reformat. Every week.</p>
+            <ul className="mt-4 space-y-2 text-[14px] list-disc list-inside text-[#4B5563]">
+              <li>Hours lost to literature every week</li>
+              <li>Evidence dies in folders</li>
+              <li>Consistency depends on willpower</li>
+            </ul>
+          </div>
+          <div className="card p-6">
+            <h3 className="text-[18px] font-semibold">After</h3>
+            <p className="text-[14px] text-[#6B7280] mt-1">MONIRESH finds, links, and keeps evidence ready while you review in minutes.</p>
+            <ul className="mt-4 space-y-2 text-[14px]">
+              <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5 text-[#0A0A0A]" /> A week of reading, traced to sources</li>
+              <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5 text-[#0A0A0A]" /> Approved claims stay linked</li>
+              <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5 text-[#0A0A0A]" /> Manuscript stays defensible</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section id="how" className="container-content py-12 md:py-16">
+        <h2 className="text-[28px] md:text-[32px] font-semibold tracking-tight">Four steps. A few minutes a day.</h2>
+        <div className="mt-8 grid md:grid-cols-4 gap-6">
+          {[
+            ["1", "Tell MONIRESH your topic", "5 minutes", "Title, question, and inclusion criteria. You do this once."],
+            ["2", "MONIRESH finds & dedupes", "0 minutes", "Search runs across 12 scholarly providers with failover."],
+            ["3", "You appraise, or let it draft", "10 minutes", "Approve what you like. Evidence stays linked."],
+            ["4", "Your paper stays defensible", "0 minutes", "Every claim traces to its DOI. Every gap is verifiable."],
+          ].map(([n, t, time, d]) => (
+            <div key={n} className="border border-[#E5E7EB] rounded-[12px] p-5 bg-white">
+              <div className="h-7 w-7 grid place-items-center rounded-full bg-[#0A0A0A] text-white text-[13px] font-semibold">{n}</div>
+              <h3 className="mt-3 font-semibold text-[15px] leading-tight">{t}</h3>
+              <div className="text-[12px] text-[#6B7280] mt-1">{time}</div>
+              <p className="text-[14px] text-[#4B5563] mt-2 leading-relaxed">{d}</p>
             </div>
           ))}
         </div>
-        <p className="text-[18px] text-black mt-4">No invented limits. If you hit one, we’ll talk before we block you.</p>
       </section>
 
-      {/* Footer - quiet */}
-      <footer className="border-t border-pink-50">
-        <div className="mx-auto max-w-[1080px] px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <img src="/logo-moniresh-v2.png" alt="MONIRESH Logo" className="h-7 w-7 rounded-lg object-cover shadow-sm border border-pink-100" />
-            <span className="text-[20px] font-bold">MONIRESH</span>
-            <span className="text-[18px] text-black">© {new Date().getFullYear()} - Evidence, with care.</span>
+      {/* Evidence chain */}
+      <section className="hairline bg-[#F9FAFB]">
+        <div className="container-content py-12 md:py-16">
+          <h2 className="text-[22px] font-semibold tracking-tight">Every claim, traceable to its source.</h2>
+          <p className="text-[14px] text-[#6B7280] mt-1">The Evidence Chain is MONIRESH's signature — not a network graph, but a lineage.</p>
+          <div className="mt-6 card p-4 md:p-6 overflow-x-auto">
+            <div className="flex items-center gap-2 min-w-[640px] text-[13px]">
+              {["Claim", "Citation", "Paper", "Evidence", "Source"].map((s, i) => (
+                <div key={s} className="flex items-center gap-2">
+                  <span className="border border-[#E5E7EB] rounded-full px-3 py-1.5 bg-white font-medium">{s}</span>
+                  {i < 4 && <span className="text-[#9CA3AF]">→</span>}
+                </div>
+              ))}
+            </div>
+            <p className="text-[13px] text-[#6B7280] mt-4">Click any node to see provenance: provider, DOI, timestamp. No invented citations.</p>
           </div>
-          <div className="flex gap-5 text-[18px] font-bold text-black">
-            <Link href="/login" className="hover:text-black">Log in</Link>
+        </div>
+      </section>
+
+      {/* Made for */}
+      <section className="container-content py-12 md:py-16">
+        <h2 className="text-[28px] font-semibold tracking-tight">Built for people with real work to do.</h2>
+        <div className="mt-6 grid md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {[
+            ["Researcher", "A paper that holds up to review."],
+            ["PhD Student", "Thesis chapters without chaos."],
+            ["Lecturer", "Evidence for promotion, faster."],
+            ["Analyst", "Reports your supervisor trusts."],
+            ["Team", "One library, one truth."],
+          ].map(([t, d]) => (
+            <div key={t} className="card p-5">
+              <div className="font-semibold text-[15px]">{t}</div>
+              <div className="text-[13px] text-[#6B7280] mt-1 leading-relaxed">{d}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="hairline bg-[#F9FAFB]">
+        <div className="container-content py-12 md:py-16 max-w-[720px] mx-auto">
+          <h2 className="text-[22px] font-semibold tracking-tight">Frequently asked</h2>
+          <div className="mt-6 divide-y divide-[#E5E7EB] border border-[#E5E7EB] rounded-[12px] bg-white">
+            {[
+              ["Will it invent citations?", "No. Every reference comes from Crossref/OpenAlex/Semantic Scholar via DOI. If we can't verify, we say so."],
+              ["Do I need API keys?", "No. Open tiers work out of the box. Add Serper/PubMed keys for Tier 1 Google Scholar if you want."],
+              ["Can I export?", "Yes. DOCX, BibTeX, RIS, and PRISMA diagram — one click."],
+              ["Is my data private?", "Yes. Firestore `users/{uid}/library` with `allow read, write: if request.auth != null;`"],
+            ].map(([q, a]) => (
+              <details key={q} className="group px-5 py-4">
+                <summary className="flex justify-between items-center cursor-pointer list-none font-medium text-[14px]">{q} <span className="text-[#6B7280] group-open:rotate-45 transition">+</span></summary>
+                <p className="text-[14px] text-[#4B5563] mt-2 leading-relaxed pr-6">{a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="container-content py-16 text-center">
+        <h2 className="text-[28px] font-semibold tracking-tight">Start your next paper with evidence you can defend.</h2>
+        <p className="text-[15px] text-[#6B7280] mt-2">No credit card required.</p>
+        <Link href="/signup" className="btn-primary inline-flex items-center gap-2 mt-6 !px-8 !py-3 !text-[15px]">Create your free account <ArrowRight className="h-4 w-4" /></Link>
+        <div className="mt-8 flex justify-center gap-6 text-[13px] text-[#6B7280]">
+          <span>OpenAlex • Crossref • PubMed</span>
+          <span className="hidden sm:inline">•</span>
+          <span>MONIRESH • Research OS</span>
+        </div>
+      </section>
+
+      <footer className="hairline py-6">
+        <div className="container-content flex flex-col md:flex-row items-center justify-between gap-3 text-[13px] text-[#6B7280]">
+          <span>© {new Date().getFullYear()} MONIRESH — Evidence, with care.</span>
+          <div className="flex gap-4">
+            <Link href="/login" className="hover:text-black">Sign in</Link>
             <Link href="/signup" className="hover:text-black">Create account</Link>
-            <a href="mailto:aoomoniyi@student.lautech.edu.ng" className="hover:text-black">Contact</a>
+            <a href="mailto:team@moniresh.ai" className="hover:text-black">team@moniresh.ai</a>
           </div>
         </div>
       </footer>

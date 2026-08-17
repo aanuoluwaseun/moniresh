@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { firebaseAuth } from "@/lib/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { ArrowRight, ShieldCheck } from "lucide-react";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -22,54 +21,42 @@ export default function SignupPage() {
       const cred = await createUserWithEmailAndPassword(firebaseAuth, email, password);
       if (name) await updateProfile(cred.user, { displayName: name });
       router.push("/dashboard");
-    } catch (e: any) {
-      setErr(e.message || "Something went wrong");
-    } finally { setLoading(false); }
+    } catch (e: any) { setErr(e.message || "Something went wrong"); }
+    finally { setLoading(false); }
   };
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <div className="mx-auto w-full max-w-[1080px] px-6 lg:px-8 h-[64px] flex items-center justify-between border-b border-pink-50">
+      <div className="container-content h-[56px] flex items-center justify-between border-b border-[#E5E7EB]">
         <Link href="/" className="flex items-center gap-2">
-          <img src="/logo-moniresh-v2.png" alt="MONIRESH Logo" className="h-8 w-8 rounded-lg object-cover shadow-sm border border-pink-100" />
-          <span className="font-black tracking-tight">MONIRESH</span>
+          <div className="h-7 w-7 rounded-[8px] bg-[#0A0A0A] text-white grid place-items-center font-bold text-[11px]">M</div>
+          <span className="font-semibold text-[14px]">MONIRESH</span>
         </Link>
-        <Link href="/login" className="text-[20px] font-bold hover:text-moni-600">Already have an account? Log in</Link>
+        <Link href="/login" className="text-[14px] font-medium hover:underline">Log in</Link>
       </div>
-
-      <div className="flex-1 grid lg:grid-cols-[1fr_520px] max-w-[1080px] mx-auto w-full">
-        <div className="hidden lg:flex flex-col justify-center px-8 lg:px-12 py-12 bg-[#FFF8FB] border-r border-pink-50">
-          <h1 className="text-[36px] font-black tracking-tight leading-none">Create work you<br /><span className="font-light italic">can stand behind.</span></h1>
-          <p className="text-black mt-3 leading-relaxed font-medium max-w-[420px]">MONIRESH keeps every claim linked to its source. Your supervisor will see the evidence, not just the prose.</p>
-          <div className="mt-8 space-y-3 text-[20px]">
-            <div className="flex items-center gap-3"><ShieldCheck className="h-4 w-4 text-emerald-600" /> Free for one project</div>
-            <div className="flex items-center gap-3"><ShieldCheck className="h-4 w-4 text-emerald-600" /> Export to Word / BibTeX anytime</div>
-            <div className="flex items-center gap-3"><ShieldCheck className="h-4 w-4 text-emerald-600" /> Your data stays yours</div>
-          </div>
+      <div className="flex-1 grid lg:grid-cols-[1fr_400px] max-w-[1120px] w-full mx-auto">
+        <div className="hidden lg:flex flex-col justify-center px-8 py-12 border-r border-[#E5E7EB] bg-[#F9FAFB]">
+          <h1 className="text-[28px] font-semibold tracking-tight leading-none">Create work you<br />can stand behind.</h1>
+          <p className="text-[14px] text-[#6B7280] mt-3 max-w-[420px]">Every claim linked to its source. No invented citations.</p>
+          <ul className="mt-6 space-y-2 text-[14px]">
+            <li>• Free for one project</li>
+            <li>• Export to DOCX / BibTeX</li>
+            <li>• Your data stays yours</li>
+          </ul>
         </div>
-
-        <div className="flex items-center justify-center p-6 lg:p-10">
-          <form onSubmit={onSubmit} className="w-full max-w-[380px]">
-            <h2 className="text-[26px] font-black tracking-tight">Create your account</h2>
-            <p className="text-[20px] text-black mt-1">Start free - no credit card.</p>
-
-            {err && <div className="mt-4 rounded-xl bg-red-50 border border-red-100 text-red-700 px-4 py-3 text-[20px]">{err}</div>}
-
-            <label className="block text-[20px] font-bold mt-6">Full name</label>
-            <input value={name} onChange={e=>setName(e.target.value)} placeholder="Aanuoluwa Omoniyi" className="mt-1.5 w-full rounded-xl border border-pink-100 bg-white px-4 py-3 text-[20px] outline-none focus:border-moni-300 focus:ring-4 focus:ring-moni-50" />
-
-            <label className="block text-[20px] font-bold mt-4">Email</label>
-            <input value={email} onChange={e=>setEmail(e.target.value)} type="email" required placeholder="you@university.edu" className="mt-1.5 w-full rounded-xl border border-pink-100 bg-white px-4 py-3 text-[20px] outline-none focus:border-moni-300 focus:ring-4 focus:ring-moni-50" />
-
-            <label className="block text-[20px] font-bold mt-4">Password</label>
-            <input value={password} onChange={e=>setPassword(e.target.value)} type="password" required placeholder="At least 8 characters" className="mt-1.5 w-full rounded-xl border border-pink-100 bg-white px-4 py-3 text-[20px] outline-none focus:border-moni-300 focus:ring-4 focus:ring-moni-50" />
-
-            <button disabled={loading} className="mt-6 w-full inline-flex items-center justify-center gap-2 rounded-full bg-ink-900 px-6 py-3.5 text-white font-bold hover:bg-moni-600 transition disabled:opacity-60">
-              {loading ? "Creating..." : "Create account"} <ArrowRight className="h-4 w-4" />
-            </button>
-
-            <p className="text-[18px] text-black mt-4 text-center">By continuing, you agree to our Terms and Privacy.</p>
-            <p className="text-[20px] text-center mt-4"><Link href="/login" className="font-bold underline decoration-pink-200 underline-offset-4 hover:text-moni-600">Sign in instead</Link></p>
+        <div className="grid place-items-center p-6">
+          <form onSubmit={onSubmit} className="w-full max-w-[360px] card p-6">
+            <h2 className="text-[20px] font-semibold tracking-tight">Create your account</h2>
+            <p className="text-[14px] text-[#6B7280] mt-1">Start free — no credit card.</p>
+            {err && <div className="mt-4 rounded-[8px] border border-red-200 bg-red-50 text-red-700 px-3 py-2 text-[13px]">{err}</div>}
+            <label className="block text-[14px] font-medium mt-5">Full name</label>
+            <input value={name} onChange={e=>setName(e.target.value)} placeholder="Ada Lovelace" className="mt-1.5 w-full rounded-[8px] border border-[#E5E7EB] px-3 py-2.5 text-[14px] outline-none focus:border-[#0A0A0A] focus:ring-1 focus:ring-[#0A0A0A]" />
+            <label className="block text-[14px] font-medium mt-4">Email</label>
+            <input value={email} onChange={e=>setEmail(e.target.value)} type="email" required placeholder="you@university.edu" className="mt-1.5 w-full rounded-[8px] border border-[#E5E7EB] px-3 py-2.5 text-[14px] outline-none focus:border-[#0A0A0A] focus:ring-1 focus:ring-[#0A0A0A]" />
+            <label className="block text-[14px] font-medium mt-4">Password</label>
+            <input value={password} onChange={e=>setPassword(e.target.value)} type="password" required placeholder="At least 8 characters" className="mt-1.5 w-full rounded-[8px] border border-[#E5E7EB] px-3 py-2.5 text-[14px] outline-none focus:border-[#0A0A0A] focus:ring-1 focus:ring-[#0A0A0A]" />
+            <button disabled={loading} className="btn-primary w-full mt-6 !py-2.5">{loading ? "Creating..." : "Create account"}</button>
+            <p className="text-[12px] text-center mt-4 text-[#6B7280]">By continuing, you agree to Terms and Privacy.</p>
           </form>
         </div>
       </div>
