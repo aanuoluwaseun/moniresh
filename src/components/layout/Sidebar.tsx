@@ -28,17 +28,17 @@ const nav = [
 export function Sidebar() {
   const pathname = usePathname();
   return (
-    <aside className="hidden lg:flex w-[240px] shrink-0 flex-col border-r border-[#E5E7EB] bg-white">
-      <div className="flex h-[56px] items-center gap-2 px-5 border-b border-[#E5E7EB]">
-        <div className="h-7 w-7 rounded-[8px] bg-[#0A0A0A] text-white grid place-items-center font-bold text-[11px]">M</div>
+    <aside className="hidden lg:flex w-[240px] shrink-0 flex-col border-r border-[#E2E8F0] bg-white">
+      <div className="flex h-[56px] items-center gap-2 px-5 border-b border-[#E2E8F0]">
+        <div className="h-7 w-7 rounded-[8px] bg-[#4F46E5] text-white grid place-items-center font-bold text-[11px]">M</div>
         <span className="font-semibold tracking-tight text-[14px]">MONIRESH</span>
       </div>
 
       <div className="px-3 py-3">
-        <div className="rounded-[12px] border border-[#E5E7EB] bg-[#F9FAFB] px-3 py-3">
-          <div className="text-[11px] tracking-wide text-[#6B7280] uppercase font-medium">Research Lab</div>
+        <div className="rounded-[12px] border border-[#E2E8F0] bg-[#F8FAFC] px-3 py-3">
+          <div className="text-[11px] tracking-wide text-[#64748B] uppercase font-medium">Research Lab</div>
           <div className="text-[13px] font-medium mt-1 leading-tight">Your complete workspace</div>
-          <div className="text-[12px] text-[#6B7280] mt-1">No invented citations.</div>
+          <div className="text-[12px] text-[#64748B] mt-1">No invented citations.</div>
         </div>
       </div>
 
@@ -51,18 +51,18 @@ export function Sidebar() {
               href={item.href}
               className={cn(
                 "flex items-center gap-2.5 rounded-[8px] px-3 py-2 text-[14px] font-medium transition",
-                active ? "bg-[#0A0A0A] text-white" : "text-[#0A0A0A] hover:bg-[#F9FAFB]"
+                active ? "bg-[#4F46E5] text-white" : "text-[#1E293B] hover:bg-[#F8FAFC]"
               )}
             >
-              <item.icon className={cn("h-4 w-4", active ? "text-white" : "text-[#6B7280]")} />
+              <item.icon className={cn("h-4 w-4", active ? "text-white" : "text-[#64748B]")} />
               {item.label}
             </Link>
           );
         })}
       </nav>
 
-      <div className="p-3 border-t border-[#E5E7EB]">
-        <div className="text-[12px] text-[#6B7280] px-3 py-2">© MONIRESH</div>
+      <div className="p-3 border-t border-[#E2E8F0]">
+        <div className="text-[12px] text-[#64748B] px-3 py-2">© MONIRESH</div>
       </div>
     </aside>
   );

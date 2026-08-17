@@ -9,16 +9,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        border: "#E5E7EB",
-        muted: "#F9FAFB",
+        border: "#E2E8F0",
+        primary: "#4F46E5",
+        primaryHover: "#4338CA",
+        accent: "#06B6D4",
+        accentSoft: "#ECFEFF",
+        muted: "#F8FAFC",
         ink: {
-          900: "#0A0A0A",
-          700: "#171717",
-          500: "#6B7280",
-          400: "#9CA3AF",
-          300: "#D1D5DB",
-          100: "#F3F4F6",
-          50: "#F9FAFB",
+          900: "#1E293B",
+          700: "#334155",
+          500: "#64748B",
+          400: "#94A3B8",
+          300: "#CBD5E1",
+          100: "#F1F5F9",
+          50: "#F8FAFC",
         }
       },
       fontFamily: {
@@ -30,12 +34,10 @@ const config: Config = {
         "2xl": "16px",
       },
       boxShadow: {
-        soft: "0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.04)",
+        soft: "0 1px 3px rgba(79,70,229,0.08), 0 1px 2px rgba(79,70,229,0.05)",
         card: "0 1px 2px rgba(0,0,0,0.04)",
+        bright: "0 4px 20px rgba(79,70,229,0.12)",
       },
-      maxWidth: {
-        content: "1120px",
-      }
     },
   },
   plugins: [],
