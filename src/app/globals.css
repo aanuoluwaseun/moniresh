@@ -1,112 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --background: #FFF8FB;
-  --foreground: #1A0B14;
-}
-
-body {
-  color: var(--foreground);
-  background: #FFF8FB;
-  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #FFC2D4 transparent;
-}
-
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #FF5A8A, #FF2D78);
-  border-radius: 999px;
-}
+:root { --background: #FFFFFF; --foreground: #000000; }
+body { color: #000000; background: #FFFFFF; font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+* { scrollbar-width: thin; scrollbar-color: #FFC2D4 transparent; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #FF5A8A, #FF2D78); border-radius: 999px; }
 ::-webkit-scrollbar-track { background: transparent; }
-
-/* Prose */
-.prose-moni h2 {
-  font-size: 1.4rem;
-  font-weight: 850;
-  color: #000000;
-  margin-top: 2rem;
-  margin-bottom: 0.8rem;
-  letter-spacing: -0.02em;
-}
-.prose-moni h3 {
-  font-size: 1.05rem;
-  font-weight: 750;
-  color: #000000;
-  margin-top: 1.6rem;
-  margin-bottom: 0.6rem;
-}
-.prose-moni p {
-  line-height: 1.8;
-  color: #000000;
-  margin-bottom: 1rem;
-}
-.prose-moni .citation {
-  background: #FFF0F6;
-  border: 1px solid #FFC2D4;
-  color: #E6005C;
-  padding: 1px 7px;
-  border-radius: 999px;
-  font-size: 0.78em;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.prose-moni .citation:hover {
-  background: #FF2D78;
-  color: white;
-  border-color: #FF2D78;
-}
-.claim-highlight {
-  background: linear-gradient(to bottom, transparent 55%, #FFE4EC 55%);
-  padding: 0 3px;
-  border-radius: 3px;
-}
-
-/* Utilities */
-.glass {
-  background: rgba(255,255,255,0.78);
-  backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(255,255,255,0.7);
-}
-.pink-gradient {
-  background: linear-gradient(135deg, #FF2D78 0%, #FF5A8A 50%, #FF8FAD 100%);
-}
-.pink-glow {
-  box-shadow: 0 8px 32px -8px rgba(255,45,120,0.4), 0 0 0 1px rgba(255,45,120,0.08);
-}
-.text-gradient {
-  background: linear-gradient(135deg, #FF2D78, #E6005C);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.card-hover {
-  transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
-}
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px -12px rgba(255,45,120,0.18), 0 8px 20px -6px rgba(0,0,0,0.08);
-  border-color: #FFC2D4 !important;
-}
-.shimmer {
-  position: relative;
-  overflow: hidden;
-}
-.shimmer::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
-  transform: translateX(-100%);
-  animation: shine 2.2s infinite;
-}
+.text-black { color: #000000 !important; }
+h1,h2,h3,h4,h5,h6,p,span,div,label,li,a { color: #000000; }
+.text-moni-500, .text-moni-600, .text-emerald-600, .text-emerald-700, .text-white { color: inherit; }
+a.text-moni-600 { color: #E6005C !important; }
+.text-gradient { background: linear-gradient(135deg, #FF2D78, #E6005C); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.prose-moni h2 { font-size: 1.5rem; font-weight: 850; color: #000000; margin-top: 2rem; margin-bottom: 0.8rem; letter-spacing: -0.02em; }
+.prose-moni h3 { font-size: 1.15rem; font-weight: 750; color: #000000; margin-top: 1.6rem; margin-bottom: 0.6rem; }
+.prose-moni p { line-height: 1.8; color: #000000; margin-bottom: 1rem; }
+.pink-gradient { background: linear-gradient(135deg, #FF2D78 0%, #FF5A8A 50%, #FF8FAD 100%); }
+.pink-glow { box-shadow: 0 8px 32px -8px rgba(255,45,120,0.4), 0 0 0 1px rgba(255,45,120,0.08); }
+.card-hover { transition: all 0.35s cubic-bezier(0.16,1,0.3,1); }
+.card-hover:hover { transform: translateY(-4px); box-shadow: 0 16px 48px -12px rgba(255,45,120,0.18), 0 8px 20px -6px rgba(0,0,0,0.08); border-color: #FFC2D4 !important; }

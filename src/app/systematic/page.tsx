@@ -45,7 +45,7 @@ const INITIAL_RECORDS = [
     abstract: "Synthesizes AI governance readiness continent-wide across African universities.",
     decision: "Maybe",
     confidence: "74%",
-    reason: "Preprint / working paper — requires researcher approval on peer-review status."
+    reason: "Preprint / working paper - requires researcher approval on peer-review status."
   }
 ];
 
@@ -89,17 +89,17 @@ export default function SystematicPage() {
           <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-xl border-b border-pink-50">
             <div className="px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <h1 className="text-[24px] sm:text-[26px] font-black tracking-tight flex items-center gap-3">
+                <h1 className="text-[26px] sm:text-[28px] font-black tracking-tight flex items-center gap-3">
                   <FileScan className="h-6 w-6 text-moni-600" />
                   Screening & PRISMA Studio
                 </h1>
-                <p className="text-[16px] sm:text-[18px] text-black font-medium">
+                <p className="text-[18px] sm:text-[20px] text-black font-medium">
                   Screen titles & abstracts step by step - with an audit trail you can show your supervisor.
                 </p>
               </div>
               <button
                 onClick={downloadPRISMA}
-                className="inline-flex items-center gap-2 rounded-full bg-ink-900 px-5 py-2.5 text-[15px] font-bold text-white hover:bg-moni-600 transition shadow-sm self-start sm:self-auto"
+                className="inline-flex items-center gap-2 rounded-full bg-ink-900 px-5 py-2.5 text-[17px] font-bold text-white hover:bg-moni-600 transition shadow-sm self-start sm:self-auto"
               >
                 <Download className="h-4 w-4" /> Export PRISMA CSV
               </button>
@@ -111,7 +111,7 @@ export default function SystematicPage() {
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
-                  className={`px-4 py-2 rounded-xl font-bold text-[15px] transition ${
+                  className={`px-4 py-2 rounded-xl font-bold text-[17px] transition ${
                     filter === f
                       ? "bg-ink-900 text-white shadow-sm"
                       : "bg-white border border-pink-100 text-black hover:bg-moni-50"
@@ -126,62 +126,62 @@ export default function SystematicPage() {
           <main className="px-4 sm:px-6 lg:px-8 py-8 max-w-[1240px] w-full mx-auto space-y-8">
             {/* PRISMA Numbers Box */}
             <div className="rounded-3xl border border-pink-100 bg-white p-6 sm:p-7 shadow-sm">
-              <h2 className="text-[22px] font-black tracking-tight">PRISMA Flow Tracking</h2>
-              <p className="text-[16px] text-black font-medium mt-1">
+              <h2 className="text-[24px] font-black tracking-tight">PRISMA Flow Tracking</h2>
+              <p className="text-[18px] text-black font-medium mt-1">
                 Your screening counts update automatically from your library searches.
               </p>
 
               <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 <div className="rounded-2xl border border-pink-100 bg-[#FFFEFE] p-5">
-                  <div className="text-[14px] font-bold uppercase tracking-wider text-moni-600">Total Found</div>
-                  <div className="text-[28px] font-black text-black mt-1">{records.length + 71}</div>
+                  <div className="text-[16px] font-bold uppercase tracking-wider text-moni-600">Total Found</div>
+                  <div className="text-[30px] font-black text-black mt-1">{records.length + 71}</div>
                 </div>
                 <div className="rounded-2xl border border-pink-100 bg-[#FFFEFE] p-5">
-                  <div className="text-[14px] font-bold uppercase tracking-wider text-moni-600">Duplicates Removed</div>
-                  <div className="text-[28px] font-black text-black mt-1">71</div>
+                  <div className="text-[16px] font-bold uppercase tracking-wider text-moni-600">Duplicates Removed</div>
+                  <div className="text-[30px] font-black text-black mt-1">71</div>
                 </div>
                 <div className="rounded-2xl border border-emerald-200 bg-emerald-50/50 p-5">
-                  <div className="text-[14px] font-bold uppercase tracking-wider text-emerald-800">Included Studies</div>
-                  <div className="text-[28px] font-black text-emerald-900 mt-1">{includedCount}</div>
+                  <div className="text-[16px] font-bold uppercase tracking-wider text-emerald-800">Included Studies</div>
+                  <div className="text-[30px] font-black text-emerald-900 mt-1">{includedCount}</div>
                 </div>
                 <div className="rounded-2xl border border-pink-100 bg-[#FFFEFE] p-5">
-                  <div className="text-[14px] font-bold uppercase tracking-wider text-moni-600">Needs Review</div>
-                  <div className="text-[28px] font-black text-moni-700 mt-1">{maybeCount}</div>
+                  <div className="text-[16px] font-bold uppercase tracking-wider text-moni-600">Needs Review</div>
+                  <div className="text-[30px] font-black text-moni-700 mt-1">{maybeCount}</div>
                 </div>
               </div>
             </div>
 
             {/* Screening Cards */}
             <div className="rounded-3xl border border-pink-100 bg-white p-6 sm:p-7 shadow-sm space-y-6">
-              <h2 className="text-[22px] font-black tracking-tight">Screening Queue ({filteredRecords.length} Studies)</h2>
+              <h2 className="text-[24px] font-black tracking-tight">Screening Queue ({filteredRecords.length} Studies)</h2>
 
               {filteredRecords.map(r => (
                 <div key={r.id} className="rounded-2xl border border-pink-100 bg-[#FFFEFE] p-6 hover:border-moni-300 transition space-y-4">
                   <div className="flex items-center justify-between flex-wrap gap-2">
-                    <span className="text-[14px] font-black uppercase text-moni-600 bg-moni-50 border border-pink-200 px-3 py-1 rounded-full">
+                    <span className="text-[16px] font-black uppercase text-moni-600 bg-moni-50 border border-pink-200 px-3 py-1 rounded-full">
                       {r.id} • Confidence: {r.confidence}
                     </span>
-                    <span className="text-[14px] font-bold text-black bg-white border border-pink-200 px-3 py-1 rounded-full">
+                    <span className="text-[16px] font-bold text-black bg-white border border-pink-200 px-3 py-1 rounded-full">
                       Current Decision: <strong className={r.decision === "Include" ? "text-emerald-700" : r.decision === "Exclude" ? "text-red-700" : "text-moni-700"}>{r.decision}</strong>
                     </span>
                   </div>
 
-                  <div className="text-[20px] font-extrabold text-black">{r.title}</div>
-                  <div className="text-[15px] font-semibold text-black">
-                    {r.authors} — <em>{r.journal}</em>
+                  <div className="text-[22px] font-extrabold text-black">{r.title}</div>
+                  <div className="text-[17px] font-semibold text-black">
+                    {r.authors} - <em>{r.journal}</em>
                   </div>
-                  <div className="text-[16px] text-black font-medium leading-relaxed">
+                  <div className="text-[18px] text-black font-medium leading-relaxed">
                     <strong>Abstract:</strong> {r.abstract}
                   </div>
-                  <div className="text-[15px] font-bold text-black bg-moni-50/50 border border-pink-100 p-3.5 rounded-xl">
+                  <div className="text-[17px] font-bold text-black bg-moni-50/50 border border-pink-100 p-3.5 rounded-xl">
                     <strong>Screening Reason:</strong> {r.reason}
                   </div>
 
                   <div className="flex items-center gap-3 pt-3 border-t border-pink-50">
-                    <span className="text-[15px] font-bold text-black">Change Decision:</span>
+                    <span className="text-[17px] font-bold text-black">Change Decision:</span>
                     <button
                       onClick={() => updateDecision(r.id, "Include")}
-                      className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-[14px] font-bold transition ${
+                      className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-[16px] font-bold transition ${
                         r.decision === "Include" ? "bg-emerald-600 text-white shadow-sm" : "border border-emerald-200 bg-emerald-50 text-emerald-800 hover:bg-emerald-100"
                       }`}
                     >
@@ -189,7 +189,7 @@ export default function SystematicPage() {
                     </button>
                     <button
                       onClick={() => updateDecision(r.id, "Exclude")}
-                      className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-[14px] font-bold transition ${
+                      className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-[16px] font-bold transition ${
                         r.decision === "Exclude" ? "bg-red-600 text-white shadow-sm" : "border border-red-200 bg-red-50 text-red-800 hover:bg-red-100"
                       }`}
                     >
@@ -197,7 +197,7 @@ export default function SystematicPage() {
                     </button>
                     <button
                       onClick={() => updateDecision(r.id, "Maybe")}
-                      className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-[14px] font-bold transition ${
+                      className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-[16px] font-bold transition ${
                         r.decision === "Maybe" ? "bg-moni-600 text-white shadow-sm" : "border border-pink-200 bg-moni-50 text-moni-800 hover:bg-moni-100"
                       }`}
                     >

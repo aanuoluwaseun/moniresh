@@ -11,19 +11,19 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1080px] px-6 lg:px-8 flex items-center justify-between h-[64px]">
           <Link href="/" className="flex items-center gap-3">
             <img src="/logo-moniresh-v2.png" alt="MONIRESH Logo" className="h-8 w-8 rounded-lg object-cover shadow-sm border border-pink-100" />
-            <span className="text-[17px] font-black tracking-tight">MONIRESH</span>
-            <span className="hidden sm:inline text-[12px] font-bold tracking-[0.16em] text-moni-500 border border-moni-100 bg-moni-50 px-2 py-0.5 rounded-full">RESEARCH OS</span>
+            <span className="text-[19px] font-black tracking-tight">MONIRESH</span>
+            <span className="hidden sm:inline text-[14px] font-bold tracking-[0.16em] text-moni-500 border border-moni-100 bg-moni-50 px-2 py-0.5 rounded-full">RESEARCH OS</span>
           </Link>
-          <div className="hidden md:flex items-center gap-7 text-[15px] font-medium text-black">
+          <div className="hidden md:flex items-center gap-7 text-[17px] font-medium text-black">
             <a href="#features" className="hover:text-black">Features</a>
             <a href="#how" className="hover:text-black">How it works</a>
             <a href="#pricing" className="hover:text-black">Pricing</a>
             <Link href="/login" className="hover:text-black">Log in</Link>
-            <Link href="/signup" className="inline-flex items-center gap-2 rounded-full bg-ink-900 px-5 py-2 text-white font-bold text-[15px] hover:bg-moni-600 transition">Start for free <ArrowRight className="h-3.5 w-3.5" /></Link>
+            <Link href="/signup" className="inline-flex items-center gap-2 rounded-full bg-ink-900 px-5 py-2 text-white font-bold text-[17px] hover:bg-moni-600 transition">Start for free <ArrowRight className="h-3.5 w-3.5" /></Link>
           </div>
           <div className="md:hidden flex items-center gap-2">
-            <Link href="/login" className="text-[18px] font-bold">Log in</Link>
-            <Link href="/signup" className="rounded-full bg-ink-900 px-4 py-2 text-white text-[18px] font-bold">Start</Link>
+            <Link href="/login" className="text-[20px] font-bold">Log in</Link>
+            <Link href="/signup" className="rounded-full bg-ink-900 px-4 py-2 text-white text-[20px] font-bold">Start</Link>
           </div>
         </div>
       </nav>
@@ -32,14 +32,14 @@ export default function HomePage() {
       <section className="mx-auto max-w-[1080px] px-6 lg:px-8 pt-14 lg:pt-20 pb-10">
         <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 items-center">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <div className="inline-flex items-center gap-2 rounded-full border border-pink-100 bg-moni-50 px-3 py-1 text-[13px] font-bold tracking-widest uppercase text-moni-600">
+            <div className="inline-flex items-center gap-2 rounded-full border border-pink-100 bg-moni-50 px-3 py-1 text-[15px] font-bold tracking-widest uppercase text-moni-600">
               <span className="h-2 w-2 rounded-full bg-moni-500" /> For serious researchers
             </div>
-            <h1 className="mt-5 text-[44px] lg:text-[54px] font-black tracking-[-0.035em] leading-[0.92] text-black">
+            <h1 className="mt-5 text-[46px] lg:text-[56px] font-black tracking-[-0.035em] leading-[0.92] text-black">
               Research,<br />
               <span className="font-light italic tracking-tight">without the chaos.</span>
             </h1>
-            <p className="mt-4 text-[19px] leading-relaxed text-black font-medium max-w-[520px]">
+            <p className="mt-4 text-[21px] leading-relaxed text-black font-medium max-w-[520px]">
               One calm workspace to find literature, spot real gaps, and write papers that hold up to scrutiny. No invented citations. No invented data. Just evidence.
             </p>
             <div className="mt-7 flex flex-col sm:flex-row gap-3">
@@ -48,8 +48,8 @@ export default function HomePage() {
               </Link>
               <Link href="/login" className="inline-flex items-center justify-center rounded-full border border-pink-100 bg-white px-7 py-3.5 font-bold hover:bg-moni-50 transition">See how it works</Link>
             </div>
-            <p className="mt-3 text-[16px] text-black">Free for one project. No credit card. Your data stays yours.</p>
-            <div className="mt-8 flex items-center gap-6 text-[16px] text-black border-t border-pink-50 pt-6">
+            <p className="mt-3 text-[18px] text-black">Free for one project. No credit card. Your data stays yours.</p>
+            <div className="mt-8 flex items-center gap-6 text-[18px] text-black border-t border-pink-50 pt-6">
               <span className="inline-flex items-center gap-2"><Check className="h-3.5 w-3.5 text-emerald-600" /> No fake references</span>
               <span className="inline-flex items-center gap-2"><Check className="h-3.5 w-3.5 text-emerald-600" /> No made-up stats</span>
               <span className="inline-flex items-center gap-2"><Check className="h-3.5 w-3.5 text-emerald-600" /> Export anytime</span>
@@ -64,31 +64,31 @@ export default function HomePage() {
                   <div className="h-2.5 w-2.5 rounded-full bg-moni-200" />
                   <div className="h-2.5 w-2.5 rounded-full bg-pink-100" />
                   <div className="h-2.5 w-2.5 rounded-full bg-moni-50" />
-                  <span className="ml-3 text-[16px] font-bold text-black">Manuscript - Introduction</span>
-                  <span className="ml-auto text-[13px] font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full">Evidence linked</span>
+                  <span className="ml-3 text-[18px] font-bold text-black">Manuscript - Introduction</span>
+                  <span className="ml-auto text-[15px] font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full">Evidence linked</span>
                 </div>
                 <div className="p-6 lg:p-7">
-                  <div className="text-[13px] font-bold tracking-widest uppercase text-moni-500">Working title</div>
-                  <h3 className="text-[20px] font-bold leading-tight mt-1">AI Literacy and Trust Among University Lecturers</h3>
-                  <p className="text-[18px] leading-relaxed text-black mt-3">
+                  <div className="text-[15px] font-bold tracking-widest uppercase text-moni-500">Working title</div>
+                  <h3 className="text-[22px] font-bold leading-tight mt-1">AI Literacy and Trust Among University Lecturers</h3>
+                  <p className="text-[20px] leading-relaxed text-black mt-3">
                     “We reviewed <span className="bg-moni-50 border border-moni-100 px-1.5 py-0.5 rounded-full text-moni-700 font-semibold">42 papers</span> that actually met our criteria. The gap became obvious once we plotted who was studied and where.”
                   </p>
                   <div className="mt-5 rounded-xl border border-pink-100 bg-moni-50/60 p-4">
-                    <div className="text-[16px] font-bold">Gap note - found in Sources</div>
-                    <p className="text-[18px] text-black mt-1 leading-relaxed">Most studies look at students in North America and Asia. Few look at lecturers in Africa. That’s our contribution.</p>
+                    <div className="text-[18px] font-bold">Gap note - found in Sources</div>
+                    <p className="text-[20px] text-black mt-1 leading-relaxed">Most studies look at students in North America and Asia. Few look at lecturers in Africa. That’s our contribution.</p>
                     <div className="mt-3 flex gap-2">
-                      <span className="text-[13px] font-bold bg-white border border-pink-100 px-2.5 py-1 rounded-full">Population gap</span>
-                      <span className="text-[13px] font-bold bg-white border border-pink-100 px-2.5 py-1 rounded-full">Context gap</span>
+                      <span className="text-[15px] font-bold bg-white border border-pink-100 px-2.5 py-1 rounded-full">Population gap</span>
+                      <span className="text-[15px] font-bold bg-white border border-pink-100 px-2.5 py-1 rounded-full">Context gap</span>
                     </div>
                   </div>
-                  <div className="mt-5 flex items-center gap-2 text-[16px]">
+                  <div className="mt-5 flex items-center gap-2 text-[18px]">
                     <span className="h-6 w-6 rounded-full bg-ink-900 text-white flex items-center justify-center font-bold">A</span>
                     <span className="font-medium">Aanuoluwa is writing</span>
                     <span className="text-black">• 2 sources attached</span>
                   </div>
                 </div>
               </div>
-              <div className="absolute -right-4 -bottom-4 hidden lg:block rounded-full bg-ink-900 text-white px-4 py-2 text-[16px] font-bold shadow-lg">Evidence-first, always</div>
+              <div className="absolute -right-4 -bottom-4 hidden lg:block rounded-full bg-ink-900 text-white px-4 py-2 text-[18px] font-bold shadow-lg">Evidence-first, always</div>
             </div>
           </motion.div>
         </div>
@@ -97,7 +97,7 @@ export default function HomePage() {
       {/* Features - quiet, useful */}
       <section id="features" className="mx-auto max-w-[1080px] px-6 lg:px-8 py-12 lg:py-16">
         <div className="max-w-[620px]">
-          <h2 className="text-[30px] font-black tracking-tight leading-none">A workspace that respects the work.</h2>
+          <h2 className="text-[32px] font-black tracking-tight leading-none">A workspace that respects the work.</h2>
           <p className="text-black mt-3 leading-relaxed font-medium">Not a chatbot. Not a paper mill. A calm place to do rigorous work, step by step.</p>
         </div>
         <div className="mt-8 grid md:grid-cols-3 gap-6">
@@ -112,7 +112,7 @@ export default function HomePage() {
             <div key={f.title} className="rounded-2xl border border-pink-100 bg-white p-6 hover:border-moni-200 transition">
               <f.icon className="h-5 w-5 text-moni-500" />
               <h3 className="mt-3 font-bold">{f.title}</h3>
-              <p className="mt-1.5 text-[18px] leading-relaxed text-black font-medium">{f.desc}</p>
+              <p className="mt-1.5 text-[20px] leading-relaxed text-black font-medium">{f.desc}</p>
             </div>
           ))}
         </div>
@@ -123,7 +123,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1080px] px-6 lg:px-8 py-12 lg:py-16">
           <div className="grid lg:grid-cols-2 gap-10 items-start">
             <div>
-              <h2 className="text-[26px] font-black tracking-tight">How it flows</h2>
+              <h2 className="text-[28px] font-black tracking-tight">How it flows</h2>
               <div className="mt-6 space-y-5">
                 {[
                   ["1 - Collect", "Add papers via search or upload (RIS, BibTeX, PDFs). We de-duplicate quietly."],
@@ -133,26 +133,26 @@ export default function HomePage() {
                   ["5 - Write", "Draft with sources at your side. Check coverage before you submit."],
                 ].map(([t, d]) => (
                   <div key={t} className="flex gap-4">
-                    <div className="h-8 w-8 rounded-full bg-white border border-pink-100 flex items-center justify-center text-[16px] font-black shrink-0">{t[0]}</div>
+                    <div className="h-8 w-8 rounded-full bg-white border border-pink-100 flex items-center justify-center text-[18px] font-black shrink-0">{t[0]}</div>
                     <div>
-                      <div className="font-bold text-[18px]">{t}</div>
-                      <div className="text-[18px] text-black leading-relaxed font-medium">{d}</div>
+                      <div className="font-bold text-[20px]">{t}</div>
+                      <div className="text-[20px] text-black leading-relaxed font-medium">{d}</div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
             <div className="rounded-3xl bg-white border border-pink-100 p-7">
-              <div className="text-[18px] font-bold">What MONIRESH will never do</div>
-              <ul className="mt-3 space-y-2 text-[18px] text-black">
+              <div className="text-[20px] font-bold">What MONIRESH will never do</div>
+              <ul className="mt-3 space-y-2 text-[20px] text-black">
                 <li className="flex gap-2"><span className="text-moni-500">-</span> Invent a citation to make your paragraph look better</li>
                 <li className="flex gap-2"><span className="text-moni-500">-</span> Fake a p-value or a table to support your hypothesis</li>
                 <li className="flex gap-2"><span className="text-moni-500">-</span> Write an ethics approval you don’t have</li>
                 <li className="flex gap-2"><span className="text-moni-500">-</span> Bypass detection - we help you write in your voice, clearly</li>
               </ul>
               <div className="mt-6 rounded-2xl bg-ink-900 text-white p-5">
-                <div className="text-[18px] font-bold">Promise</div>
-                <p className="text-[18px] opacity-80 mt-1 leading-relaxed">If data doesn’t exist, MONIRESH says: “I can’t produce that until you provide the dataset.” That’s the whole point.</p>
+                <div className="text-[20px] font-bold">Promise</div>
+                <p className="text-[20px] opacity-80 mt-1 leading-relaxed">If data doesn’t exist, MONIRESH says: “I can’t produce that until you provide the dataset.” That’s the whole point.</p>
               </div>
             </div>
           </div>
@@ -161,7 +161,7 @@ export default function HomePage() {
 
       {/* Pricing - honest */}
       <section id="pricing" className="mx-auto max-w-[1080px] px-6 lg:px-8 py-12 lg:py-16">
-        <h2 className="text-[26px] font-black tracking-tight">Simple, honest pricing</h2>
+        <h2 className="text-[28px] font-black tracking-tight">Simple, honest pricing</h2>
         <div className="mt-6 grid md:grid-cols-3 gap-6">
           {[
             { name: "Free", price: "₦0", desc: "One active project. Try the full flow.", cta: "Start free", featured: false },
@@ -169,14 +169,14 @@ export default function HomePage() {
             { name: "Lab", price: "Custom", desc: "For supervisors and teams. Shared libraries & review.", cta: "Contact us", featured: false },
           ].map((p) => (
             <div key={p.name} className={`rounded-3xl border p-7 flex flex-col ${p.featured ? "bg-ink-900 text-white border-ink-900 shadow-xl" : "bg-white border-pink-100"}`}>
-              <div className="text-[18px] font-bold tracking-widest uppercase opacity-60">{p.name}</div>
-              <div className="text-[24px] font-black mt-1">{p.price}</div>
-              <div className={`text-[18px] mt-2 ${p.featured ? "opacity-70" : "text-black"} font-medium`}>{p.desc}</div>
+              <div className="text-[20px] font-bold tracking-widest uppercase opacity-60">{p.name}</div>
+              <div className="text-[26px] font-black mt-1">{p.price}</div>
+              <div className={`text-[20px] mt-2 ${p.featured ? "opacity-70" : "text-black"} font-medium`}>{p.desc}</div>
               <Link href="/signup" className={`mt-6 inline-flex justify-center rounded-full px-5 py-3 font-bold ${p.featured ? "bg-white text-black hover:bg-moni-50" : "bg-ink-900 text-white hover:bg-moni-600"}`}>{p.cta}</Link>
             </div>
           ))}
         </div>
-        <p className="text-[16px] text-black mt-4">No invented limits. If you hit one, we’ll talk before we block you.</p>
+        <p className="text-[18px] text-black mt-4">No invented limits. If you hit one, we’ll talk before we block you.</p>
       </section>
 
       {/* Footer - quiet */}
@@ -184,10 +184,10 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1080px] px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <img src="/logo-moniresh-v2.png" alt="MONIRESH Logo" className="h-7 w-7 rounded-lg object-cover shadow-sm border border-pink-100" />
-            <span className="text-[18px] font-bold">MONIRESH</span>
-            <span className="text-[16px] text-black">© {new Date().getFullYear()} - Evidence, with care.</span>
+            <span className="text-[20px] font-bold">MONIRESH</span>
+            <span className="text-[18px] text-black">© {new Date().getFullYear()} - Evidence, with care.</span>
           </div>
-          <div className="flex gap-5 text-[16px] font-bold text-black">
+          <div className="flex gap-5 text-[18px] font-bold text-black">
             <Link href="/login" className="hover:text-black">Log in</Link>
             <Link href="/signup" className="hover:text-black">Create account</Link>
             <a href="mailto:aoomoniyi@student.lautech.edu.ng" className="hover:text-black">Contact</a>

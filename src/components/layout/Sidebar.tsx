@@ -48,8 +48,8 @@ export function Sidebar() {
           className="h-9 w-9 rounded-xl object-cover shadow-sm border border-pink-100"
         />
         <div>
-          <div className="text-[20px] font-black tracking-tight leading-none text-black">MONIRESH</div>
-          <div className="text-[13px] font-bold tracking-[0.18em] text-moni-600 uppercase">Research OS</div>
+          <div className="text-[22px] font-black tracking-tight leading-none text-black">MONIRESH</div>
+          <div className="text-[15px] font-bold tracking-[0.18em] text-moni-600 uppercase">Research OS</div>
         </div>
         
       </div>
@@ -58,15 +58,15 @@ export function Sidebar() {
       <div className="px-3 py-4">
         <div className="rounded-2xl border border-pink-100 bg-gradient-to-br from-white to-moni-50/70 p-4 shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-[13px] font-black tracking-widest text-moni-600 uppercase">Research Lab</span>
-            <span className="inline-flex items-center gap-1 text-[13px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
+            <span className="text-[15px] font-black tracking-widest text-moni-600 uppercase">Research Lab</span>
+            <span className="inline-flex items-center gap-1 text-[15px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
               <ShieldCheck className="h-3.5 w-3.5" /> APA 7th
             </span>
           </div>
-          <div className="mt-2 text-[16px] font-extrabold leading-tight text-black">
+          <div className="mt-2 text-[18px] font-extrabold leading-tight text-black">
             Your complete workspace for research
           </div>
-          <div className="mt-1.5 text-[14px] text-black font-medium leading-relaxed">
+          <div className="mt-1.5 text-[16px] text-black font-medium leading-relaxed">
             No made-up citations. Every reference is checked and verified.
           </div>
         </div>
@@ -81,7 +81,7 @@ export function Sidebar() {
               key={item.label}
               href={item.href}
               className={cn(
-                "group flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[15px] font-bold transition-all duration-200",
+                "group flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[17px] font-bold transition-all duration-200",
                 active
                   ? "bg-ink-900 text-white shadow-lg shadow-ink-900/15"
                   : "text-black hover:bg-moni-50 hover:text-moni-700"
@@ -97,7 +97,7 @@ export function Sidebar() {
               {item.badge && (
                 <span
                   className={cn(
-                    "rounded-full px-2.5 py-0.5 text-[12px] font-black",
+                    "rounded-full px-2.5 py-0.5 text-[14px] font-black",
                     active ? "bg-white/15 text-white" : "bg-moni-50 text-moni-600 border border-moni-100"
                   )}
                 >
@@ -112,17 +112,17 @@ export function Sidebar() {
       {/* Footer - Calm Academic Standard */}
       <div className="border-t border-pink-100 p-4 bg-[#FFFEFE]">
         <div className="rounded-2xl border border-pink-100 bg-white p-4 shadow-sm">
-          <div className="flex items-center gap-2 text-[15px] font-black text-black">
+          <div className="flex items-center gap-2 text-[17px] font-black text-black">
             <Award className="h-4 w-4 text-moni-600" /> APA 7th • Verified Citations
           </div>
-          <div className="text-[14px] text-black mt-1 font-medium leading-relaxed">
+          <div className="text-[16px] text-black mt-1 font-medium leading-relaxed">
             Crossref DOI Linkage • Retraction Watch Audited
           </div>
-          <div className="mt-2 text-[13px] font-bold text-emerald-700">
+          <div className="mt-2 text-[15px] font-bold text-emerald-700">
             Zero Fabricated Citations or Statistics
           </div>
         </div>
-        <div className="mt-3 px-1 text-[13px] leading-relaxed text-black font-semibold text-center">
+        <div className="mt-3 px-1 text-[15px] leading-relaxed text-black font-semibold text-center">
           White & Pink • Simple & Easy • Evidence-First
         </div>
       </div>
