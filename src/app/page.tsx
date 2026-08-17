@@ -12,7 +12,7 @@ export default function HomePage() {
       <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-[#E2E8F0]">
         <div className="container-content h-[56px] flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <div className="h-7 w-7 rounded-[8px] bg-[#4F46E5] text-white grid place-items-center font-bold text-[12px]">M</div>
+            <img src="/moniresh-logo-exceptional.png" alt="MONIRESH" className="h-7 w-7 rounded-[8px] object-contain bg-white border border-[#E2E8F0] p-1" />
             <span className="font-semibold tracking-tight text-[15px]">MONIRESH</span>
             <span className="hidden sm:inline text-[11px] tracking-wide text-[#64748B] border border-[#E2E8F0] rounded-full px-2 py-0.5 ml-1">Research OS</span>
           </Link>
